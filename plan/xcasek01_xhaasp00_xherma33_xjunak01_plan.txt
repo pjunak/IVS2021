@@ -1,12 +1,19 @@
-Tento soubor bude obsahovat:
+! Tento soubor bude obsahovat:
 
 ! -- stanovené termíny,
 ! -- přidělení úkolů na projektu jednotlivým řešitelům,
 
 ! -- zvolené komunikační kanály pro komunikaci v týmu a stanovená pravidla pro komunikaci (jsou-li nějaká),
--- Discord, kontrola min. jednou denně, pokud člověk neví odpověď, explicitně napíše, že neví, aby nezdržoval dotazujícího, není problém ptát se i na jednoduché dotazy
--- Discord, týdenní schůzky ve středu po přednášce z IVS
--- GitHub, kontrola nástěnky k projektu zhruba jednou za 3-4 dny
+Pro běžnou komunikaci v týmu byl ustanoven Discord, s pravidelnou kontrolou místností projektu minimálně jednou denně.
+Také byly domluveny hlasové schůzky na Discordu, pravidelně každý týden ve středu po přednášce z IVS pro všechny členy týmu.
+Je možné se ale domluvit mezi sebou kdykoli jsme online a sejít se i mimo vyhrazený čas pro schůzky.
+Základní pravidla pro komunikaci:
+1) Je potřeba odepisovat i na dotazy ostatních, na které nevíme odpověď, abychom je nezdržovali ignorováním.
+2) Je naprosto v pořádku ptát se i na zdánlivě jednoduché dotazy - někdo jiný může poradit a urychlit tak řešení problému.
+Pro komunikaci s lepším uchováním historie byl vybrán GitHub, a to jednak jeho nástěnka k projektu, kterou je potřeba kontrolovat zhruba jednou za 3-4 dny (tzv. TODO)
+a jednak také Wiki pro trvalé informace k projektu, jako například důležité odkazy, domluvené konvence psaní kódu, komentářů a dalšího.
 
 ! -- zvolený systém pro správu verzí a hosting + informaci, jak do repozitáře mohou nahlédnout vyučující/cvičící (viz níže).
--- jako systém pro správu verzí byl vybrán GIT, hosting GitHub.com, URL repozitáře: https://github.com/pjunak/IVS2021/, před odesláním plánu byl zpřístupněn repozitář uživateli ivskontrola
+Systém pro správu verzí byl zvolen GIT + hosting na serveru GitHub.com, což bylo všemi schváleno, jelikož všichni mají s GitHubem zkušenosti z předchozích týmových projektů.
+URL repozitáře GitHub: https://github.com/pjunak/IVS2021/
+Před odevzdáním tohoto plánu do WISu byl zpřístupněn repozitář uživateli ivskontrola (ivs.kontrola@gmail.com).
