@@ -1,9 +1,19 @@
-! Tento soubor bude obsahovat:
+Stanovené termíny:
+17. 3. - návrh aplikace, definice rozhraní
+26. 3. - integrace frontendu a backendu (GUI s matematickou knihovnou)
+5. 4.  - začátek testování na virtuálním prostředí
+9. 4.  - finalizace produktu
+12. 4. - screenshoty debuggingu, mockupy
+21. 4. - kontrola formálních požadavků odevzdání
+23. 4. - plánované odevzdání
 
-! -- stanovené termíny,
-! -- přidělení úkolů na projektu jednotlivým řešitelům,
+Přidělení úkolů na projektu jednotlivým řešitelům:
+Dalibor Čásek - grafické a uživatelské prostředí
+Patrik Haas - propojení GUI s matematickou knihovnou, data-binding
+Kristián Heřman - grafické a uživatelské prostředí, nápověda, dokumentace
+Petr Junák - parser, převod výrazů do postfixové notace
 
-! -- zvolené komunikační kanály pro komunikaci v týmu a stanovená pravidla pro komunikaci (jsou-li nějaká),
+Zvolené komunikační kanály pro komunikaci v týmu a stanovená pravidla pro komunikaci (jsou-li nějaká):
 Pro běžnou komunikaci v týmu byl ustanoven Discord, s pravidelnou kontrolou místností projektu minimálně jednou denně.
 Také byly domluveny hlasové schůzky na Discordu, pravidelně každý týden ve středu po přednášce z IVS pro všechny členy týmu.
 Je možné se ale domluvit mezi sebou kdykoli jsme online a sejít se i mimo vyhrazený čas pro schůzky.
@@ -13,7 +23,7 @@ Základní pravidla pro komunikaci:
 Pro komunikaci s lepším uchováním historie byl vybrán GitHub, a to jednak jeho nástěnka k projektu, kterou je potřeba kontrolovat zhruba jednou za 3-4 dny (tzv. TODO)
 a jednak také Wiki pro trvalé informace k projektu, jako například důležité odkazy, domluvené konvence psaní kódu, komentářů a dalšího.
 
-! -- zvolený systém pro správu verzí a hosting + informaci, jak do repozitáře mohou nahlédnout vyučující/cvičící (viz níže).
+Zvolený systém pro správu verzí a hosting + informaci, jak do repozitáře mohou nahlédnout vyučující/cvičící:
 Systém pro správu verzí byl zvolen GIT + hosting na serveru GitHub.com, což bylo všemi schváleno, jelikož s GitHubem pracovali všichni členové týmu již v předchozích projektech.
 URL repozitáře GitHub: https://github.com/pjunak/IVS2021/
 Před odevzdáním tohoto plánu do WISu byl zpřístupněn repozitář uživateli ivskontrola (ivs.kontrola@gmail.com).
