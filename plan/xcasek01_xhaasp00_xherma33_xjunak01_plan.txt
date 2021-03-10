@@ -14,6 +14,6 @@ Pro komunikaci s lepším uchováním historie byl vybrán GitHub, a to jednak j
 a jednak také Wiki pro trvalé informace k projektu, jako například důležité odkazy, domluvené konvence psaní kódu, komentářů a dalšího.
 
 ! -- zvolený systém pro správu verzí a hosting + informaci, jak do repozitáře mohou nahlédnout vyučující/cvičící (viz níže).
-Systém pro správu verzí byl zvolen GIT + hosting na serveru GitHub.com, což bylo všemi schváleno, jelikož všichni mají s GitHubem zkušenosti z předchozích týmových projektů.
+Systém pro správu verzí byl zvolen GIT + hosting na serveru GitHub.com, což bylo všemi schváleno, jelikož s GitHubem pracovali všichni členové týmu již v předchozích projektech.
 URL repozitáře GitHub: https://github.com/pjunak/IVS2021/
 Před odevzdáním tohoto plánu do WISu byl zpřístupněn repozitář uživateli ivskontrola (ivs.kontrola@gmail.com).
