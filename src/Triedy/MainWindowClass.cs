@@ -1,37 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-public class MainWindowClass : INotifyPropertyChanged
+namespace Kalkulacka.Triedy
 {
-	private string _vstup;
-	public string Vstup
+	public class MainWindowClass : INotifyPropertyChanged
 	{
-		get { return _vstup; }
-		set
+		private string _vstup;
+		public string Vstup
 		{
-			_vstup = value;
+			get { return _vstup; }
+			set
+			{
+				_vstup = value;
+			}
 		}
-	}
 
-	public List<string> Vstupy { get; set;}
-	public List<string> Vysledky {get; set;}
+		public ObservableCollection<string> Vstupy { get; set; }
+		public ObservableCollection<string> Vysledky { get; set; }
 
-	public MainWindowClass()
-	{
-		for (int i = 0; i < 4; i++)
+		public MainWindowClass()
 		{
-			Vysledky.Add("");
-			Vstupy.Add("");
+			Vstupy = new ObservableCollection<string>
+			{
+				"",
+				"",
+				"",
+				""
+			};
+
+			Vysledky = new ObservableCollection<string>
+			{
+				"",
+				"",
+				"",
+				""
+			};
 		}
-	}	
 
-	public event PropertyChangedEventHandler PropertyChanged;
-	public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-	{
-		var handler = PropertyChanged;
-		if (handler != null)
+		public event PropertyChangedEventHandler PropertyChanged;
+		public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
 		{
-			handler(this, new PropertyChangedEventArgs(propertyName));
+			var handler = PropertyChanged;
+			if (handler != null)
+			{
+				handler(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

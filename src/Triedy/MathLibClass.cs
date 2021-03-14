@@ -1,8 +1,11 @@
 ﻿using System;
 
-public class MathLibClass
+namespace Kalkulacka.Triedy
 {
-	public MathLibClass()
+	public class MathLibClass
 	{
+		public MathLibClass()
+		{
+		}
 	}
 }

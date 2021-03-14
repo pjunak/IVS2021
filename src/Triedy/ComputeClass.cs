@@ -1,8 +1,11 @@
 ﻿using System;
 
-public class ComputeClass
+namespace Kalkulacka.Triedy
 {
-	public ComputeClass()
+	public class ComputeClass
 	{
+		public ComputeClass()
+		{
+		}
 	}
 }

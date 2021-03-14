@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kalkulacka"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+		xmlns:Triedy="clr-namespace:Kalkulacka.Triedy"
+		d:DataContext="{d:DesignInstance Triedy:MainWindowClass}"
+        Title="Kalkulačka" Height="400" Width="200">
+
+	<Window.DataContext>
+		<Triedy:MainWindowClass/>
+	</Window.DataContext>
+
+	<Grid>
+		<TextBox
+			TextWrapping="Wrap"
+			Text="{Binding Vstup, UpdateSourceTrigger=PropertyChanged}"
+			Background="LightBlue"
+			Foreground="Black" Margin="33,0,31,308"/>
+
+	</Grid>
 </Window>

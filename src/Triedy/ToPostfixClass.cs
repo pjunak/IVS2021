@@ -1,8 +1,11 @@
 ﻿using System;
 
-public class ToPostfixClass
+namespace Kalkulacka.Triedy
 {
-	public ToPostfixClass()
+	public class ToPostfixClass
 	{
+		public ToPostfixClass()
+		{
+		}
 	}
 }
