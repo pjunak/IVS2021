@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Triedy\ComputeClass.cs" />
+    <Compile Include="Triedy\MainWindowClass.cs" />
+    <Compile Include="Triedy\MathLibClass.cs" />
+    <Compile Include="Triedy\ToPostfixClass.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
