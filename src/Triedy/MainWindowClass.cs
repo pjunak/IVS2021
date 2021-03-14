@@ -1,42 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-public class MainWindowClass : INotifyPropertyChanged
+namespace Kalkulacka.Triedy
 {
-	private string _vstup;
-	public string Vstup
+	public class MainWindowClass : INotifyPropertyChanged
 	{
-		get { return _vstup; }
-		set
+		private string _vstup;
+		public string Vstup
 		{
-			_vstup = value;
+			get { return _vstup; }
+			set
+			{
+				_vstup = value;
+			}
 		}
-	}
 
-	public List<string> Vstupy { get; set;}
-	public List<string> VstupyPostFix { get; set; }
-	public List<string> Vysledky {get; set;}
+		public ObservableCollection<string> Vstupy { get; set; }
+		public ObservableCollection<string> VstupyPostFix { get; set; }
+		public ObservableCollection<string> Vysledky { get; set; }
+		public ToPostfixClass ToPostfix { get; set; }
 
-	public MainWindowClass()
-	{
-		for (int i = 0; i < 4; i++)
+		public MainWindowClass()
 		{
-			Vstupy.Add("");
-			VstupyPostFix.Add("");
-			Vysledky.Add("");
+			ToPostfix = new ToPostfixClass();
+
+			Vstupy = new ObservableCollection<string> { "", "", "", "" };
+			VstupyPostFix = new ObservableCollection<string> { "", "", "", "" };
+			Vysledky = new ObservableCollection<string> { "", "", "", "" };
+
+			//Debug pro ToPostFix
+			Vstupy[0] = "a+b*(c^d-e)^(f+g*h)-i";
+			Console.WriteLine(ToPostfix.ToPostfix(Vstupy[0]));
 		}
-		//Debug pro ToPostFix
-		Vstupy[0] = "a+b*(c^d-e)^(f+g*h)-i";
-		Console.WriteLine(ToPostfixClass.ToPostfixClass(Vstupy[0]));
-	}
 
-	public event PropertyChangedEventHandler PropertyChanged;
-	public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-	{
-		var handler = PropertyChanged;
-		if (handler != null)
+		public void Compute()
 		{
-			handler(this, new PropertyChangedEventArgs(propertyName));
+			//ToPostfix.ToPostfix(Vstup);
+			//Vstupy[(Index % 4)] = ToPostfix.GetResult();
+			//Compute.Compute(ToPostfix.GetResult());
+		}
+
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			var handler = PropertyChanged;
+			if (handler != null)
+			{
+				handler(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
