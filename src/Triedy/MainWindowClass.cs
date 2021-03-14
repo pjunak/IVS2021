@@ -23,12 +23,12 @@ public class MainWindowClass : INotifyPropertyChanged
 		{
 			Vstupy.Add("");
 			VstupyPostFix.Add("");
-			Vysledky.Add("")
+			Vysledky.Add("");
 		}
+		//Debug pro ToPostFix
+		Vstupy[0] = "a+b*(c^d-e)^(f+g*h)-i";
+		Console.WriteLine(ToPostfixClass.ToPostfixClass(Vstupy[0]));
 	}
-
-	Vstupy[0] = "2*5-10/5";
-	Debug.WriteLine("{0}", Vstupy[0]);
 
 	public event PropertyChangedEventHandler PropertyChanged;
 	public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
