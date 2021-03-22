@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculator.Classes
 {
-    class Structures
+    public class Structures
     {
-        //Hola, hola, Petrova nová třída tě vítá!
+        public enum typTokenu
+        {
+            operand,
+            plusMinus,
+            mulDiv,
+            powerSquare,
+            other
+        }
+        public struct Token
+        {
+            public typTokenu typ;
+            public float operand;
+            public char operation;
+        }
     }
 }
