@@ -5,7 +5,7 @@ namespace Calculator.Classes
 {
     public class Structures
     {
-        public enum typTokenu
+        public enum tokenType
         {
             operand,
             plusMinus,
@@ -15,7 +15,7 @@ namespace Calculator.Classes
         }
         public struct Token
         {
-            public typTokenu typ;
+            public tokenType type;
             public float operand;
             public char operation;
         }
