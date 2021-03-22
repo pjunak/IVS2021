@@ -5,7 +5,7 @@ using Xunit;
 
 namespace XUnitTests
 {
-	/*public class MathLibTests
+	public class MathLibTests
 	{
 		[Theory]
 		[InlineData(1.1, 2.2, 3.3)]
@@ -83,7 +83,7 @@ namespace XUnitTests
 			//Act + Assert
 			Assert.Raises<DivideByZeroException>(MathLib.Division(FloatNumber, ZeroDivision));
 		}
-	}*/
+	}
 
 	public class ComputeClassTests
 	{
