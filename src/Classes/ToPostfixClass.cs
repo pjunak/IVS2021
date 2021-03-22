@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kalkulacka.Triedy
+namespace Calculator.Classes
 {
 	public class ToPostfixClass
 	{
-		private string _vystup { get; set; }
+		private string _output { get; set; }
 
 		public string GetResult()
 		{
-			return _vystup;
+			return _output;
 		}
 
 		public ToPostfixClass()
