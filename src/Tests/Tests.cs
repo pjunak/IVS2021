@@ -9,32 +9,30 @@ namespace XUnitTests
 	{
 		[Theory]
 		[InlineData(1.1, 2.2, 3.3)]
-		public void AdditionOfTwoNumbers(double FloatNumber, double FloatNumberToAdd, double Expected)
+		public void AdditionOfTwoNumbers(double DoubleNumber, double DoubleNumberToAdd, double Expected)
 		{
 			//Arrange
 			var MathLib = new MathLibClass();
 
 			//Act
-			var result = MathLib.Addition(FloatNumber, FloatNumberToAdd);
+			double result = MathLib.Addition(DoubleNumber, DoubleNumberToAdd);
 
 			//Assert
-
 			Assert.Equal(result, Expected, 2);
 		}
 
 		[Theory]
 		[InlineData(1.1, 2.2, -1.1)]
 		[InlineData(2.2, 1.1, 1.1)]
-		public void SubtractionOfTwoNumbers(double FloatNumber, double FloatNumberToSub, double Expected)
+		public void SubtractionOfTwoNumbers(double DoubleNumber, double DoubleNumberToSub, double Expected)
 		{
 			//Arrange
 			var MathLib = new MathLibClass();
 
 			//Act
-			var result = MathLib.Subtraction(FloatNumber, FloatNumberToSub);
+			double result = MathLib.Subtraction(DoubleNumber, DoubleNumberToSub);
 
 			//Assert
-
 			Assert.Equal(result, Expected, 2);
 		}
 
@@ -42,16 +40,15 @@ namespace XUnitTests
 		[InlineData(1.1, 2.2, 2.42)]
 		[InlineData(1.1, -2.2, -2.42)]
 		[InlineData(-1.1, -2.2, 2.42)]
-		public void MultiplicationOfTwoNumbers(double FloatNumber, double FloatNumberToMul, double Expected)
+		public void MultiplicationOfTwoNumbers(double DoubleNumber, double DoubleNumberToMul, double Expected)
 		{
 			//Arrange
 			var MathLib = new MathLibClass();
 
 			//Act
-			var result = MathLib.Multiplication(FloatNumber, FloatNumberToMul);
+			double result = MathLib.Multiplication(DoubleNumber, DoubleNumberToMul);
 
 			//Assert
-
 			Assert.Equal(result, Expected, 2);
 		}
 
@@ -59,29 +56,89 @@ namespace XUnitTests
 		[InlineData(1.1, 2.2, 0.5)]
 		[InlineData(-1.1, 2.2, -0.5)]
 		[InlineData(-1.1, -2.2, 0.5)]
-		public void DivisionOfTwoNumbers(double FloatNumber, double FloatNumberToDiv, double Expected)
+		[InlineData(1.1, 0, double.NaN)]
+		[InlineData(-1.1, 0, double.NaN)]
+		public void DivisionOfTwoNumbers(double DoubleNumber, double DoubleNumberToDiv, double Expected)
 		{
 			//Arrange
 			var MathLib = new MathLibClass();
 
 			//Act
-			var result = MathLib.Division(FloatNumber, FloatNumberToDiv);
+			double result = MathLib.Division(DoubleNumber, DoubleNumberToDiv);
 
 			//Assert
-
 			Assert.Equal(result, Expected, 2);
 		}
 
 		[Theory]
-		[InlineData(1.1, 0)]
-		[InlineData(-1.1, 0)]
-		public void DivisionOfZero(double FloatNumber, double ZeroDivision)
+		[InlineData(5, 120)]
+		[InlineData(0, 1)]
+		[InlineData(1, 1)]
+		[InlineData(5.1, Double.NaN)]
+		[InlineData(-5, Double.NaN)]
+		public void Factorial(double DoubleNumber, double Expected)
 		{
 			//Arrange
 			var MathLib = new MathLibClass();
 
-			//Act + Assert
-			Assert.Raises<DivideByZeroException>(MathLib.Division(FloatNumber, ZeroDivision));
+			//Act
+			double result = MathLib.Factorial(DoubleNumber);
+
+			//Assert
+			Assert.Equal(result, Expected, 2);
+		}
+
+		[Theory]
+		[InlineData(2, 5, 32)]
+		[InlineData(2, 0, Double.NaN)]
+		[InlineData(2, -5.1, Double.NaN)]
+		[InlineData(2, 5.1, Double.NaN)]
+		public void Power(double DoubleNumber, double DoubleNumberPower, double Expected)
+		{
+			//Arrange
+			var MathLib = new MathLibClass();
+
+			//Act
+			double result = MathLib.Power(DoubleNumber, DoubleNumberPower);
+
+			//Assert
+			Assert.Equal(result, Expected, 3);
+		}
+
+		[Theory]
+		[InlineData(16, 2, 4)]
+		[InlineData(16.5, 2, 4.062)]
+		[InlineData(16, 4, 2)]
+		[InlineData(16, 4.2, Double.NaN)]
+		[InlineData(16, 0, Double.NaN)]
+		[InlineData(16, -1, Double.NaN)]
+		[InlineData(-16, 2, Double.NaN)]
+		public void SquareRoot(double DoubleNumber, double floatNumberNthRoot, double Expected)
+		{
+			//Arrange
+			var MathLib = new MathLibClass();
+
+			//Act
+			double result = MathLib.NthRoot(DoubleNumber, floatNumberNthRoot);
+
+			//Assert
+			Assert.Equal(result, Expected, 3);
+		}
+
+		[Theory]
+		[InlineData(2, 0.909)]
+		[InlineData(0, 0)]
+		[InlineData(-2, -0.909)]
+		public void Sin(double DoubleNumber, double Expected)
+		{
+			//Arrange
+			var MathLib = new MathLibClass();
+
+			//Act
+			double result = MathLib.Sin(DoubleNumber);
+
+			//Assert
+			Assert.Equal(result, Expected, 3);
 		}
 	}
 
