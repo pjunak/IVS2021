@@ -113,7 +113,7 @@ namespace XUnitTests
 		[InlineData(16, 0, Double.NaN)]
 		[InlineData(16, -1, Double.NaN)]
 		[InlineData(-16, 2, Double.NaN)]
-		public void SquareRoot(double DoubleNumber, double floatNumberNthRoot, double Expected)
+		public void NthRoot(double DoubleNumber, double floatNumberNthRoot, double Expected)
 		{
 			//Arrange
 			var MathLib = new MathLibClass();
