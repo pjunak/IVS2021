@@ -144,93 +144,215 @@ namespace XUnitTests
 
 	public class ComputeClassTests
 	{
-		//Token Struct for testing
-		public struct Token 
-		{
-			public string Type;
-			public string Data;
-		}
-
-		public static IEnumerable<object[]> ComputeInputData()
-		{
-			//Simple Subtraction
-			yield return new object[]
-			{
-				new object[]
-				{
-					new Token {Type = "Number", Data = "15"},
-					new Token {Type = "Number", Data = "10"},
-					new Token {Type = "Operator", Data = "-"},
-					new Token {Type = "Number", Data = "5"},
-					new Token {Type = "Operator", Data = "-"},
-					new Token {Type = "Number", Data = "10"},
-					new Token {Type = "Operator", Data = "-"},
-				},
-				-10
-			};
-
-			//Simple Addition
-			yield return new object[]
-			{
-				new object[]
-				{
-					new Token {Type = "Number", Data = "5"},
-					new Token {Type = "Number", Data = "5"},
-					new Token {Type = "Operator", Data = "+"},
-					new Token {Type = "Number", Data = "5"},
-					new Token {Type = "Operator", Data = "+"},
-					new Token {Type = "Number", Data = "15"},
-					new Token {Type = "Operator", Data = "+"},
-				},
-				30
-			};
-
-			//Check simple multiplication
-			yield return new object[]
-			{
-				new object[]
-				{
-					new Token {Type = "Number", Data = "5"},
-					new Token {Type = "Number", Data = "5"},
-					new Token {Type = "Number", Data = "5"},
-					new Token {Type = "Operator", Data = "*"},
-					new Token {Type = "Operator", Data = "+"},
-				},
-				30
-			};
-
-			//More Complex with Addition, Subtraction, Multiplication and Division
-			yield return new object[]
-			{
-				new object[]
-				{
-					new Token {Type = "Number", Data = "2"},
-					new Token {Type = "Number", Data = "3"},
-					new Token {Type = "Operator", Data = "+"},
-					new Token {Type = "Number", Data = "7"},
-					new Token {Type = "Number", Data = "2"},
-					new Token {Type = "Operator", Data = "-"},
-					new Token {Type = "Operator", Data = "*"},
-					new Token {Type = "Number", Data = "5"},
-					new Token {Type = "Operator", Data = "/"},
-				},
-				5
-			};
-			//TODO factorial, pow, sqrt, sin
-		}
-
-		[Theory]
-		[MemberData(nameof(ComputeInputData))]
-		public void ComputeFromPostFixNotation_Simple_Substraction(object[] Input, double Expected)
+		//Basic Subtraction test
+		[Fact(DisplayName = "ComputeFromPostFix Infix=(15-10-5-10) Postfix(15 10 - 5 - 10 -) Expected=(-10)")]
+		public void ComputeFromPostFixNotation_TestNumber1()
 		{
 			//Arrange
 			var Compute = new ComputeClass();
+			double Expected = -10;
+			var Input = new List<Token>
+			{
+				new Token {type = TokenType.operand, operand = 15},
+				new Token {type = TokenType.operand, operand = 10},
+				new Token {type = TokenType.plusMinus, operation = '-'},
+				new Token {type = TokenType.operand, operand = 5},
+				new Token {type = TokenType.plusMinus, operation = '-'},
+				new Token {type = TokenType.operand, operand = 10},
+				new Token {type = TokenType.plusMinus, operation = '-'},
+			};
 
 			//Act
 			double result = Compute.Compute(Input);
 
 			//Assert
 			Assert.Equal(result, Expected, 2);
+		}
+
+		//Basic Addition test
+		[Fact(DisplayName = "ComputeFromPostFix Infix=(5+5+5+15) Postfix=(5 5 + 5 + 15 +) Expected(30)")]
+		public void ComputeFromPostFixNotation_TestNumber2()
+		{
+			//Arrange
+			var Compute = new ComputeClass();
+			double Expected = 30;
+			var Input = new List<Token>
+			{
+				new Token {type = TokenType.operand, operand = 5},
+				new Token {type = TokenType.operand, operand = 5},
+				new Token {type = TokenType.plusMinus, operation = '+'},
+				new Token {type = TokenType.operand, operand = 5},
+				new Token {type = TokenType.plusMinus, operation = '+'},
+				new Token {type = TokenType.operand, operand = 15},
+				new Token {type = TokenType.plusMinus, operation = '+'},
+			};
+
+			//Act
+			double result = Compute.Compute(Input);
+
+			//Assert
+			Assert.Equal(result, Expected, 2);
+		}
+
+		//Basic Multiplication test
+		[Fact(DisplayName = "ComputeFromPostFix Infix=(5+5*5), Postfix=(5 5 5 * +), Expected(30)")]
+		public void ComputeFromPostFixNotation_TestNumber3()
+		{
+			//Arrange
+			var Compute = new ComputeClass();
+			double Expected = 30;
+			var Input = new List<Token>
+			{
+				new Token {type = TokenType.operand, operand = 5},
+				new Token {type = TokenType.operand, operand = 5},
+				new Token {type = TokenType.operand, operand = 5},
+				new Token {type = TokenType.mulDiv, operation = '*'},
+				new Token {type = TokenType.plusMinus, operation = '+'},
+			};
+
+			//Act
+			double result = Compute.Compute(Input);
+
+			//Assert
+			Assert.Equal(result, Expected, 2);
+		}
+
+		//Complex Multiplication and Division test
+		[Fact(DisplayName = "ComputeFromPostFix Infix=((2+3)*(7-2)/5), Postfix=(2 3 + 7 2 - * 5 /), Expected(5)")]
+		public void ComputeFromPostFixNotation_TestNumber4()
+		{
+			//Arrange
+			var Compute = new ComputeClass();
+			double Expected = 5;
+			var Input = new List<Token>
+			{
+				new Token {type = TokenType.operand , operand = 2},
+				new Token {type = TokenType.operand, operand = 3},
+				new Token {type = TokenType.plusMinus, operation = '+'},
+				new Token {type = TokenType.operand, operand = 7},
+				new Token {type = TokenType.operand, operand = 2},
+				new Token {type = TokenType.plusMinus, operation = '-'},
+				new Token {type = TokenType.mulDiv, operation = '*'},
+				new Token {type = TokenType.operand, operand = 5},
+				new Token {type = TokenType.mulDiv, operation = '/'},
+			};
+
+			//Act
+			double result = Compute.Compute(Input);
+
+			//Assert
+			Assert.Equal(result, Expected, 2);
+		}
+
+		//Basic Power test
+		[Fact(DisplayName = "ComputeFromPostFix Infix=(5*5 + 4^5*4), Postfix=(5 5 * 4 5 ^ 4 * +), Expected(4121)")]
+		public void ComputeFromPostFixNotation_TestNumber6()
+		{
+			//Arrange
+			var Compute = new ComputeClass();
+			double Expected = 4121;
+			var Input = new List<Token>
+			{
+				new Token { type = TokenType.operand, operand = 5},
+				new Token { type = TokenType.operand, operand = 5},
+				new Token { type = TokenType.mulDiv, operation = '*'},
+				new Token { type = TokenType.operand, operand = 4},
+				new Token { type = TokenType.operand, operand = 5},
+				new Token { type = TokenType.powerSquare, operation = 'p'},
+				new Token { type = TokenType.operand, operand = 4},
+				new Token { type = TokenType.mulDiv, operation = '*'},
+				new Token { type = TokenType.plusMinus, operation = '+'},
+
+			};
+
+			//Act
+			double result = Compute.Compute(Input);
+
+			//Assert
+			Assert.Equal(result, Expected, 2);
+		}
+
+		//Basic sqrt test
+		[Fact(DisplayName = "ComputeFromPostFix Infix=(5.5/1.1+sqrt(16, 4)), Postfix=(5.5 1.1 / 16 4 sqrt +), Expected(9)")]
+		public void ComputeFromPostFixNotation_TestNumber7()
+		{
+			//Arrange
+			var Compute = new ComputeClass();
+			double Expected = 7;
+			var Input = new List<Token>
+			{
+				new Token { type = TokenType.operand, operand = 5.5},
+				new Token { type = TokenType.operand, operand = 1.1},
+				new Token { type = TokenType.mulDiv, operation = '/'},
+				new Token { type = TokenType.operand, operand = 16},
+				new Token { type = TokenType.operand, operand = 4},
+				new Token { type = TokenType.powerSquare, operation = 'q'},
+				new Token { type = TokenType.plusMinus, operation = '+'},
+
+			};
+
+			//Act
+			double result = Compute.Compute(Input);
+
+			//Assert
+			Assert.Equal(result, Expected, 2);
+		}
+
+		//Basic Factorial test
+		[Fact(DisplayName = "ComputeFromPostFix Infix=(5.6+5.2*(120-5!)), Postfix=(5.6 5.2 120 5 ! - * +), Expected(5.6)")]
+		public void ComputeFromPostFixNotation_TestNumber8()
+		{
+			//Arrange
+			var Compute = new ComputeClass();
+			double Expected = 5.6;
+			var Input = new List<Token>
+			{
+				new Token { type = TokenType.operand, operand = 5.6},
+				new Token { type = TokenType.operand, operand = 5.2},
+				new Token { type = TokenType.operand, operand = 120},
+				new Token { type = TokenType.operand, operand = 5},
+				new Token { type = TokenType.other, operation = '!'},
+				new Token { type = TokenType.plusMinus, operation = '-'},
+				new Token { type = TokenType.mulDiv, operation = '*'},
+				new Token { type = TokenType.plusMinus, operation = '+'},
+
+			};
+
+			//Act
+			double result = Compute.Compute(Input);
+
+			//Assert
+			Assert.Equal(result, Expected, 2);
+		}
+
+		//Basic Sin test
+		[Fact(DisplayName = "ComputeFromPostFix Infix=(5.5*5.5/5.5+sin(1)*sin(2)), Postfix=(5.5 5.5 * 5.5 / 1 sin 2 sin * +), Expected(6.265)")]
+		public void ComputeFromPostFixNotation_TestNumber9()
+		{
+			//Arrange
+			var Compute = new ComputeClass();
+			double Expected = 6.265;
+			var Input = new List<Token>
+			{
+				new Token { type = TokenType.operand, operand = 5.5},
+				new Token { type = TokenType.operand, operand = 5.5},
+				new Token { type = TokenType.mulDiv, operation = '*'},
+				new Token { type = TokenType.operand, operand = 5.5},
+				new Token { type = TokenType.mulDiv, operation = '/'},
+				new Token { type = TokenType.operand, operand = 1},
+				new Token { type = TokenType.other, operation = 's'},
+				new Token { type = TokenType.operand, operand = 2},
+				new Token { type = TokenType.other, operation = 's'},
+				new Token { type = TokenType.mulDiv, operation = '*'},
+				new Token { type = TokenType.plusMinus, operation = '+'},
+
+			};
+
+			//Act
+			double result = Compute.Compute(Input);
+
+			//Assert
+			Assert.Equal(result, Expected, 3);
 		}
 	}
 }

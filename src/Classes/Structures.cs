@@ -3,21 +3,18 @@ using System.Collections.Generic;
 
 namespace Calculator.Classes
 {
-    public class Structures
+    public enum TokenType
     {
-        public enum tokenType
-        {
-            operand,
-            plusMinus,
-            mulDiv,
-            powerSquare,
-            other
-        }
-        public struct Token
-        {
-            public tokenType type;
-            public float operand;
-            public char operation;
-        }
+        operand,
+        plusMinus,
+        mulDiv,
+        powerSquare,
+        other
+    }
+    public struct Token
+    {
+        public TokenType type;
+        public double operand;
+        public char operation;
     }
 }
