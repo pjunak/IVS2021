@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kalkulacka"
         mc:Ignorable="d"
-		xmlns:Triedy="clr-namespace:Kalkulacka.Triedy"
-		d:DataContext="{d:DesignInstance Triedy:MainWindowClass}"
-        Title="Kalkulačka" Height="400" Width="200">
+		xmlns:Classes="clr-namespace:Calculator.Classes"
+		d:DataContext="{d:DesignInstance Classes:MainWindowClass}"
+        Title="Calculator" Height="400" Width="200">
 
 	<Window.DataContext>
-		<Triedy:MainWindowClass/>
+		<Classes:MainWindowClass/>
 	</Window.DataContext>
 
 	<Grid>

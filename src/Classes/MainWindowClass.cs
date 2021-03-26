@@ -4,36 +4,36 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Kalkulacka.Triedy
+namespace Calculator.Classes
 {
 	public class MainWindowClass : INotifyPropertyChanged
 	{
-		private string _vstup;
-		public string Vstup
+		private string _input;
+		public string Input
 		{
-			get { return _vstup; }
+			get { return _input; }
 			set
 			{
-				_vstup = value;
+				_input = value;
 			}
 		}
 
-		public ObservableCollection<string> Vstupy { get; set; }
-		public ObservableCollection<string> VstupyPostFix { get; set; }
-		public ObservableCollection<string> Vysledky { get; set; }
+		public ObservableCollection<string> Inputs { get; set; }
+		public ObservableCollection<string> ResultsPostFix { get; set; }
+		public ObservableCollection<string> Results { get; set; }
 		public ToPostfixClass ToPostfix { get; set; }
 
 		public MainWindowClass()
 		{
 			ToPostfix = new ToPostfixClass();
 
-			Vstupy = new ObservableCollection<string> { "", "", "", "" };
-			VstupyPostFix = new ObservableCollection<string> { "", "", "", "" };
-			Vysledky = new ObservableCollection<string> { "", "", "", "" };
+			Inputs = new ObservableCollection<string> { "", "", "", "" };
+			ResultsPostFix = new ObservableCollection<string> { "", "", "", "" };
+			Results = new ObservableCollection<string> { "", "", "", "" };
 
 			//Debug pro ToPostFix
-			Vstupy[0] = "a+b*(c^d-e)^(f+g*h)-i";
-			Console.WriteLine(ToPostfix.ToPostfix(Vstupy[0]));
+			Inputs[0] = "a+b*(c^d-e)^(f+g*h)-i";
+			Console.WriteLine(ToPostfix.ToPostfix(Inputs[0]));
 		}
 
 		public void Compute()
