@@ -61,11 +61,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CalcHome.xaml.cs">
+      <DependentUpon>CalcHome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\ComputeClass.cs" />
     <Compile Include="Classes\MainWindowClass.cs" />
     <Compile Include="Classes\MathLibClass.cs" />
     <Compile Include="Classes\Structures.cs" />
     <Compile Include="Classes\ToPostfixClass.cs" />
+    <Page Include="CalcHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
