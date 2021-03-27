@@ -67,6 +67,7 @@
     <Compile Include="Classes\ComputeClass.cs" />
     <Compile Include="Classes\MainWindowClass.cs" />
     <Compile Include="Classes\MathLibClass.cs" />
+    <Compile Include="Classes\RelayCommand.cs" />
     <Compile Include="Classes\Structures.cs" />
     <Compile Include="Classes\ToPostfixClass.cs" />
     <Page Include="CalcHome.xaml">

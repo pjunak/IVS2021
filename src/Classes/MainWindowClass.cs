@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using Calculator.Classes;
 
 namespace Calculator.Classes
 {
@@ -18,22 +20,25 @@ namespace Calculator.Classes
 			}
 		}
 
+		//Takto sa definuje volanie funkcie, tato premena je naviazana na tlacidko '='
+		public ICommand Calculate { get; set; }
+
+		public static int IndexOfResultsInputs {get; set;}
 		public ObservableCollection<string> Inputs { get; set; }
-		public ObservableCollection<string> ResultsPostFix { get; set; }
 		public ObservableCollection<string> Results { get; set; }
 		public ToPostfixClass ToPostfix { get; set; }
+		public ComputeClass ComputeResult { get; set; }
 
 		public MainWindowClass()
 		{
 			ToPostfix = new ToPostfixClass();
+			ComputeResult = new ComputeClass();
 
+			IndexOfResultsInputs = 0;
 			Inputs = new ObservableCollection<string> { "", "", "", "" };
-			ResultsPostFix = new ObservableCollection<string> { "", "", "", "" };
 			Results = new ObservableCollection<string> { "", "", "", "" };
 
-			//Debug pro ToPostFix
-			Inputs[0] = "a+b*(c^d-e)^(f+g*h)-i";
-			Console.WriteLine(ToPostfix.ToPostfix(Inputs[0]));
+			Calculate = new RelayCommand(TestFunction);
 		}
 
 		public void Compute()
@@ -41,6 +46,14 @@ namespace Calculator.Classes
 			//ToPostfix.ToPostfix(Vstup);
 			//Vstupy[(Index % 4)] = ToPostfix.GetResult();
 			//Compute.Compute(ToPostfix.GetResult());
+		}
+
+		public void TestFunction()
+		{
+			Inputs[IndexOfResultsInputs] = Input;
+			Results[IndexOfResultsInputs] = "5";
+
+			IndexOfResultsInputs = (IndexOfResultsInputs + 1) % 4;
 		}
 
 

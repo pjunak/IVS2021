@@ -33,7 +33,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBox Margin="4" TextWrapping="Wrap" Text="TextBox"/>
+            <TextBox Margin="4" TextWrapping="Wrap" Text="{Binding Input}"/>
             <Button Content="Delet" Grid.Column="1" Grid.Row="0" Margin="4"/>
             <Button Content="?" Grid.Column="2" Grid.Row="1" Margin="4"/>
 
@@ -65,14 +65,14 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Content="Výraz 1" Margin="4" Background="White"/>
-                <Label Grid.Row="1" Content="Výsledek 1" Margin="4" Background="White"/>
-                <Label Grid.Row="2" Content="Výraz 2" Margin="4" Background="White"/>
-                <Label Grid.Row="3" Content="Výsledek 2" Margin="4" Background="White"/>
-                <Label Grid.Row="4" Content="Výraz 3" Margin="4" Background="White"/>
-                <Label Grid.Row="5" Content="Výsledek 3" Margin="4" Background="White"/>
-                <Label Grid.Row="6" Content="Výraz 4" Margin="4" Background="White"/>
-                <Label Grid.Row="7" Content="Výsledek4 1" Margin="4" Background="White"/>
+                <Label Grid.Row="0" Content="{Binding Inputs[0]}" Margin="4" Background="White"/>
+				<Label Grid.Row="1" Content="{Binding Results[0]}" Margin="4" Background="White"/>
+				<Label Grid.Row="2" Content="{Binding Inputs[1]}" Margin="4" Background="White"/>
+				<Label Grid.Row="3" Content="{Binding Results[1]}" Margin="4" Background="White"/>
+				<Label Grid.Row="4" Content="{Binding Inputs[2]}" Margin="4" Background="White"/>
+				<Label Grid.Row="5" Content="{Binding Results[2]}" Margin="4" Background="White"/>
+				<Label Grid.Row="6" Content="{Binding Inputs[3]}" Margin="4" Background="White"/>
+				<Label Grid.Row="7" Content="{Binding Results[3]}" Margin="4" Background="White"/>
 
 
 
@@ -113,7 +113,10 @@
                 <Button Content="*" Grid.Column="3" Grid.Row="1" Margin="4"/>
                 <Button Content="-" Grid.Column="3" Grid.Row="2" Margin="4"/>
                 <Button Content="+" Grid.Column="3" Grid.Row="3" Margin="4"/>
-                <Button Content="=" Grid.Column="3" Grid.Row="4" Margin="4" Grid.ColumnSpan="2"/>
+
+				<!-- Takto je mozne naviazat Command na tlacidko -->
+				<Button Content="=" Grid.Column="3" Grid.Row="4" Margin="4" Grid.ColumnSpan="2" Command="{Binding Calculate}"/>
+
                 <Button Content="π" Grid.Column="4" Grid.Row="0" Margin="4"/>
                 <Button Content="sin(x)" Grid.Column="4" Grid.Row="1" Margin="4"/>
                 <Button Content="(" Grid.Column="4" Grid.Row="2" Margin="4"/>
