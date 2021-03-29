@@ -7,7 +7,7 @@
         mc:Ignorable="d"
 		xmlns:Classes="clr-namespace:Calculator.Classes"
 		d:DataContext="{d:DesignInstance Classes:MainWindowClass}"
-        Title="Calculator" Height="400" Width="400">
+        Title="Kalkulačka, ©FITness studIO 21" Height="400" Width="400" KeyDown="Window_KeyDown">
 
 	<Window.DataContext>
 		<Classes:MainWindowClass/>
@@ -99,7 +99,7 @@
                 <Button Content="4" Grid.Column="0" Grid.Row="2" Margin="4"/>
                 <Button Content="1" Grid.Column="0" Grid.Row="3" Margin="4"/>
                 <Button Content="xD" Grid.Column="0" Grid.Row="4" Margin="4"/>
-                <Button Content="sqrt(x)" Grid.Column="1" Grid.Row="0" Margin="4"/>
+                <Button Content="√(x)" Grid.Column="1" Grid.Row="0" Margin="4"/>
                 <Button Content="8" Grid.Column="1" Grid.Row="1" Margin="4"/>
                 <Button Content="5" Grid.Column="1" Grid.Row="2" Margin="4"/>
                 <Button Content="2" Grid.Column="1" Grid.Row="3" Margin="4"/>

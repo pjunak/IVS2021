@@ -36,5 +36,15 @@ namespace Kalkulacka
             string filePath = "../../Help/Napoveda_ver_1_0.chm";
             Help.ShowHelp(null, filePath);
         }
+
+        //
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.F1)
+            {
+                string filePath = "../../Help/Napoveda_ver_1_0.chm";
+                Help.ShowHelp(null, filePath);
+            }
+        }
     }
 }
