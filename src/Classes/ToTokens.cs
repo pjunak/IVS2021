@@ -8,24 +8,26 @@ namespace Calculator.Classes
     {
         public List<Token> toTokens(string str)
         {
-            if (str[0] == '-' || str[0] == '+')
-            {// Ošetření implicitní nuly na začátku vstupního výrazu
+            if (str[0] == '-' || str[0] == '+' )
+            {// Ošetření implicitní nuly na začátku vstupního výrazu v případě začnutí výrazu záporným, nebo explicitním kladným číslem
                 str.Insert(0, "0");
             }
             int i = 0;
-            while (i < (str.Length - 1))
+            while ( i < (str.Length - 1) )
             {// Ošetření implicitní nuly za všemi otevíracími závorkami
-                if (str[i] == '(')
-                {
-                    if (!Char.IsDigit(str[i + 1]))
+                if ( str[i] == '(' || str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '^' )
+                { // Implicitní nula může následovat po těchto znacích. správnost stringu je předpokládána
+                    if ( str[i + 1] == '.' || str[i + 1] == ',' )
                     {
                         str.Insert(i + 1, "0");
                     }
                 }
                 i++;
             }
+
             List<Token> tokens = new List<Token>();
             string number = string.Empty;
+            Token token = new Token();
 
             foreach ( char ch in str)
             {// Převod na tokeny
@@ -37,24 +39,58 @@ namespace Calculator.Classes
                 {
                     number += '.';
                 }
-                else
+                else // TODO dodělat převod pi jakmile se dohodne zápis pi
                 {
                     if ( !string.IsNullOrEmpty(number))
-                    {
-                        Token token;
+                    { // Přidání aktuaálního stringu číslic jako číslo do tokenů
                         token.type = TokenType.operand;
                         token.operand = Convert.ToDouble(number);
                         tokens.Add(token);
+                        number = string.Empty;
+                        token = new Token();
                     }
-                    Token token;
                     if (ch == '+' || ch == '-')
                     {
-                        token.type = TokenType.operand;
-                        token.operand = Convert.ToDouble(number);
+                        token.type = TokenType.plsusMinus;
+                        token.operand = 'ch';
                         tokens.Add(token);
+                        token = new Token();
                     }
-
-                    /////// WIP
+                    else if (ch == '*' || ch == '×' || ch == '/' || ch == '÷')
+                    {
+                        token.type = TokenType.mulDiv;
+                        token.operation = 'ch';
+                        tokens.Add(token);
+                        token = new Token();
+                    }
+                    else if (ch == '^' || ch == '!')
+                    {
+                        token.type = TokenType.powerSquareFactor;
+                        token.operation = 'ch';
+                        tokens.Add(token);
+                        token = new Token();
+                    }
+                    else if (ch == 's')
+                    {
+                        token.type = TokenType.function;
+                        token.operation = 'ch';
+                        tokens.Add(token);
+                        token = new Token();
+                    }
+                    else if (ch == '(' || ch == ')')
+                    {
+                        token.type = TokenType.bracket;
+                        token.operation = 'ch';
+                        tokens.Add(token);
+                        token = new Token();
+                    }
+                    else
+                    {
+                        token.type = TokenType.bracket;
+                        token.operation = 'ch';
+                        tokens.Add(token);
+                        token = new Token();
+                    }
                 }
             }
 

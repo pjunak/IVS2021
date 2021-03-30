@@ -9,6 +9,8 @@ namespace Calculator.Classes
         plusMinus,
         mulDiv,
         powerSquare,
+        function,
+        brackets,
         other
     }
     public struct Token
