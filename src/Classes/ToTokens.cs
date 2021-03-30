@@ -6,7 +6,7 @@ namespace Calculator.Classes
 {
     public class ToTokens
     {
-        public List toTokens(string str)
+        public List<Token> toTokens(string str)
         {
             if (str[0] == '-' || str[0] == '+')
             {// Ošetření implicitní nuly na začátku vstupního výrazu
@@ -25,15 +25,36 @@ namespace Calculator.Classes
                 i++;
             }
             List<Token> tokens = new List<Token>();
+            string number = string.Empty;
+
             foreach ( char ch in str)
             {// Převod na tokeny
                 if (Char.IsDigit(ch))
                 {
-                    ///
+                    number += ch;
                 }
-                switch (ch)
+                else if (ch == '.' || ch == ',')
                 {
-                   ///
+                    number += '.';
+                }
+                else
+                {
+                    if ( !string.IsNullOrEmpty(number))
+                    {
+                        Token token;
+                        token.type = TokenType.operand;
+                        token.operand = Convert.ToDouble(number);
+                        tokens.Add(token);
+                    }
+                    Token token;
+                    if (ch == '+' || ch == '-')
+                    {
+                        token.type = TokenType.operand;
+                        token.operand = Convert.ToDouble(number);
+                        tokens.Add(token);
+                    }
+
+                    /////// WIP
                 }
             }
 

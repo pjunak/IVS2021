@@ -262,3 +262,5 @@ paket-files/
 __pycache__/
 *.pyc
 img/desktop.ini
+
+src/Help/desktop.ini
