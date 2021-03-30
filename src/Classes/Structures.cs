@@ -8,7 +8,7 @@ namespace Calculator.Classes
         operand,
         plusMinus,
         mulDiv,
-        powerSquare,
+        powerSquareFactor,
         function,
         brackets,
         other
