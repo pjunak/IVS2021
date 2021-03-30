@@ -15,9 +15,9 @@ namespace Calculator.Classes
             int i = 0;
             while ( i < (str.Length - 1) )
             {// Ošetření implicitní nuly za všemi otevíracími závorkami
-                if ( str[i] == '(' || str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '^' )
-                { // Implicitní nula může následovat po těchto znacích. správnost stringu je předpokládána
-                    if ( str[i + 1] == '.' || str[i + 1] == ',' )
+                if ( str[i] == '(' )
+                { // před plus a mínus může být implicitní nula pro záporné a explicitně kladné čísla, před jinými operátory ne
+                    if (str[i] == '+' || str[i] == '-')
                     {
                         str.Insert(i + 1, "0");
                     }
@@ -86,7 +86,7 @@ namespace Calculator.Classes
                     }
                     else
                     {
-                        token.type = TokenType.bracket;
+                        token.type = TokenType.other;
                         token.operation = 'ch';
                         tokens.Add(token);
                         token = new Token();
