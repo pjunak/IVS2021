@@ -32,11 +32,11 @@ namespace Calculator.Classes
                     if (str[i] == '+' || str[i] == '-')
                     { // před plus a mínus může být implicitní nula pro záporné a explicitně kladné čísla
                         str.Insert(i + 1, "0");
-                    } // před desetinnou tečkou či čárkou může bůt implicitní nula
-                    if (!Char.IsDigit(str[i]) && (str[i + 1] == '.' || str[i + 1] == ','))
-                    {
-                        str.Insert(i + 1, "0");
-                    }
+                    } 
+                }
+                else if (!Char.IsDigit(str[i]) && (str[i + 1] == '.' || str[i + 1] == ','))
+                {// před desetinnou tečkou či čárkou může bůt implicitní nula
+                    str.Insert(i + 1, "0");
                 }
                 i++;
             }
@@ -65,10 +65,17 @@ namespace Calculator.Classes
                         number = string.Empty;
                         token = new Token();
                     }
-                    if (ch == '+' || ch == '-')
+                    if (ch == 'p')
+                    {
+                        token.type = TokenType.operand;
+                        token.operand = 3.1415926535897931;
+                        tokens.Add(token);
+                        token = new Token();
+                    }
+                    else if (ch == '+' || ch == '-')
                     {
                         token.type = TokenType.plusMinus;
-                        token.operand = ch;
+                        token.operation = ch;
                         tokens.Add(token);
                         token = new Token();
                     }
