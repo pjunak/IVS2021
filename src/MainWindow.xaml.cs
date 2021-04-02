@@ -16,9 +16,9 @@ using System.IO;
 
 namespace Kalkulacka
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    /**
+     * @brief Třída hlavního okna Kalkulačky, řeší stisky myši a nápovědu
+     */
     public partial class MainWindow : Window
     {
         public MainWindow()

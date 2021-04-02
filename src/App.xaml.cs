@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace Kalkulacka
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+    /**
+     * @brief Interakční logika pro jádro aplikace
+     */
     public partial class App : Application
     {
     }
