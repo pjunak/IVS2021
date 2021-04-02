@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Forms;
 using System.IO;
 
 namespace Kalkulacka
@@ -27,24 +26,45 @@ namespace Kalkulacka
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: odkomentovat tuto spravnou cestu k napovede
-            // string filePath = "Help/Napoveda_ver_1_0.chm";
-
-            // cesta k napovede od spustitelne aplikace, ktera se uklada do bin/Debug
-            string filePath = "../../Help/Napoveda_ver_1_0.chm";
-            Help.ShowHelp(null, filePath);
-        }
-
-        //
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.F1)
             {
                 string filePath = "../../Help/Napoveda_ver_1_0.chm";
-                Help.ShowHelp(null, filePath);
+                System.Windows.Forms.Help.ShowHelp(null, filePath);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string content = (sender as System.Windows.Controls.Button).Content.ToString();
+
+            if (content == "?")
+            {
+                string filePath = "../../Help/Napoveda_ver_1_0.chm";
+                System.Windows.Forms.Help.ShowHelp(null, filePath);
+            }
+            else if (content == "← Del")
+            {
+                if (InputTextBox.Text.Length != 0)
+                { 
+                    InputTextBox.Text = InputTextBox.Text.Substring(0, InputTextBox.Text.Length - 1);
+                }
+            }
+            else
+            {   //vloží obsah tlačítka do textboxu a posune kurzor
+                InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, content);
+                InputTextBox.SelectionStart = InputTextBox.Text.Length;
+                InputTextBox.SelectionLength = 0;
+            }
+
+            // pokud sinus, doplní závorku otevírací
+            if (content == "sin(x)")
+            {
+                InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "(");
+                InputTextBox.SelectionStart = InputTextBox.Text.Length;
+                InputTextBox.SelectionLength = 0;
+            }    
         }
     }
 }
