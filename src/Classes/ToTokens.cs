@@ -13,11 +13,15 @@ namespace Calculator.Classes
                 str.Insert(0, "0");
             }
             int i = 0;
-            while ( i < (str.Length - 1) )
+            while ( i < (str.Length - 2) )
             {// Ošetření implicitní nuly za všemi otevíracími závorkami
                 if ( str[i] == '(' )
                 { // před plus a mínus může být implicitní nula pro záporné a explicitně kladné čísla, před jinými operátory ne
                     if (str[i] == '+' || str[i] == '-')
+                    {
+                        str.Insert(i + 1, "0");
+                    }
+                    if (!Char.IsDigit(str[i]) && (str[i+1] == '.' || str[i + 1] == ','))
                     {
                         str.Insert(i + 1, "0");
                     }
