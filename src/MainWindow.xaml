@@ -35,7 +35,8 @@
             </Grid.RowDefinitions>
 
             <TextBox Margin="4" TextWrapping="Wrap" x:Name="InputTextBox" Text="{Binding Input}"/>
-            <Button Content="← Del" Grid.Column="1" Grid.Row="0" Margin="4" Click="Button_Click"/>
+            <Button Content="← Del" Grid.Column="1" Grid.Row="0" Margin="4" Click="Button_Click"
+                    ToolTip="Smaže jeden znak"/>
             <Button Content="?" Grid.Column="2" Grid.Row="1" Margin="4" Click="Button_Click"/>
 
         </Grid>
@@ -99,7 +100,15 @@
                 <Button Content="7" Grid.Column="0" Grid.Row="1" Margin="4" Click="Button_Click"/>
                 <Button Content="4" Grid.Column="0" Grid.Row="2" Margin="4" Click="Button_Click"/>
                 <Button Content="1" Grid.Column="0" Grid.Row="3" Margin="4" Click="Button_Click"/>
-                <Button Content="xD" Grid.Column="0" Grid.Row="4" Margin="4" Click="Button_Click"/>
+                <Button Content="xD" Grid.Column="0" Grid.Row="4" Margin="4" Click="Button_Click">
+                    <Button.ToolTip>
+                        <StackPanel>
+                            <Label Content="FITness studIO 21" FontWeight="Bold"/>
+                            <Image Source="./application.ico"/>
+                            <Label Content="Verze 1.0"/>
+                        </StackPanel>
+                    </Button.ToolTip>
+                </Button>
                 <Button Content="√(x)" Grid.Column="1" Grid.Row="0" Margin="4" Click="Button_Click"/>
                 <Button Content="8" Grid.Column="1" Grid.Row="1" Margin="4" Click="Button_Click"/>
                 <Button Content="5" Grid.Column="1" Grid.Row="2" Margin="4" Click="Button_Click"/>
