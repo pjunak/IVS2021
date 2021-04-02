@@ -65,10 +65,17 @@ namespace Calculator.Classes
                         number = string.Empty;
                         token = new Token();
                     }
-                    if (ch == '+' || ch == '-')
+                    if (ch == 'p')
+                    {
+                        token.type = TokenType.operand;
+                        token.operand = 3.1415926535897931;
+                        tokens.Add(token);
+                        token = new Token();
+                    }
+                    else if (ch == '+' || ch == '-')
                     {
                         token.type = TokenType.plusMinus;
-                        token.operand = ch;
+                        token.operation = ch;
                         tokens.Add(token);
                         token = new Token();
                     }
