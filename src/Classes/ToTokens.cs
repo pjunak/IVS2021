@@ -9,13 +9,13 @@ namespace Calculator.Classes
     /**
      * @class ToTokens
      * 
-     * Třída pro převod vstupního stringu na seznam tokenů pro další práci s matematickou knihovnou
+     * @brief Třída pro převod vstupního stringu na seznam tokenů pro další práci s matematickou knihovnou
      */
     public class ToTokens
     {
         /** 
          * @brief Převede vstup kalkulačky ze stringu do tokenů
-         * @variable str Vstupní řetězec z formulářového okna
+         * @param str Vstupní řetězec z formulářového okna
          * @return Vrátí List datového typu Token
          */
         public List<Token> toTokens(string str)
