@@ -8,6 +8,9 @@ namespace Calculator.Classes
 {
     public class ToTokens
     {
+        /** 
+         * @brief Převede vstup kalkulačky ze stringu do tokenů
+         */
         public List<Token> toTokens(string str)
         {
             if (str[0] == '-' || str[0] == '+')
@@ -16,13 +19,13 @@ namespace Calculator.Classes
             }
             int i = 0;
             while (i < (str.Length - 2))
-            {// Ošetření implicitní nuly za všemi otevíracími závorkami
+            {// Ošetření implicitní uvnitř stringu
                 if (str[i] == '(')
-                { // před plus a mínus může být implicitní nula pro záporné a explicitně kladné čísla, před jinými operátory ne
+                { 
                     if (str[i] == '+' || str[i] == '-')
-                    {
+                    { // před plus a mínus může být implicitní nula pro záporné a explicitně kladné čísla
                         str.Insert(i + 1, "0");
-                    } // 
+                    } // před desetinnou tečkou či čárkou může bůt implicitní nula
                     if (!Char.IsDigit(str[i]) && (str[i + 1] == '.' || str[i + 1] == ','))
                     {
                         str.Insert(i + 1, "0");
@@ -57,43 +60,43 @@ namespace Calculator.Classes
                     }
                     if (ch == '+' || ch == '-')
                     {
-                        token.type = TokenType.plsusMinus;
-                        token.operand = 'ch';
+                        token.type = TokenType.plusMinus;
+                        token.operand = ch;
                         tokens.Add(token);
                         token = new Token();
                     }
                     else if (ch == '*' || ch == '×' || ch == '/' || ch == '÷')
                     {
                         token.type = TokenType.mulDiv;
-                        token.operation = 'ch';
+                        token.operation = ch;
                         tokens.Add(token);
                         token = new Token();
                     }
                     else if (ch == '^' || ch == '!')
                     {
                         token.type = TokenType.powerSquareFactor;
-                        token.operation = 'ch';
+                        token.operation = ch;
                         tokens.Add(token);
                         token = new Token();
                     }
                     else if (ch == 's')
                     {
                         token.type = TokenType.function;
-                        token.operation = 'ch';
+                        token.operation = ch;
                         tokens.Add(token);
                         token = new Token();
                     }
                     else if (ch == '(' || ch == ')')
                     {
-                        token.type = TokenType.bracket;
-                        token.operation = 'ch';
+                        token.type = TokenType.brackets;
+                        token.operation = ch;
                         tokens.Add(token);
                         token = new Token();
                     }
                     else
                     {
                         token.type = TokenType.other;
-                        token.operation = 'ch';
+                        token.operation = ch;
                         tokens.Add(token);
                         token = new Token();
                     }
