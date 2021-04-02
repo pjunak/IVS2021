@@ -126,7 +126,7 @@ namespace Kalkulacka
                 if(CannotEnd[(int)RSymbol])
                 {
                     /**
-                     * @TODO Ošetřit chybu při nesprávném následujícím znaku.
+                     * @todo Ošetřit chybu při nesprávném ukončujícím znaku.
                      */
                 }
             }
@@ -137,7 +137,7 @@ namespace Kalkulacka
                 if(IncorrectFollow[(int)RSymbol, (int)CSymbol])
                 {
                     /**
-                     * @TODO Ošetřit chybu při nesprávném následujícím znaku.
+                     * @todo Ošetřit chybu při nesprávném následujícím znaku.
                      */
                 }
             }
