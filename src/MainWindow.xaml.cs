@@ -17,7 +17,7 @@ using System.IO;
 namespace Kalkulacka
 {
     /**
-     * @brief Třída hlavního okna Kalkulačky, řeší stisky myši a nápovědu
+     * @brief Třída hlavního okna Kalkulačky, řeší stisky myši a nápovědu.
      */
     public partial class MainWindow : Window
     {
