@@ -32,11 +32,11 @@ namespace Calculator.Classes
                     if (str[i] == '+' || str[i] == '-')
                     { // před plus a mínus může být implicitní nula pro záporné a explicitně kladné čísla
                         str.Insert(i + 1, "0");
-                    } // před desetinnou tečkou či čárkou může bůt implicitní nula
-                    if (!Char.IsDigit(str[i]) && (str[i + 1] == '.' || str[i + 1] == ','))
-                    {
-                        str.Insert(i + 1, "0");
-                    }
+                    } 
+                }
+                else if (!Char.IsDigit(str[i]) && (str[i + 1] == '.' || str[i + 1] == ','))
+                {// před desetinnou tečkou či čárkou může bůt implicitní nula
+                    str.Insert(i + 1, "0");
                 }
                 i++;
             }
