@@ -26,7 +26,7 @@ using System.IO;
  * @subsection step1 Step 1: Opening the box
  */
 
-namespace Kalkulacka
+namespace Calculator
 {
     /**
      * @brief Třída hlavního okna Kalkulačky, řeší stisky myši a nápovědu.

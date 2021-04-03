@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Kalkulacka
+namespace Calculator
 {
     /**
      * @brief Interakční logika pro jádro aplikace
