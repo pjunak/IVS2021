@@ -14,6 +14,18 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 
+/**
+ * @mainpage notitle
+ *
+ * @section intro_sec Úvodní sekce
+ *
+ * This is the introduction.
+ *
+ * @section install_sec Instalace, odinstalace
+ *
+ * @subsection step1 Step 1: Opening the box
+ */
+
 namespace Kalkulacka
 {
     /**
@@ -110,7 +122,7 @@ namespace Kalkulacka
          * Funkce ověří syntaktickou sprvánost vstupního řetězce.
          * 
          * @param Input Vstupní řetězec ke kontrole.
-         * @param FinalChecking Určuje, zda se jedná o průběžnou [false] nebo finální [true] konrolu před výpočtem výsledku.
+         * @param FinalChecking Určuje, zda se jedná o průběžnou (\c FALSE) nebo finální (\c TRUE) konrolu před výpočtem výsledku.
          *
          */
         private void SyntaxCheck(string Input, bool FinalChecking)
