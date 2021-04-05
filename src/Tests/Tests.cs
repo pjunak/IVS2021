@@ -90,9 +90,9 @@ namespace XUnitTests
 
 		[Theory]
 		[InlineData(2, 5, 32)]
-		[InlineData(2, 0, Double.NaN)]
-		[InlineData(2, -5.1, Double.NaN)]
-		[InlineData(2, 5.1, Double.NaN)]
+		[InlineData(2, 0, 1)]
+		[InlineData(2, -5.1, 0.0291)]
+		[InlineData(2, 5.1, 34.297)]
 		public void Power(double DoubleNumber, double DoubleNumberPower, double Expected)
 		{
 			//Arrange
@@ -106,20 +106,19 @@ namespace XUnitTests
 		}
 
 		[Theory]
-		[InlineData(16, 2, 4)]
-		[InlineData(16.5, 2, 4.062)]
-		[InlineData(16, 4, 2)]
-		[InlineData(16, 4.2, Double.NaN)]
-		[InlineData(16, 0, Double.NaN)]
-		[InlineData(16, -1, Double.NaN)]
-		[InlineData(-16, 2, Double.NaN)]
-		public void NthRoot(double DoubleNumber, double floatNumberNthRoot, double Expected)
+		[InlineData(16, 0.5, 4)]
+		[InlineData(16.5, 0.5, 4.062)]
+		[InlineData(16, 0.25, 2)]
+		[InlineData(16, 0.238, 1.935)]
+		[InlineData(16, -0.5, 0.25)]
+		[InlineData(-16, 0.5, Double.NaN)]
+		public void NthRoot(double DoubleNumber, double DoubleNumberNthRoot, double Expected)
 		{
 			//Arrange
 			var MathLib = new MathLibClass();
 
 			//Act
-			double result = MathLib.NthRoot(DoubleNumber, floatNumberNthRoot);
+			double result = MathLib.Power(DoubleNumber, DoubleNumberNthRoot);
 
 			//Assert
 			Assert.Equal(result, Expected, 3);
@@ -144,8 +143,8 @@ namespace XUnitTests
 
 	public class ComputeClassTests
 	{
-		//Basic Subtraction test
-		[Fact(DisplayName = "ComputeFromPostFix Infix=(15-10-5-10) Postfix(15 10 - 5 - 10 -) Expected=(-10)")]
+		//Infix=(15-10-5-10) Postfix(15 10 - 5 - 10 -) Expected=(-10)
+		[Fact(DisplayName = "Basic Subtraction test")]
 		public void ComputeFromPostFixNotation_TestNumber1()
 		{
 			//Arrange
@@ -169,8 +168,8 @@ namespace XUnitTests
 			Assert.Equal(result, Expected, 2);
 		}
 
-		//Basic Addition test
-		[Fact(DisplayName = "ComputeFromPostFix Infix=(5+5+5+15) Postfix=(5 5 + 5 + 15 +) Expected(30)")]
+		//Infix=(5+5+5+15) Postfix=(5 5 + 5 + 15 +) Expected(30)
+		[Fact(DisplayName = "Basic Addition test")]
 		public void ComputeFromPostFixNotation_TestNumber2()
 		{
 			//Arrange
@@ -194,8 +193,8 @@ namespace XUnitTests
 			Assert.Equal(result, Expected, 2);
 		}
 
-		//Basic Multiplication test
-		[Fact(DisplayName = "ComputeFromPostFix Infix=(5+5*5), Postfix=(5 5 5 * +), Expected(30)")]
+		//Infix=(5+5*5), Postfix=(5 5 5 * +), Expected(30)
+		[Fact(DisplayName = "Basic Multiplication test")]
 		public void ComputeFromPostFixNotation_TestNumber3()
 		{
 			//Arrange
@@ -217,8 +216,8 @@ namespace XUnitTests
 			Assert.Equal(result, Expected, 2);
 		}
 
-		//Complex Multiplication and Division test
-		[Fact(DisplayName = "ComputeFromPostFix Infix=((2+3)*(7-2)/5), Postfix=(2 3 + 7 2 - * 5 /), Expected(5)")]
+		//Infix=((2+3)*(7-2)/5), Postfix=(2 3 + 7 2 - * 5 /), Expected(5)
+		[Fact(DisplayName = "Complex Multiplication and Division test")]
 		public void ComputeFromPostFixNotation_TestNumber4()
 		{
 			//Arrange
@@ -244,8 +243,8 @@ namespace XUnitTests
 			Assert.Equal(result, Expected, 2);
 		}
 
-		//Basic Power test
-		[Fact(DisplayName = "ComputeFromPostFix Infix=(5*5 + 4^5*4), Postfix=(5 5 * 4 5 ^ 4 * +), Expected(4121)")]
+		//Infix=(5*5 + 4^5*4), Postfix=(5 5 * 4 5 ^ 4 * +), Expected(4121)
+		[Fact(DisplayName = "Basic Power test")]
 		public void ComputeFromPostFixNotation_TestNumber6()
 		{
 			//Arrange
@@ -258,7 +257,7 @@ namespace XUnitTests
 				new Token { type = TokenType.mulDiv, operation = '*'},
 				new Token { type = TokenType.operand, operand = 4},
 				new Token { type = TokenType.operand, operand = 5},
-				new Token { type = TokenType.powerSquare, operation = 'p'},
+				new Token { type = TokenType.powerSquareFactor, operation = 'p'},
 				new Token { type = TokenType.operand, operand = 4},
 				new Token { type = TokenType.mulDiv, operation = '*'},
 				new Token { type = TokenType.plusMinus, operation = '+'},
@@ -272,8 +271,8 @@ namespace XUnitTests
 			Assert.Equal(result, Expected, 2);
 		}
 
-		//Basic sqrt test
-		[Fact(DisplayName = "ComputeFromPostFix Infix=(5.5/1.1+sqrt(16, 4)), Postfix=(5.5 1.1 / 16 4 sqrt +), Expected(9)")]
+		//Infix=(5.5/1.1+sqrt(16, 4)), Postfix=(5.5 1.1 / 16 4 sqrt +), Expected(9)
+		[Fact(DisplayName = "Basic sqrt test")]
 		public void ComputeFromPostFixNotation_TestNumber7()
 		{
 			//Arrange
@@ -286,7 +285,7 @@ namespace XUnitTests
 				new Token { type = TokenType.mulDiv, operation = '/'},
 				new Token { type = TokenType.operand, operand = 16},
 				new Token { type = TokenType.operand, operand = 4},
-				new Token { type = TokenType.powerSquare, operation = 'q'},
+				new Token { type = TokenType.powerSquareFactor, operation = 'q'},
 				new Token { type = TokenType.plusMinus, operation = '+'},
 
 			};
@@ -298,8 +297,8 @@ namespace XUnitTests
 			Assert.Equal(result, Expected, 2);
 		}
 
-		//Basic Factorial test
-		[Fact(DisplayName = "ComputeFromPostFix Infix=(5.6+5.2*(120-5!)), Postfix=(5.6 5.2 120 5 ! - * +), Expected(5.6)")]
+		//ComputeFromPostFix Infix=(5.6+5.2*(120-5!)), Postfix=(5.6 5.2 120 5 ! - * +), Expected(5.6)
+		[Fact(DisplayName = "Basic Factorial test")]
 		public void ComputeFromPostFixNotation_TestNumber8()
 		{
 			//Arrange
@@ -311,7 +310,7 @@ namespace XUnitTests
 				new Token { type = TokenType.operand, operand = 5.2},
 				new Token { type = TokenType.operand, operand = 120},
 				new Token { type = TokenType.operand, operand = 5},
-				new Token { type = TokenType.other, operation = '!'},
+				new Token { type = TokenType.powerSquareFactor, operation = '!'},
 				new Token { type = TokenType.plusMinus, operation = '-'},
 				new Token { type = TokenType.mulDiv, operation = '*'},
 				new Token { type = TokenType.plusMinus, operation = '+'},
@@ -325,8 +324,8 @@ namespace XUnitTests
 			Assert.Equal(result, Expected, 2);
 		}
 
-		//Basic Sin test
-		[Fact(DisplayName = "ComputeFromPostFix Infix=(5.5*5.5/5.5+sin(1)*sin(2)), Postfix=(5.5 5.5 * 5.5 / 1 sin 2 sin * +), Expected(6.265)")]
+		//Infix=(5.5*5.5/5.5+sin(1)*sin(2)), Postfix=(5.5 5.5 * 5.5 / 1 sin 2 sin * +), Expected(6.265)
+		[Fact(DisplayName = "Basic Sin test")]
 		public void ComputeFromPostFixNotation_TestNumber9()
 		{
 			//Arrange
@@ -340,9 +339,9 @@ namespace XUnitTests
 				new Token { type = TokenType.operand, operand = 5.5},
 				new Token { type = TokenType.mulDiv, operation = '/'},
 				new Token { type = TokenType.operand, operand = 1},
-				new Token { type = TokenType.other, operation = 's'},
+				new Token { type = TokenType.function, operation = 's'},
 				new Token { type = TokenType.operand, operand = 2},
-				new Token { type = TokenType.other, operation = 's'},
+				new Token { type = TokenType.function, operation = 's'},
 				new Token { type = TokenType.mulDiv, operation = '*'},
 				new Token { type = TokenType.plusMinus, operation = '+'},
 
