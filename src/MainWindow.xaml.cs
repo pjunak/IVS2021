@@ -17,13 +17,28 @@ using System.IO;
 /**
  * @mainpage notitle
  *
- * @section intro_sec Úvodní sekce
+ * @section zadani Zadání
  *
- * This is the introduction.
+ * Vytvořte kalkulačku se základními matematickými operacemi (+,-,*,/), faktoriálem,
+ * umocňováním s přirozenými exponenty (exponenty jsou přirozená čísla),
+ * obecnou odmocninou a jednou další funkcí.<br>
+ * 
+ * Oficiální zadání naleznete na stránkách předmětu IVS v sekci
+ * <a href="http://ivs.fit.vutbr.cz/projekt-2_tymova_spoluprace2020-21.html" target="_blank">Projekt 2: Týmová spolupráce</a>
+ * 
+ * @section team Vypracování
  *
- * @section install_sec Instalace, odinstalace
- *
- * @subsection step1 Step 1: Opening the box
+ * @subsection authors Členové týmu:
+ * - Dalibor Čásek
+ * - Patrik Haas
+ * - Kristián Heřman
+ * - Petr Junák
+ * @subsection additional_info Formální náležitosti projektu:
+ * Projekt byl vypracován v jazyce C#, .NET Framework v 4.7.2.<br>
+ * Dokumentace je psána v českém jazyce. Názvy funkcí, proměnných a další jsou v anglickém jazyce.<br>
+ * Projekt byl celou dobu vypracovávan na společném repozitáři GitHub na tomto odkaze: <a href="https://github.com/pjunak/IVS2021" target="_blank">https://github.com/pjunak/IVS2021</a><br>
+ * Společně s kódem jsme také vedli svoji vlastní <a href="https://github.com/pjunak/IVS2021/wiki" target="_blank">Wiki</a>, kde jsme ukládali nejdůležitější dohody ze schůzek a smluvené konvence progamu.<br>
+ * Pokračujte dále na <a href="namespaces.html">Seznam prostorů jmen</a> nebo <a href="annotated.html">Seznam tříd</a>.
  */
 
 namespace Calculator
