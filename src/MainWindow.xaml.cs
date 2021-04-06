@@ -74,7 +74,7 @@ namespace Calculator
             else if (content == "← Del")
             {
                 if (InputTextBox.Text.Length != 0)
-                { 
+                {
                     InputTextBox.Text = InputTextBox.Text.Substring(0, InputTextBox.Text.Length - 1);
                 }
             }
@@ -91,7 +91,7 @@ namespace Calculator
                 InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "(");
                 InputTextBox.SelectionStart = InputTextBox.Text.Length;
                 InputTextBox.SelectionLength = 0;
-            }    
+            }
         }
 
         private enum Row
@@ -131,7 +131,7 @@ namespace Calculator
             {true, true, true, false, false, false, false, true, true, false}
         };
 
-        bool[] CannotEnd = new bool[] {true, true, true, true, false, false};
+        bool[] CannotEnd = new bool[] { true, true, true, true, false, false };
 
         /** 
          * Funkce ověří syntaktickou sprvánost vstupního řetězce.
@@ -148,9 +148,9 @@ namespace Calculator
 
             if (FinalChecking)
             {
-                IdentifyChar(Input[InputLen-1], Input[InputLen-1], out RSymbol, out CSymbol);
+                IdentifyChar(Input[InputLen - 1], Input[InputLen - 1], out RSymbol, out CSymbol);
                 //CSymbol je nepoužívaná hodnota.
-                if(CannotEnd[(int)RSymbol])
+                if (CannotEnd[(int)RSymbol])
                 {
                     /**
                      * @todo Ošetřit chybu při nesprávném ukončujícím znaku.
@@ -161,7 +161,7 @@ namespace Calculator
             for (int i = 0; i < InputLen - 1; i++)
             {
                 IdentifyChar(Input[i], Input[i + 1], out RSymbol, out CSymbol);
-                if(IncorrectFollow[(int)RSymbol, (int)CSymbol])
+                if (IncorrectFollow[(int)RSymbol, (int)CSymbol])
                 {
                     /**
                      * @todo Ošetřit chybu při nesprávném následujícím znaku.
@@ -224,7 +224,7 @@ namespace Calculator
                     break;
             }
 
-            switch(Next)
+            switch (Next)
             {
                 case '0':
                 case '1':
@@ -274,6 +274,33 @@ namespace Calculator
                     break;
             }
             return;
+        }
+
+        /**
+         * Funkce ignoruje jiné než povolené znaky a nevloží je do textboxu,
+         * stejně tak společně s vlastností textboxu zařídí, že se všechna velká písmena převedou na malá.
+         */
+        private void InputTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                char[] InputChars = { ',', '.', 's', 'f', 'q', '(', ')' , '+', '-', '*', '/', '!', '^', 'p', 'π'};
+                if (!Char.IsDigit(c) && !InputChars.Contains(Char.ToLower(c)))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        /**
+         * Funkce zakazuje Vkládání textu (např. pomocí Ctrl+V)
+         */
+        private void textBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Command == ApplicationCommands.Paste)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

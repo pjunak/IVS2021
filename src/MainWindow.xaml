@@ -34,7 +34,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBox Margin="4" TextWrapping="Wrap" x:Name="InputTextBox" Text="{Binding Input}"/>
+            <TextBox Margin="4" TextWrapping="Wrap" x:Name="InputTextBox" Text="{Binding Input}" PreviewTextInput="InputTextBox_PreviewTextInput"
+                     CommandManager.PreviewExecuted="textBox_PreviewExecuted" CharacterCasing="Lower"/>
             <Button Content="← Del" Grid.Column="1" Grid.Row="0" Margin="4" Click="Button_Click"
                     ToolTip="Smaže jeden znak"/>
             <Button Content="?" Grid.Column="2" Grid.Row="1" Margin="4" Click="Button_Click"/>
