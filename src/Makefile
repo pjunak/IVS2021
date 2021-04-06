@@ -9,4 +9,4 @@ profile:
 	.\Profiling\bin\Release\netcoreapp3.1\win-x64\Profiling.exe
 
 doc:
-	doxygen
+	doxygen.exe
