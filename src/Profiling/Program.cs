@@ -22,7 +22,7 @@ namespace Profiling
 		{
 			MathLib = new MathLibClass();
 
-			if (!File.Exists(args[0]))
+			if (args.Length == 0 || !File.Exists(args[0]))
 			{
 				Console.WriteLine("Subor neexistuje");
 				System.Environment.Exit(0);
