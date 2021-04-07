@@ -70,6 +70,9 @@ namespace Calculator
             }
         }
 
+        /**
+         * Otevře okno nápovědy pomocí funkce z Windows Forms
+         */
         private void OpenHelp(object sender, RoutedEventArgs e)
         {
             string HelpFilePath = "../../Napoveda/Napoveda_ver_1_0.chm";
@@ -92,10 +95,19 @@ namespace Calculator
 
         private void ButtonClickDelete(object sender, RoutedEventArgs e)
         {
-            if (InputTextBox.Text.Length != 0)
+            int TextPosition = InputTextBox.CaretIndex;
+            if (InputTextBox.Text.Length != 0 && InputTextBox.CaretIndex != 0)
             {
                 InputTextBox.Text = InputTextBox.Text.Substring(0, InputTextBox.Text.Length - 1);
                 InputTextBox.Focus();
+                InputTextBox.SelectionStart = TextPosition - 1;
+                InputTextBox.SelectionLength = 0;
+            }
+            else
+            {
+                InputTextBox.Focus();
+                InputTextBox.SelectionStart = TextPosition;
+                InputTextBox.SelectionLength = 0;
             }
         }
 
@@ -104,11 +116,17 @@ namespace Calculator
         private void ButtonClickDigitsOperators(object sender, RoutedEventArgs e)
         {
             string content = (sender as System.Windows.Controls.Button).Content.ToString();
-
+            if (InputTextBox.SelectionLength == InputTextBox.Text.Length)
+            {
+                InputTextBox.Clear();
+            }
             //vloží obsah tlačítka do textboxu a posune kurzor
+            int TextPosition = InputTextBox.CaretIndex;
             InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, content);
-            //InputTextBox.SelectionStart = InputTextBox.Text.Length;
-            //InputTextBox.SelectionLength = 0;
+            InputTextBox.Focus();
+            InputTextBox.SelectionStart = TextPosition + content.Length;
+            InputTextBox.SelectionLength = 0;
+            
 
             /*
             // pokud sinus, doplní závorku otevírací
@@ -119,6 +137,11 @@ namespace Calculator
                 InputTextBox.SelectionLength = 0;
             }
             */
+        }
+
+        private void ButtonClickFunctions(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private enum Row
@@ -304,6 +327,14 @@ namespace Calculator
         }
 
         /**
+         * Funkce ignoruje mezery a nevloží je do textboxu.
+         */
+        private void InputTextBoxPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = e.Key == Key.Space;
+        }
+
+        /**
          * Funkce ignoruje jiné než povolené znaky a nevloží je do textboxu,
          * stejně tak společně s vlastností textboxu zařídí, že se všechna velká písmena převedou na malá.
          */
@@ -312,6 +343,7 @@ namespace Calculator
             char[] InputChars = { ',', '.', 's', 'f', 'q', '(', ')', '+', '-', '*', '/', '!', '^', 'p', 'π' };
             foreach (char c in e.Text)
             {
+
                 if (!Char.IsDigit(c) && !InputChars.Contains(Char.ToLower(c)))
                 {
                     e.Handled = true;
@@ -336,10 +368,15 @@ namespace Calculator
          */
         private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            int TextPosition = InputTextBox.CaretIndex;
             TextBox box = (TextBox)sender;
+            
             box.Text = box.Text.Replace("p", "π");
-            box.SelectionStart = box.Text.Length;
-            box.SelectionLength = 0;
+
+
+            InputTextBox.Focus();
+            InputTextBox.SelectionStart = TextPosition;
+            InputTextBox.SelectionLength = 0;
         }
     }
 }
