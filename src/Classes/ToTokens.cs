@@ -15,12 +15,13 @@ namespace Calculator.Classes
      */
     public class ToTokens
     {
+		public ToTokens() { }
         /** 
          * @brief Převede vstup kalkulačky ze stringu do tokenů
          * @param str Vstupní řetězec z formulářového okna
          * @return Vrátí List datového typu Token
          */
-        static public List<Token> toTokens(string str)
+        public List<Token> toTokens(string str)
         {
             if (str[0] == '-' || str[0] == '+')
             {// Ošetření implicitní nuly na začátku vstupního výrazu v případě začnutí výrazu záporným, nebo explicitním kladným číslem
@@ -70,7 +71,7 @@ namespace Calculator.Classes
                     if (ch == 'π')
                     {
                         token.type = TokenType.operand;
-                        token.operand = 3.1415926535897931;
+                        token.operand = Math.PI;
                         tokens.Add(token);
                         token = new Token();
                     }
@@ -104,10 +105,11 @@ namespace Calculator.Classes
                     }
                     else if (Char.IsWhiteSpace(ch))
                     {
+                        MessageBox.Show("Problem in toToken"); // TODO, nějakej pěknej chybovej message
                     }
                     else
                     { // TODO Dočasné, sem by se neměly dostat žádné krom předpokládaných znaků. -> vyhodit Error
-                        MessageBox.Show("I pooped myself in toToken"); // TODO, nějakej pěknej chybovej message
+                        MessageBox.Show("Problem in toToken"); // TODO, nějakej pěknej chybovej message
                         token.type = TokenType.other;
                         token.operation = ch;
                         tokens.Add(token);

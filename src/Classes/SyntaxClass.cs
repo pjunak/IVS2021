@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace Calculator.Classes
 {
-    class SyntaxClass
+    public class SyntaxClass
     {
         private enum Row
         {
@@ -55,7 +55,7 @@ namespace Calculator.Classes
          * @param FinalChecking Určuje, zda se jedná o průběžnou (\c FALSE) nebo finální (\c TRUE) konrolu před výpočtem výsledku.
          *
          */
-        private void SyntaxCheck(string Input, bool FinalChecking)
+        public void SyntaxCheck(string Input, bool FinalChecking)
         {
             int InputLen = Input.Length;
             Row RSymbol;

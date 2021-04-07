@@ -5,7 +5,7 @@ using Xunit;
 
 namespace XUnitTests
 {
-	public class MathLibTests
+	/*public class MathLibTests
 	{
 		[Theory]
 		[InlineData(1.1, 2.2, 3.3)]
@@ -353,5 +353,5 @@ namespace XUnitTests
 			//Assert
 			Assert.Equal(result, Expected, 3);
 		}
-	}
+	}*/
 }

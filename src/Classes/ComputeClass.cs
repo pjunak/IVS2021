@@ -57,7 +57,7 @@ namespace Calculator.Classes
 					{
 						TemporallResult = MathLib.Division(LeftOperand, RightOperand);
 					}
-					else if (token.operation == 'p') // POW
+					else if (token.operation == '^') // POW
 					{
 						TemporallResult = MathLib.Power(LeftOperand, RightOperand);
 					}
@@ -86,7 +86,7 @@ namespace Calculator.Classes
 		*/
 		private (double, double) AssingOperands(Token token)
 		{
-			if (token.type == TokenType.other) return (TokenStack.Pop(), 0);
+			if (token.operand == '!' || token.operand == 's') return (TokenStack.Pop(), 0);
 			else return (TokenStack.Pop(), TokenStack.Pop());
 		}
 

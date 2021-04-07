@@ -142,7 +142,7 @@
                 <Button Content="+" Grid.Column="3" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators"/>
 
 				<!-- Takto je mozne naviazat Command na tlacidko -->
-				<Button Content="=" Grid.Column="3" Grid.Row="4" Margin="4" Grid.ColumnSpan="2" Command="{Binding Calculate}" Click="Tokens_Test"/>
+				<Button Content="=" Grid.Column="3" Grid.Row="4" Margin="4" Grid.ColumnSpan="2" Command="{Binding Calculate}"/>
 
                 <Button Content="π" Grid.Column="4" Grid.Row="0" Margin="4" Click="ButtonClickDigitsOperators"/>
                 <Button Content="sin(x)" Grid.Column="4" Grid.Row="1" Margin="4" x:Name="FuncSinus" Click="ButtonClickFunctions">

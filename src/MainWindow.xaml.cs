@@ -80,9 +80,9 @@ namespace Calculator
             System.Windows.Forms.Help.ShowHelp(null, HelpFilePath);
         }
 
-        private void Tokens_Test(object sender, RoutedEventArgs e)
+        /*private void Tokens_Test(object sender, RoutedEventArgs e)
         {
-            /** TODO test toTokens a toPostfix*/
+            TODO test toTokens a toPostfix
             //string inputstr = InputTextBox.Text;
 
             MessageBox.Show("TODO, pouze test funkčnosti toToken a toPostfix");
@@ -125,7 +125,7 @@ namespace Calculator
             Trace.WriteLine(message);
             MessageBox.Show(message);
             // Konec testů toTokens a toPostfix
-        }
+        }*/
 
         private void ButtonClickDelete(object sender, RoutedEventArgs e)
         {
