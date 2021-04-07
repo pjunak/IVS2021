@@ -175,7 +175,33 @@ namespace Calculator
 
         private void ButtonClickFunctions(object sender, RoutedEventArgs e)
         {
+            int TextPosition = InputTextBox.CaretIndex;
+            string FuncName = (sender as Button).Name;
 
+            switch (FuncName)
+            {
+                case "FuncPower":
+                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "^");
+                    InputTextBox.Focus();
+                    InputTextBox.SelectionStart = TextPosition + 1;
+                    InputTextBox.SelectionLength = 0;
+                    break;
+                case "FuncSqrt":
+                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "^(1/");
+                    InputTextBox.Focus();
+                    InputTextBox.SelectionStart = TextPosition + 4;
+                    InputTextBox.SelectionLength = 0;
+                    break;
+                case "FuncFactorial":
+                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "!");
+                    InputTextBox.Focus();
+                    InputTextBox.SelectionStart = TextPosition + 1;
+                    InputTextBox.SelectionLength = 0;
+                    break;
+                default:
+                    MessageBox.Show("Chybna funkce!");
+                    break;
+            }
         }
 
 
