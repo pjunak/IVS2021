@@ -49,6 +49,8 @@ namespace Calculator
      */
     public partial class MainWindow : Window
     {
+        private string HelpFilePath = "../../Napoveda/Napoveda_ver_1_0.chm";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -58,8 +60,7 @@ namespace Calculator
         {
             if (e.Key == Key.F1)
             {
-                string filePath = "../../Napoveda/Napoveda_ver_1_0.chm";
-                System.Windows.Forms.Help.ShowHelp(null, filePath);
+                System.Windows.Forms.Help.ShowHelp(null, HelpFilePath);
             }
         }
 
@@ -83,8 +84,7 @@ namespace Calculator
 
             if (content == "?")
             {
-                string filePath = "../../Napoveda/Napoveda_ver_1_0.chm";
-                System.Windows.Forms.Help.ShowHelp(null, filePath);
+                System.Windows.Forms.Help.ShowHelp(null, HelpFilePath);
             }
             else if (content == "← Del")
             {
