@@ -54,7 +54,7 @@ namespace Calculator.Classes
                 }
                 else if (ch == '.' || ch == ',')
                 {
-                    number += '.';
+                    number += ',';
                 }
                 else // TODO dodělat převod pi jakmile se dohodne zápis pi
                 {
