@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Calculator.Classes;
+using System.Diagnostics; //TODO only for disgnostics, remove later
 
 /**
  * @mainpage notitle
@@ -78,16 +79,49 @@ namespace Calculator
 
         private void Tokens_Test(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Hello");
             /** TODO test toTokens a toPostfix*/
             //string inputstr = InputTextBox.Text;
-            string str = "x^y/(5*z)+10!";
+
+            MessageBox.Show("TODO, pouze test funkčnosti toToken a toPostfix");
+
+            string str = "10^20/(50*1)+s(20.5)!-π-5318008";
+
+
 			List<Token> tokens = new List<Token>();
 			tokens = ToTokens.toTokens(str);
+            string message = "";
+            foreach(Token token in tokens)
+            {
+                if(token.type == TokenType.operand)
+                {
+                    message += token.operand.ToString();
+                }
+                else
+                {
+                    message += token.operation;
+                }
+            }
+            Trace.WriteLine(message);
+            MessageBox.Show(message);
+            
 			List <Token> result = new List<Token>();
 			result = ToPostfixClass.toPostfix(tokens);
 
-			result.ForEach(item => Console.Write(item));
+            message = "";
+            foreach (Token token in result)
+            {
+                if (token.type == TokenType.operand)
+                {
+                    message += token.operand.ToString();
+                }
+                else
+                {
+                    message += token.operation;
+                }
+            }
+            Trace.WriteLine(message);
+            MessageBox.Show(message);
+            // Konec testů toTokens a toPostfix
         }
 
         private void ButtonClickDelete(object sender, RoutedEventArgs e)

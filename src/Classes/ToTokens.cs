@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows; //TODO only for disgnostics, remove later
 
 namespace Calculator.Classes
 {
@@ -65,7 +66,7 @@ namespace Calculator.Classes
                         number = string.Empty;
                         token = new Token();
                     }
-                    if (ch == 'p')
+                    if (ch == 'π')
                     {
                         token.type = TokenType.operand;
                         token.operand = 3.1415926535897931;
@@ -88,14 +89,7 @@ namespace Calculator.Classes
                     }
                     else if (ch == '^' || ch == '!' || ch == 's')
                     {
-                        token.type = TokenType.powerSquareFactorFunc;
-                        token.operation = ch;
-                        tokens.Add(token);
-                        token = new Token();
-                    }
-                    else if (ch == 'x') // TODO obsolete
-                    {
-                        token.type = TokenType.function;
+                        token.type = TokenType.powerFactorSin;
                         token.operation = ch;
                         tokens.Add(token);
                         token = new Token();
@@ -107,14 +101,29 @@ namespace Calculator.Classes
                         tokens.Add(token);
                         token = new Token();
                     }
-                    else
+                    else if (Char.IsWhiteSpace(ch))
                     {
+                    }
+                    else
+                    { // TODO Dočasné, sem by se neměly dostat žádné krom předpokládaných znaků. -> vyhodit Error
+                        MessageBox.Show("I pooped myself in toToken"); // TODO, nějakej pěknej chybovej message
                         token.type = TokenType.other;
                         token.operation = ch;
                         tokens.Add(token);
                         token = new Token();
                     }
                 }
+            }
+            if (!string.IsNullOrEmpty(number))
+            {
+                token.type = TokenType.operand;
+                token.operand = Convert.ToDouble(number);
+                tokens.Add(token);
+                if (tokens.Count == 1 && (number == "5318008" || number == "58008"))
+                {
+                    MessageBox.Show("Easter egg discovered"); // TODO, easter egg message
+                }
+                token = new Token();
             }
 
             return tokens;
