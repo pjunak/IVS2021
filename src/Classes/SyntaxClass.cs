@@ -40,7 +40,7 @@ namespace Calculator.Classes
 
         //true == Zakázaný následující znak.
         //false == Povolený následující znak.
-        readonly bool[,] IncorrectFollow = new bool[7, 10]
+        readonly private bool[,] IncorrectFollow = new bool[7, 10]
         {
             {false, true, true, true, true, true, true, true, true, true},
             {true, true, true, false, false, false, false, true, true, false},
@@ -51,7 +51,7 @@ namespace Calculator.Classes
             {true, true, true, false, false, false, false, true, true, false}
         };
 
-        readonly bool[] CannotEnd = new bool[] { true, true, true, true, false, false };
+        readonly private bool[] CannotEnd = new bool[] { true, true, true, true, false, false };
 
         /** 
          * Funkce ověří syntaktickou sprvánost vstupního řetězce.
@@ -62,6 +62,11 @@ namespace Calculator.Classes
          */
         public string SyntaxCheck(string Input, bool FinalChecking)
         {
+            if(Input == "" || Input == null)
+            {
+                return Input += "0";
+            }
+
             int InputLen = Input.Length;
             Row RSymbol;
             Column CSymbol;
