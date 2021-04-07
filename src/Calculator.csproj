@@ -71,6 +71,7 @@
     <Compile Include="Classes\MathLibClass.cs" />
     <Compile Include="Classes\RelayCommand.cs" />
     <Compile Include="Classes\Structures.cs" />
+    <Compile Include="Classes\SyntaxClass.cs" />
     <Compile Include="Classes\ToPostfixClass.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
