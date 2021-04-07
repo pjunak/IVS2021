@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,14 +55,14 @@ namespace Calculator.Classes
                 }
                 else if (ch == '.' || ch == ',')
                 {
-                    number += ',';
+                    number += '.';
                 }
                 else // TODO dodělat převod pi jakmile se dohodne zápis pi
                 {
                     if (!string.IsNullOrEmpty(number))
                     { // Přidání aktuaálního stringu číslic jako číslo do tokenů
                         token.type = TokenType.operand;
-                        token.operand = Convert.ToDouble(number);
+                        token.operand = Convert.ToDouble(number, new CultureInfo("en-US"));
                         tokens.Add(token);
                         number = string.Empty;
                         token = new Token();
