@@ -121,7 +121,7 @@ namespace Calculator
 
         //true == Zakázaný následující znak.
         //false == Povolený následující znak.
-        bool[,] IncorrectFollow = new bool[6, 10]
+        readonly bool[,] IncorrectFollow = new bool[6, 10]
         {
             {false, true, true, true, true, true, true, true, true, true},
             {true, true, true, false, false, false, false, true, true, false},
@@ -131,7 +131,7 @@ namespace Calculator
             {true, true, true, false, false, false, false, true, true, false}
         };
 
-        bool[] CannotEnd = new bool[] { true, true, true, true, false, false };
+        readonly bool[] CannotEnd = new bool[] { true, true, true, true, false, false };
 
         /** 
          * Funkce ověří syntaktickou sprvánost vstupního řetězce.
