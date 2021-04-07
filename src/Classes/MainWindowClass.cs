@@ -35,7 +35,7 @@ namespace Calculator.Classes
 			ComputeResult = new ComputeClass();
 
 			/** TODO test toTokens a toPostfix
-			 * 
+			 
 			string str = "x^y/(5*z)+10!";
 			List<Token> tokens = new List<Token>();
 			tokens = ToTokens.toTokens(str);
@@ -44,6 +44,7 @@ namespace Calculator.Classes
 
 			result.ForEach(item => Console.Write(item));
 
+			System.Windows.MessageBox.Show("Hello world");
 			*/
 
 			IndexOfResultsInputs = 0;

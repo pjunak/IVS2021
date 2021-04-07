@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Calculator.Classes;
 
 /**
  * @mainpage notitle
@@ -60,6 +61,20 @@ namespace Calculator
                 string filePath = "../../Napoveda/Napoveda_ver_1_0.chm";
                 System.Windows.Forms.Help.ShowHelp(null, filePath);
             }
+        }
+
+        private void Tokens_Test(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Hello");
+            /** TODO test toTokens a toPostfix*/
+            //string inputstr = InputTextBox.Text;
+            string str = "x^y/(5*z)+10!";
+			List<Token> tokens = new List<Token>();
+			tokens = ToTokens.toTokens(str);
+			List <Token> result = new List<Token>();
+			result = ToPostfixClass.toPostfix(tokens);
+
+			result.ForEach(item => Console.Write(item));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
