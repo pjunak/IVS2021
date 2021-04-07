@@ -57,7 +57,7 @@ namespace Calculator
         {
             if (e.Key == Key.F1)
             {
-                string filePath = "../../Help/Napoveda_ver_1_0.chm";
+                string filePath = "../../Napoveda/Napoveda_ver_1_0.chm";
                 System.Windows.Forms.Help.ShowHelp(null, filePath);
             }
         }
