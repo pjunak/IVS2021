@@ -49,19 +49,31 @@ namespace Calculator
      */
     public partial class MainWindow : Window
     {
-        private string HelpFilePath = "../../Napoveda/Napoveda_ver_1_0.chm";
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        /**
+         * Funkce je volána při zmáčknutí libovolné klávesy v celém okně aplikace a ošetří je (F1 = nápověda, Tab = nepovolený)
+         */
+        private void WindowKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.F1)
             {
-                System.Windows.Forms.Help.ShowHelp(null, HelpFilePath);
+                OpenHelp(sender, e);
             }
+            if (e.Key == Key.Tab)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void OpenHelp(object sender, RoutedEventArgs e)
+        {
+            string HelpFilePath = "../../Napoveda/Napoveda_ver_1_0.chm";
+            System.Windows.Forms.Help.ShowHelp(null, HelpFilePath);
         }
 
         private void Tokens_Test(object sender, RoutedEventArgs e)
@@ -78,28 +90,27 @@ namespace Calculator
 			result.ForEach(item => Console.Write(item));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonClickDelete(object sender, RoutedEventArgs e)
+        {
+            if (InputTextBox.Text.Length != 0)
+            {
+                InputTextBox.Text = InputTextBox.Text.Substring(0, InputTextBox.Text.Length - 1);
+                InputTextBox.Focus();
+            }
+        }
+
+
+
+        private void ButtonClickDigitsOperators(object sender, RoutedEventArgs e)
         {
             string content = (sender as System.Windows.Controls.Button).Content.ToString();
 
-            if (content == "?")
-            {
-                System.Windows.Forms.Help.ShowHelp(null, HelpFilePath);
-            }
-            else if (content == "← Del")
-            {
-                if (InputTextBox.Text.Length != 0)
-                {
-                    InputTextBox.Text = InputTextBox.Text.Substring(0, InputTextBox.Text.Length - 1);
-                }
-            }
-            else
-            {   //vloží obsah tlačítka do textboxu a posune kurzor
-                InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, content);
-                InputTextBox.SelectionStart = InputTextBox.Text.Length;
-                InputTextBox.SelectionLength = 0;
-            }
+            //vloží obsah tlačítka do textboxu a posune kurzor
+            InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, content);
+            //InputTextBox.SelectionStart = InputTextBox.Text.Length;
+            //InputTextBox.SelectionLength = 0;
 
+            /*
             // pokud sinus, doplní závorku otevírací
             if (content == "sin(x)")
             {
@@ -107,6 +118,7 @@ namespace Calculator
                 InputTextBox.SelectionStart = InputTextBox.Text.Length;
                 InputTextBox.SelectionLength = 0;
             }
+            */
         }
 
         private enum Row
@@ -297,9 +309,9 @@ namespace Calculator
          */
         private void InputTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+            char[] InputChars = { ',', '.', 's', 'f', 'q', '(', ')', '+', '-', '*', '/', '!', '^', 'p', 'π' };
             foreach (char c in e.Text)
             {
-                char[] InputChars = { ',', '.', 's', 'f', 'q', '(', ')' , '+', '-', '*', '/', '!', '^', 'p', 'π'};
                 if (!Char.IsDigit(c) && !InputChars.Contains(Char.ToLower(c)))
                 {
                     e.Handled = true;
@@ -310,12 +322,24 @@ namespace Calculator
         /**
          * Funkce zakazuje Vkládání textu (např. pomocí Ctrl+V)
          */
-        private void textBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        private void InputTextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             if (e.Command == ApplicationCommands.Paste)
             {
                 e.Handled = true;
             }
+        }
+
+        /**
+         * Funkce namapuje klávesové zkratky na správné znaky při vkládání do textového pole
+         * např. po zadání p se přepíše na PI
+         */
+        private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox box = (TextBox)sender;
+            box.Text = box.Text.Replace("p", "π");
+            box.SelectionStart = box.Text.Length;
+            box.SelectionLength = 0;
         }
     }
 }
