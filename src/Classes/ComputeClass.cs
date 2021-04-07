@@ -86,7 +86,7 @@ namespace Calculator.Classes
 		*/
 		private (double, double) AssingOperands(Token token)
 		{
-			if (token.operand == '!' || token.operand == 's') return (TokenStack.Pop(), 0);
+			if (token.operation == '!' || token.operation == 's') return (TokenStack.Pop(), 0);
 			else return (TokenStack.Pop(), TokenStack.Pop());
 		}
 

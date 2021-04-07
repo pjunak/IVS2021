@@ -16,14 +16,20 @@ namespace Calculator.Classes
 			get { return _input; }
 			set
 			{
-				_input = check(value);
+				//_input = Check(value);
+				_input = value;
 			}
 		}
 
-		private string check(string value)
+		private string Check(string Value)
 		{
-			//SyntaxCheck.SyntaxCheck(value, false);
-			return value;
+			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Value, false);
+			if (SyntaxCheckResult == null)
+            {
+				// podbarveni
+				return null;
+            }
+			return Value;
 		}
 
 		//Takto sa definuje volanie funkcie, tato premena je naviazana na tlacidko '='
@@ -53,7 +59,15 @@ namespace Calculator.Classes
 
 		public void Compute()
 		{
-			//if(SyntaxCheck.SyntaxCheck())
+			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Input, true);
+			if (SyntaxCheckResult == null)
+            {
+				// podbarveni
+				return;
+            }
+
+			Input = SyntaxCheckResult;
+
 			var Result = ComputeResult.Compute(ToPostfix.toPostfix(ToToken.toTokens(Input)));
 
 			Inputs[(IndexOfResultsInputs) % 4] = Input;

@@ -17,7 +17,7 @@ namespace Calculator.Classes
             DotComma = 0,
             Pi = 1,
             PlusMinusMulDivPow = 2,
-            CBracket = 3,
+            OBracket = 3,
             Sin = 4,
             Digit = 5,
             CBracketFact = 6,
@@ -51,7 +51,7 @@ namespace Calculator.Classes
             {true, true, true, false, false, false, false, true, true, false}
         };
 
-        readonly private bool[] CannotEnd = new bool[] { true, true, true, true, false, false };
+        readonly private bool[] CannotEnd = new bool[] { true, false, true, true, true, false, false };
 
         /** 
          * Funkce ověří syntaktickou sprvánost vstupního řetězce.
@@ -79,7 +79,6 @@ namespace Calculator.Classes
                 if (CannotEnd[(int)RSymbol])
                 {
                     MessageBox.Show("Error: Výraz končí nepovolenými znaky.\nKonec.");
-                    Application.Current.Shutdown();
                     return null;
                 }
             }
@@ -101,7 +100,6 @@ namespace Calculator.Classes
             if (ClosedBracketCount > OpenBracketCount)
             {
                 MessageBox.Show("Error: Příliš mnoho uzavíracích závorek!\nKonec.");
-                Application.Current.Shutdown();
                 return null;
             }
             else if (OpenBracketCount > ClosedBracketCount && FinalChecking)
@@ -119,7 +117,6 @@ namespace Calculator.Classes
                 if (IncorrectFollow[(int)RSymbol, (int)CSymbol])
                 {
                     MessageBox.Show("Error: Špatná posloupnost znaků!\nKonec.");
-                    Application.Current.Shutdown();
                     return null;
                 }
             }
@@ -162,7 +159,7 @@ namespace Calculator.Classes
                     RSymbol = Row.Sin;
                     break;
                 case '(':
-                    RSymbol = Row.CBracket;
+                    RSymbol = Row.OBracket;
                     break;
                 case '+':
                 case '-':

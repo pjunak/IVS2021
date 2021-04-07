@@ -152,7 +152,8 @@ namespace Calculator
             string content = (sender as System.Windows.Controls.Button).Content.ToString();
             if (InputTextBox.SelectionLength == InputTextBox.Text.Length)
             {
-                InputTextBox.Clear();
+                // TODO
+                //InputTextBox.Clear();
             }
             //vloží obsah tlačítka do textboxu a posune kurzor
             int TextPosition = InputTextBox.CaretIndex;
@@ -196,6 +197,12 @@ namespace Calculator
                     InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "!");
                     InputTextBox.Focus();
                     InputTextBox.SelectionStart = TextPosition + 1;
+                    InputTextBox.SelectionLength = 0;
+                    break;
+                case "FuncSinus":
+                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "s(");
+                    InputTextBox.Focus();
+                    InputTextBox.SelectionStart = TextPosition + 2;
                     InputTextBox.SelectionLength = 0;
                     break;
                 default:
