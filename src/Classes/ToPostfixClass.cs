@@ -14,7 +14,9 @@ namespace Calculator.Classes
 			return _output;
 		}
 
-		static public List<Token> toPostfix(List<Token> tokens)
+		public ToPostfixClass() { }
+
+		public List<Token> toPostfix(List<Token> tokens)
 		{
 			// Vytvořen nový list pro výsledky
 			List<Token> result = new List<Token>();

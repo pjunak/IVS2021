@@ -15,12 +15,13 @@ namespace Calculator.Classes
      */
     public class ToTokens
     {
+		public ToTokens() { }
         /** 
          * @brief Převede vstup kalkulačky ze stringu do tokenů
          * @param str Vstupní řetězec z formulářového okna
          * @return Vrátí List datového typu Token
          */
-        static public List<Token> toTokens(string str)
+        public List<Token> toTokens(string str)
         {
             if (str[0] == '-' || str[0] == '+')
             {// Ošetření implicitní nuly na začátku vstupního výrazu v případě začnutí výrazu záporným, nebo explicitním kladným číslem

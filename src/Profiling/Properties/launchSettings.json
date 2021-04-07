@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Profiling": {
+      "commandName": "Project",
+      "commandLineArgs": "D:\\Games\\GithubRepos\\IVS-Projekt\\src\\Profiling\\TestInputs\\Input1000"
+    }
+  }
+}
