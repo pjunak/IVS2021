@@ -104,10 +104,11 @@ namespace Calculator.Classes
                     }
                     else if (Char.IsWhiteSpace(ch))
                     {
+                        MessageBox.Show("Problem in toToken"); // TODO, nějakej pěknej chybovej message
                     }
                     else
                     { // TODO Dočasné, sem by se neměly dostat žádné krom předpokládaných znaků. -> vyhodit Error
-                        MessageBox.Show("I pooped myself in toToken"); // TODO, nějakej pěknej chybovej message
+                        MessageBox.Show("Problem in toToken"); // TODO, nějakej pěknej chybovej message
                         token.type = TokenType.other;
                         token.operation = ch;
                         tokens.Add(token);

@@ -48,7 +48,7 @@ namespace Calculator.Classes
 						}
                         else
                         {
-							MessageBox.Show("I pooped myself in toPostfix"); // TODO, nějakej pěknej chybovej message
+							MessageBox.Show("Problem in toPostfix"); // TODO, nějakej pěknej chybovej message
 						}
 					}
 				}
