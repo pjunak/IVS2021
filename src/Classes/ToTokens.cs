@@ -70,7 +70,7 @@ namespace Calculator.Classes
                     if (ch == 'π')
                     {
                         token.type = TokenType.operand;
-                        token.operand = 3.1415926535897931;
+                        token.operand = Math.PI;
                         tokens.Add(token);
                         token = new Token();
                     }
