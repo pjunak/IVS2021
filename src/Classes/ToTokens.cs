@@ -86,14 +86,14 @@ namespace Calculator.Classes
                         tokens.Add(token);
                         token = new Token();
                     }
-                    else if (ch == '^' || ch == '!')
+                    else if (ch == '^' || ch == '!' || ch == 's')
                     {
-                        token.type = TokenType.powerSquareFactor;
+                        token.type = TokenType.powerSquareFactorFunc;
                         token.operation = ch;
                         tokens.Add(token);
                         token = new Token();
                     }
-                    else if (ch == 's')
+                    else if (ch == 'x') // TODO obsolete
                     {
                         token.type = TokenType.function;
                         token.operation = ch;

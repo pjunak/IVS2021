@@ -34,6 +34,18 @@ namespace Calculator.Classes
 			ToPostfix = new ToPostfixClass();
 			ComputeResult = new ComputeClass();
 
+			/** TODO test toTokens a toPostfix
+			 * 
+			string str = "x^y/(5*z)+10!";
+			List<Token> tokens = new List<Token>();
+			tokens = ToTokens.toTokens(str);
+			List <Token> result = new List<Token>();
+			result = ToPostfixClass.toPostfix(tokens);
+
+			result.ForEach(item => Console.Write(item));
+
+			*/
+
 			IndexOfResultsInputs = 0;
 			Inputs = new ObservableCollection<string> { "", "", "", "" };
 			Results = new ObservableCollection<string> { "", "", "", "" };
