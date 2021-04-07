@@ -80,9 +80,9 @@ namespace Calculator
             System.Windows.Forms.Help.ShowHelp(null, HelpFilePath);
         }
 
-        private void Tokens_Test(object sender, RoutedEventArgs e)
+        /*private void Tokens_Test(object sender, RoutedEventArgs e)
         {
-            /** TODO test toTokens a toPostfix*/
+            TODO test toTokens a toPostfix
             //string inputstr = InputTextBox.Text;
 
             MessageBox.Show("TODO, pouze test funkčnosti toToken a toPostfix");
@@ -125,7 +125,7 @@ namespace Calculator
             Trace.WriteLine(message);
             MessageBox.Show(message);
             // Konec testů toTokens a toPostfix
-        }
+        }*/
 
         private void ButtonClickDelete(object sender, RoutedEventArgs e)
         {
@@ -175,7 +175,33 @@ namespace Calculator
 
         private void ButtonClickFunctions(object sender, RoutedEventArgs e)
         {
+            int TextPosition = InputTextBox.CaretIndex;
+            string FuncName = (sender as Button).Name;
 
+            switch (FuncName)
+            {
+                case "FuncPower":
+                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "^");
+                    InputTextBox.Focus();
+                    InputTextBox.SelectionStart = TextPosition + 1;
+                    InputTextBox.SelectionLength = 0;
+                    break;
+                case "FuncSqrt":
+                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "^(1/");
+                    InputTextBox.Focus();
+                    InputTextBox.SelectionStart = TextPosition + 4;
+                    InputTextBox.SelectionLength = 0;
+                    break;
+                case "FuncFactorial":
+                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "!");
+                    InputTextBox.Focus();
+                    InputTextBox.SelectionStart = TextPosition + 1;
+                    InputTextBox.SelectionLength = 0;
+                    break;
+                default:
+                    MessageBox.Show("Chybna funkce!");
+                    break;
+            }
         }
 
 

@@ -14,7 +14,9 @@ namespace Calculator.Classes
 			return _output;
 		}
 
-		static public List<Token> toPostfix(List<Token> tokens)
+		public ToPostfixClass() { }
+
+		public List<Token> toPostfix(List<Token> tokens)
 		{
 			// Vytvořen nový list pro výsledky
 			List<Token> result = new List<Token>();
@@ -48,7 +50,7 @@ namespace Calculator.Classes
 						}
                         else
                         {
-							MessageBox.Show("I pooped myself in toPostfix"); // TODO, nějakej pěknej chybovej message
+							MessageBox.Show("Problem in toPostfix"); // TODO, nějakej pěknej chybovej message
 						}
 					}
 				}

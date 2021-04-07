@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace Calculator.Classes
 {
-    class SyntaxClass
+    public class SyntaxClass
     {
         public SyntaxClass() { }
 

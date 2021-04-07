@@ -16,8 +16,14 @@ namespace Calculator.Classes
 			get { return _input; }
 			set
 			{
-				_input = value;
+				_input = check(value);
 			}
+		}
+
+		private string check(string value)
+		{
+			//SyntaxCheck.SyntaxCheck(value, false);
+			return value;
 		}
 
 		//Takto sa definuje volanie funkcie, tato premena je naviazana na tlacidko '='
@@ -28,37 +34,33 @@ namespace Calculator.Classes
 		public ObservableCollection<string> Results { get; set; }
 		public ToPostfixClass ToPostfix { get; set; }
 		public ComputeClass ComputeResult { get; set; }
+		public ToTokens ToToken { get; set; }
+		public SyntaxClass SyntaxCheck { get; set; }
 
 		public MainWindowClass()
 		{
 			ToPostfix = new ToPostfixClass();
 			ComputeResult = new ComputeClass();
-
-			/** TODO test toTokens a toPostfix
-			 
-			string str = "x^y/(5*z)+10!";
-			List<Token> tokens = new List<Token>();
-			tokens = ToTokens.toTokens(str);
-			List <Token> result = new List<Token>();
-			result = ToPostfixClass.toPostfix(tokens);
-
-			result.ForEach(item => Console.Write(item));
-
-			System.Windows.MessageBox.Show("Hello world");
-			*/
+			ToToken = new ToTokens();
+			SyntaxCheck = new SyntaxClass();
 
 			IndexOfResultsInputs = 0;
 			Inputs = new ObservableCollection<string> { "", "", "", "" };
 			Results = new ObservableCollection<string> { "", "", "", "" };
 
-			Calculate = new RelayCommand(TestFunction);
+			Calculate = new RelayCommand(Compute);
 		}
 
 		public void Compute()
 		{
-			//ToPostfix.ToPostfix(Vstup);
-			//Vstupy[(Index % 4)] = ToPostfix.GetResult();
-			//Compute.Compute(ToPostfix.GetResult());
+			//if(SyntaxCheck.SyntaxCheck())
+			var Result = ComputeResult.Compute(ToPostfix.toPostfix(ToToken.toTokens(Input)));
+
+			Inputs[(IndexOfResultsInputs) % 4] = Input;
+			Results[(IndexOfResultsInputs) % 4] = Result.ToString();
+			IndexOfResultsInputs++;
+
+			Input = Result.ToString();
 		}
 
 		public void TestFunction()
