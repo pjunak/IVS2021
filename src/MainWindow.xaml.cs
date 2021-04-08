@@ -76,6 +76,10 @@ namespace Calculator
          */
         private void OpenHelp(object sender, RoutedEventArgs e)
         {
+            /**
+             * @todo odkomentovat správnou cestu k nápovědě pro spuštění
+             */
+            //string HelpFilePath = "./Napoveda/Napoveda_ver_1_0.chm";
             string HelpFilePath = "../../Napoveda/Napoveda_ver_1_0.chm";
             System.Windows.Forms.Help.ShowHelp(null, HelpFilePath);
         }
@@ -178,7 +182,11 @@ namespace Calculator
         {
             int TextPosition = InputTextBox.CaretIndex;
             string FuncName = (sender as Button).Name;
+            TranslateShortKeys(FuncName, TextPosition);
+        }
 
+        private void TranslateShortKeys (string FuncName, int TextPosition)
+        {
             switch (FuncName)
             {
                 case "FuncPower":
@@ -211,7 +219,6 @@ namespace Calculator
             }
         }
 
-
         /**
          * Funkce ignoruje mezery a nevloží je do textboxu.
          */
@@ -226,9 +233,36 @@ namespace Calculator
          */
         private void InputTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+            int TextPosition = InputTextBox.CaretIndex;
             char[] InputChars = { ',', '.', 's', 'f', 'q', '(', ')', '+', '-', '*', '/', '!', '^', 'p', 'π' };
+            char[] CharsToTranslate = { 's', 'f', 'q', 'm' };
             foreach (char c in e.Text)
             {
+
+                if (CharsToTranslate.Contains(Char.ToLower(c)))
+                {
+                    string FuncName;
+                    switch(Char.ToLower(c))
+                    {
+                        case 's':
+                            FuncName = "FuncSinus";
+                            break;
+                        case 'f':
+                            FuncName = "FuncFactorial";
+                            break;
+                        case 'q':
+                            FuncName = "FuncSqrt";
+                            break;
+                        case 'm':
+                            FuncName = "FuncPower";
+                            break;
+                        default:
+                            FuncName = "chyba";
+                            break;
+                    }
+                    TranslateShortKeys(FuncName, TextPosition);
+                    e.Handled = true;
+                }
 
                 if (!Char.IsDigit(c) && !InputChars.Contains(Char.ToLower(c)))
                 {
@@ -256,7 +290,7 @@ namespace Calculator
         {
             int TextPosition = InputTextBox.CaretIndex;
             TextBox box = (TextBox)sender;
-            
+
             box.Text = box.Text.Replace("p", "π");
 
 

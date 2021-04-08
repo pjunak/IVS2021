@@ -34,8 +34,14 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBox Margin="4" TextWrapping="Wrap" x:Name="InputTextBox" Text="{Binding Input}" PreviewTextInput="InputTextBox_PreviewTextInput"
-                     CommandManager.PreviewExecuted="InputTextBox_PreviewExecuted" CharacterCasing="Lower" TextChanged="InputTextBox_TextChanged" PreviewKeyDown="InputTextBoxPreviewKeyDown"/>
+            <TextBox Margin="4" TextWrapping="Wrap" x:Name="InputTextBox" Text="{Binding Input, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="InputTextBox_PreviewTextInput"
+                     CommandManager.PreviewExecuted="InputTextBox_PreviewExecuted"
+                     CharacterCasing="Lower" TextChanged="InputTextBox_TextChanged"
+                     PreviewKeyDown="InputTextBoxPreviewKeyDown">
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{Binding Calculate}" Key="Enter" />
+                </TextBox.InputBindings>
+            </TextBox>
             <Button Content="← Del" Grid.Column="1" Grid.Row="0" Margin="4" Click="ButtonClickDelete"
                     ToolTip="Smaže jeden znak"/>
             <Button Content="?" Grid.Column="2" Grid.Row="1" Margin="4" Click="OpenHelp"/>
