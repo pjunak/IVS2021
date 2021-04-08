@@ -37,7 +37,7 @@
             <TextBox Margin="4" TextWrapping="Wrap" x:Name="InputTextBox" Text="{Binding Input, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="InputTextBox_PreviewTextInput"
                      CommandManager.PreviewExecuted="InputTextBox_PreviewExecuted"
                      CharacterCasing="Lower" TextChanged="InputTextBox_TextChanged"
-                     PreviewKeyDown="InputTextBoxPreviewKeyDown">
+                     PreviewKeyDown="InputTextBoxPreviewKeyDown" Foreground="{Binding Error}">
                 <TextBox.InputBindings>
                     <KeyBinding Command="{Binding Calculate}" Key="Enter" />
                 </TextBox.InputBindings>
