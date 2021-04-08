@@ -68,7 +68,7 @@ namespace Calculator.Classes
 
 			Input = SyntaxCheckResult;
 
-			var Result = ComputeResult.Compute(ToPostfix.toPostfix(ToToken.toTokens(Input)));
+			var Result = Math.Round(ComputeResult.Compute(ToPostfix.toPostfix(ToToken.toTokens(Input))), 10);
 
 			Inputs[(IndexOfResultsInputs) % 4] = Input;
 			Results[(IndexOfResultsInputs) % 4] = Result.ToString();

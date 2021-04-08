@@ -43,7 +43,7 @@ namespace Calculator.Classes
 		 */
 		public double Multiplication(double doubleNumber, double doubleNumberToMul)
 		{
-			return Math.Round((doubleNumber * doubleNumberToMul), 10);
+			return (doubleNumber * doubleNumberToMul);
 		}
 
 		/** 
@@ -55,7 +55,7 @@ namespace Calculator.Classes
 		public double Division(double doubleNumber, double doubleNumberToDiv)
 		{
 			if (doubleNumberToDiv == 0) return double.NaN;
-			else return Math.Round((doubleNumber / doubleNumberToDiv), 10);
+			else return (doubleNumber / doubleNumberToDiv);
 		}
 
 		/** 
@@ -85,7 +85,7 @@ namespace Calculator.Classes
 		public double Power(double doubleNumber, double doubleNumberPower)
 		{
 			if (doubleNumberPower < 1.0 && doubleNumber < 0.0) return double.NaN;
-			return Math.Round(Math.Pow(doubleNumber, doubleNumberPower), 10);
+			return Math.Pow(doubleNumber, doubleNumberPower);
 		}
 
 		/** 
@@ -95,7 +95,7 @@ namespace Calculator.Classes
 		*/
 		public double Sin(double DoubleNumber)
 		{
-			return Math.Round(Math.Sin(DoubleNumber), 10);
+			return Math.Sin(DoubleNumber);
 		}
 
 		/** 
