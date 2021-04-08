@@ -120,7 +120,7 @@ namespace Calculator.Classes
             if (!string.IsNullOrEmpty(number))
             {
                 token.type = TokenType.operand;
-                token.operand = Convert.ToDouble(number);
+                token.operand = Convert.ToDouble(number, new CultureInfo("en-US"));
                 tokens.Add(token);
                 if (tokens.Count == 1 && (number == "5318008" || number == "58008"))
                 {
