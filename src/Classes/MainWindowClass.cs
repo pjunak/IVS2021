@@ -16,18 +16,23 @@ namespace Calculator.Classes
 			get { return _input; }
 			set
 			{
-				//_input = Check(value);
-				_input = value;
+				_input = Check(value);
+				//_input = value;
 			}
 		}
+
+		public string Error { get; set; }
 
 		private string Check(string Value)
 		{
 			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Value, false);
 			if (SyntaxCheckResult == null)
             {
-				// podbarveni
-				return null;
+				Error = "red";
+            }
+			else
+            {
+				Error = "black";
             }
 			return Value;
 		}
@@ -55,6 +60,8 @@ namespace Calculator.Classes
 			Results = new ObservableCollection<string> { "", "", "", "" };
 
 			Calculate = new RelayCommand(Compute);
+
+			Error = "black";
 		}
 
 		public void Compute()
@@ -62,10 +69,9 @@ namespace Calculator.Classes
 			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Input, true);
 			if (SyntaxCheckResult == null)
             {
-				// podbarveni
+				Error = "red";
 				return;
             }
-
 			Input = SyntaxCheckResult;
 
 			var Result = Math.Round(ComputeResult.Compute(ToPostfix.toPostfix(ToToken.toTokens(Input))), 10);

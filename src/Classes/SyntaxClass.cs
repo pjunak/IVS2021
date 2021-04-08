@@ -78,7 +78,7 @@ namespace Calculator.Classes
                 //CSymbol je nepoužívaná hodnota.
                 if (CannotEnd[(int)RSymbol])
                 {
-                    MessageBox.Show("Error: Výraz končí nepovolenými znaky.\nKonec.");
+                    //MessageBox.Show("Error: Výraz končí nepovolenými znaky.\nKonec.");
                     return null;
                 }
             }
@@ -99,7 +99,7 @@ namespace Calculator.Classes
             }
             if (ClosedBracketCount > OpenBracketCount)
             {
-                MessageBox.Show("Error: Příliš mnoho uzavíracích závorek!\nKonec.");
+                //MessageBox.Show("Error: Příliš mnoho uzavíracích závorek!\nKonec.");
                 return null;
             }
             else if (OpenBracketCount > ClosedBracketCount && FinalChecking)
@@ -116,7 +116,7 @@ namespace Calculator.Classes
                 IdentifyChar(Input[i], Input[i + 1], out RSymbol, out CSymbol);
                 if (IncorrectFollow[(int)RSymbol, (int)CSymbol])
                 {
-                    MessageBox.Show("Error: Špatná posloupnost znaků!\nKonec.");
+                    //MessageBox.Show("Error: Špatná posloupnost znaků!\nKonec.");
                     return null;
                 }
             }
