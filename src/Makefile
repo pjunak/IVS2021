@@ -1,8 +1,7 @@
-all:
-	run
+all: run
 
 run:
-	.\bin\Release\netcoreapp3.1\win-x64\Calculator.exe
+	.\bin\Release\Calculator.exe
 
 clean:
 	del .\Profiling\bin .\Profiling\obj .\Tests\obj .\Tests\bin .\obj\ .\bin\ .\doc\ /q /s
