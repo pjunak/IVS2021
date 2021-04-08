@@ -77,15 +77,6 @@ namespace Calculator.Classes
 			Input = Result.ToString();
 		}
 
-		public void TestFunction()
-		{
-			Inputs[IndexOfResultsInputs] = Input;
-			Results[IndexOfResultsInputs] = "5";
-
-			IndexOfResultsInputs = (IndexOfResultsInputs + 1) % 4;
-		}
-
-
 		public event PropertyChangedEventHandler PropertyChanged;
 		public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
 		{

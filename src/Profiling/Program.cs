@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Globalization;
 
 namespace Profiling
 {
@@ -74,19 +75,19 @@ namespace Profiling
 			{
 				if (Char.IsDigit(Character) || Character == '.' || Character == ',' || Character == '-')
 				{
-					if (Character == '.') Temporall += ',';
+					if (Character == ',') Temporall += '.';
 					else Temporall += Character;
 				}
 				else if (Temporall != "")
 				{
-					ReturnList.Add(Convert.ToDouble(Temporall));
+					ReturnList.Add(Convert.ToDouble(Temporall, new CultureInfo("en-US")));
 					Temporall = "";
 				}
 			}
 
 			if (Temporall != "")
 			{
-				ReturnList.Add(Convert.ToDouble(Temporall));
+				ReturnList.Add(Convert.ToDouble(Temporall, new CultureInfo("en-US")));
 			}
 
 			return ReturnList;

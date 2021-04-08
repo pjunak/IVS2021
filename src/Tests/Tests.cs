@@ -5,7 +5,7 @@ using Xunit;
 
 namespace XUnitTests
 {
-	/*public class MathLibTests
+	public class MathLibTests
 	{
 		[Theory]
 		[InlineData(1.1, 2.2, 3.3)]
@@ -257,7 +257,7 @@ namespace XUnitTests
 				new Token { type = TokenType.mulDiv, operation = '*'},
 				new Token { type = TokenType.operand, operand = 4},
 				new Token { type = TokenType.operand, operand = 5},
-				new Token { type = TokenType.powerSquareFactor, operation = 'p'},
+				new Token { type = TokenType.powerFactorSin, operation = '^'},
 				new Token { type = TokenType.operand, operand = 4},
 				new Token { type = TokenType.mulDiv, operation = '*'},
 				new Token { type = TokenType.plusMinus, operation = '+'},
@@ -271,7 +271,7 @@ namespace XUnitTests
 			Assert.Equal(result, Expected, 2);
 		}
 
-		//Infix=(5.5/1.1+sqrt(16, 4)), Postfix=(5.5 1.1 / 16 4 sqrt +), Expected(9)
+		//Infix=(5.5/1.1+16^(1.0 / 4)), Postfix=(5.5 1.1 / 16 1 4 / ^ +), Expected(9)
 		[Fact(DisplayName = "Basic sqrt test")]
 		public void ComputeFromPostFixNotation_TestNumber7()
 		{
@@ -284,8 +284,10 @@ namespace XUnitTests
 				new Token { type = TokenType.operand, operand = 1.1},
 				new Token { type = TokenType.mulDiv, operation = '/'},
 				new Token { type = TokenType.operand, operand = 16},
+				new Token { type = TokenType.operand, operand = 1},
 				new Token { type = TokenType.operand, operand = 4},
-				new Token { type = TokenType.powerSquareFactor, operation = 'q'},
+				new Token { type = TokenType.mulDiv, operation = '/'},
+				new Token { type = TokenType.powerFactorSin, operation = '^'},
 				new Token { type = TokenType.plusMinus, operation = '+'},
 
 			};
@@ -310,7 +312,7 @@ namespace XUnitTests
 				new Token { type = TokenType.operand, operand = 5.2},
 				new Token { type = TokenType.operand, operand = 120},
 				new Token { type = TokenType.operand, operand = 5},
-				new Token { type = TokenType.powerSquareFactor, operation = '!'},
+				new Token { type = TokenType.powerFactorSin, operation = '!'},
 				new Token { type = TokenType.plusMinus, operation = '-'},
 				new Token { type = TokenType.mulDiv, operation = '*'},
 				new Token { type = TokenType.plusMinus, operation = '+'},
@@ -339,9 +341,9 @@ namespace XUnitTests
 				new Token { type = TokenType.operand, operand = 5.5},
 				new Token { type = TokenType.mulDiv, operation = '/'},
 				new Token { type = TokenType.operand, operand = 1},
-				new Token { type = TokenType.function, operation = 's'},
+				new Token { type = TokenType.powerFactorSin, operation = 's'},
 				new Token { type = TokenType.operand, operand = 2},
-				new Token { type = TokenType.function, operation = 's'},
+				new Token { type = TokenType.powerFactorSin, operation = 's'},
 				new Token { type = TokenType.mulDiv, operation = '*'},
 				new Token { type = TokenType.plusMinus, operation = '+'},
 
@@ -353,5 +355,5 @@ namespace XUnitTests
 			//Assert
 			Assert.Equal(result, Expected, 3);
 		}
-	}*/
+	}
 }

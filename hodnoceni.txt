@@ -1,4 +1,4 @@
-xlogin01 100 (základ GUI a základní mat. operace)
-xlogin02 100 (pokročilé mat. operace)
-xlogin03 90 (profiling, instalátor)
-xlogin04 110 (testy, dokumentace)
+xcasek01 100 (grafické a uživatelské prostředí, syntaktická analýza)
+xhaasp00 100 (propojení GUI s matematickou knihovnou, data-binding, profiling)
+xherma33 100 (grafické a uživatelské prostředí, nápověda, dokumentace, vedení)
+xjunak01 100 (parser, převod výrazů do postfixové notace, napoveda)
