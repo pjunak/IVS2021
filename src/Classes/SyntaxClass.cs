@@ -54,7 +54,7 @@ namespace Calculator.Classes
         readonly private bool[] CannotEnd = new bool[] { true, false, true, true, true, false, false };
 
         /** 
-         * Funkce ověří syntaktickou sprvánost vstupního řetězce.
+         * Funkce ověří syntaktickou správnost vstupního řetězce.
          * 
          * @param Input Vstupní řetězec ke kontrole.
          * @param FinalChecking Určuje, zda se jedná o průběžnou (\c FALSE) nebo finální (\c TRUE) konrolu před výpočtem výsledku.
@@ -83,7 +83,7 @@ namespace Calculator.Classes
                 }
             }
 
-            //Kontorla počtu závorek.
+            //Kontrola počtu závorek.
             int OpenBracketCount = 0;
             int ClosedBracketCount = 0;
             for (int i = 0; i < InputLen; i++)

@@ -9,15 +9,15 @@ namespace Calculator.Classes
 	public class MathLibClass
 	{
 		/** 
-		 * @brief Prázdny konstruktor
+		 * @brief Prázdný konstruktor
 		 */
 		public MathLibClass() { }
 
 		/** 
-		 * @brief Sčítanie dvoch čísel
+		 * @brief Sčítaní dvou čísel
 		 * @param doubleNumber Levý operand
 		 * @param doubleNumberToAdd Pravý operand
-		 * @return Vráti sčítaní dvoch čísel
+		 * @return Vrátí součet dvou čísel
 		 */
 		public double Addition(double doubleNumber, double doubleNumberToAdd)
 		{
@@ -25,10 +25,10 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		 * @brief Odčítaní dvoch čísel
+		 * @brief Odčítaní dvou čísel
 		 * @param doubleNumber Levý operand
 		 * @param doubleNumberToSub Pravý operand
-		 * @return Vráti odčítání dvoch čísel
+		 * @return Vrátí rozdíl dvou čísel
 		 */
 		public double Subtraction(double doubleNumber, double doubleNumberToSub)
 		{
@@ -36,10 +36,10 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		 * @brief Násobení dvoch čísel
+		 * @brief Násobení dvou čísel
 		 * @param doubleNumber Levý operand
 		 * @param doubleNumberToMul Pravý operand
-		 * @return Vráti vynásobení dvoch čísel
+		 * @return Vrátí výsledek vynásobení dvou čísel
 		 */
 		public double Multiplication(double doubleNumber, double doubleNumberToMul)
 		{
@@ -47,10 +47,10 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		 * @brief Delení dvoch čísel
+		 * @brief Dělení dvou čísel
 		 * @param doubleNumber Levý operand
 		 * @param doubleNumberToDiv Pravý operand
-		 * @return Vráti delení dvoch čísel, v případe delení nulo vráti double.NaN
+		 * @return Vrátí výsledek dělení dvou čísel, v případě dělení nulou vrátí double.NaN
 		 */
 		public double Division(double doubleNumber, double doubleNumberToDiv)
 		{
@@ -61,7 +61,7 @@ namespace Calculator.Classes
 		/** 
 		 * @brief Vypočítá faktoriál zadaného čísla
 		 * @param doubleNumberForFactorial Zadané číslo
-		 * @return Vrátí faktoriál zadaného čísla. Jestli je zadané číslo záporné nebo není celé, vrátí double.NaN
+		 * @return Vrátí faktoriál zadaného čísla. Pokud je zadané číslo záporné nebo není celé, vrátí double.NaN
 		 */
 		public double Factorial(double doubleNumberForFactorial)
 		{
@@ -80,7 +80,7 @@ namespace Calculator.Classes
 		* @brief Vypočítá mocninu
 		* @param doubleNumber Mocněnec
 		* @param doubleNumberPower Mocnitel
-		* @return Vrátí mocninu. Jestli je mocnitel menší než 1 a mocněnec je záporný, vrátí double.NaN.
+		* @return Vrátí mocninu. Pokud je mocnitel menší než 1 a mocněnec je záporný, vrátí double.NaN.
 		*/
 		public double Power(double doubleNumber, double doubleNumberPower)
 		{
@@ -90,7 +90,7 @@ namespace Calculator.Classes
 
 		/** 
 		* @brief Vypočítá sinus
-		* @param DoubleNumber Parameter pro funkci sinus
+		* @param DoubleNumber Parametr pro funkci sinus (v radiánech)
 		* @return Vrátí funkční hodnotu funkce sinus
 		*/
 		public double Sin(double DoubleNumber)

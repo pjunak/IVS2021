@@ -15,8 +15,8 @@ namespace Profiling
 		static MathLibClass MathLib;
 		/**
 		* @brief Vstupní bod programu
-		* @param Na vstupu očekáva soubor s posloupností čísel
-		* @return na standartní výstup vypíše směrodatnú odchylku
+		* @param Na vstupu očekává soubor s posloupností čísel
+		* @return Na standardní výstup vypíše směrodatnou odchylku
 		*/
 		static void Main(string[] args)
 		{
@@ -44,9 +44,9 @@ namespace Profiling
 		}
 
 		/**
-		* @brief Metoda pro vypočítaní Aritmetického prumeru
+		* @brief Metoda pro vypočítání aritmetického průměru
 		* @param List vstupních čísel
-		* @return Vráti aritmetický prumer
+		* @return Vrátí aritmetický průměr
 		*/
 		private static double ComputeMean(List<double> inputNumbers)
 		{
@@ -60,9 +60,9 @@ namespace Profiling
 		}
 
 		/**
-		* @brief Metoda pro načtení čisel ze vstupního souboru
+		* @brief Metoda pro načtení čísel ze vstupního souboru
 		* @param Cesta k souboru
-		* @return Vráti List typu Double
+		* @return Vrátí List typu Double
 		*/
 		private static List<Double> LoadFile(string[] Input)
 		{
