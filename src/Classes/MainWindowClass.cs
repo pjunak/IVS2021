@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Calculator.Classes;
+using System.Linq;
 
 namespace Calculator.Classes
 {
@@ -42,6 +43,7 @@ namespace Calculator.Classes
 		public ICommand ForwardInHistory { get; set; }
 
 		public static int IndexOfResultsInputs {get; set;}
+		public static int Shifts { get; set; }
 		public ObservableCollection<string> Inputs { get; set; }
 		public ObservableCollection<string> Results { get; set; }
 		public ToPostfixClass ToPostfix { get; set; }
@@ -57,6 +59,7 @@ namespace Calculator.Classes
 			SyntaxCheck = new SyntaxClass();
 
 			IndexOfResultsInputs = 0;
+			Shifts = 0;
 			Inputs = new ObservableCollection<string> { "", "", "", "" };
 			Results = new ObservableCollection<string> { "", "", "", "" };
 
@@ -91,11 +94,28 @@ namespace Calculator.Classes
 					Results.RemoveAt(4);
 				}
 				Input = Result.ToString();
+				Shifts = 0;
 			}
 		}
 
-		public void BackInHistoryMethod() => Input = Inputs[(IndexOfResultsInputs + 1) % 4];
-		public void ForwardInHistoryMethod() => Input = Inputs[Math.Abs(IndexOfResultsInputs - 1) % 4];
+		public void BackInHistoryMethod()
+		{
+			int NumberOfCountedResults = Inputs.Count(s => s != "");
+			if (NumberOfCountedResults > 0)
+			{ 
+				Shifts += 1;
+				Input = Inputs[Math.Abs(IndexOfResultsInputs + Shifts -1) % NumberOfCountedResults];
+			}
+		}
+		public void ForwardInHistoryMethod()
+		{
+			int NumberOfCountedResults = Inputs.Count(s => s != "");
+			if (NumberOfCountedResults > 0)
+			{
+				Shifts -= 1;
+				Input = Inputs[Math.Abs(IndexOfResultsInputs + Shifts - 1) % NumberOfCountedResults];
+			}
+		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
