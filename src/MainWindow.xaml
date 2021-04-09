@@ -34,7 +34,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBox Margin="4" TextWrapping="Wrap" x:Name="InputTextBox" Text="{Binding Input, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="InputTextBox_PreviewTextInput"
+            <TextBox Margin="4" TextWrapping="Wrap" x:Name="InputTextBox" Text="{Binding Input, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     PreviewTextInput="InputTextBox_PreviewTextInput"
                      CommandManager.PreviewExecuted="InputTextBox_PreviewExecuted"
                      CharacterCasing="Lower" PreviewKeyDown="InputTextBoxPreviewKeyDown"
                      Foreground="{Binding Error}">
