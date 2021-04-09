@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Calculator.Classes;
+using System.Linq;
 
 namespace Calculator.Classes
 {
@@ -17,7 +18,6 @@ namespace Calculator.Classes
 			set
 			{
 				_input = Check(value);
-				//_input = value;
 			}
 		}
 
@@ -39,8 +39,11 @@ namespace Calculator.Classes
 
 		//Takto sa definuje volanie funkcie, tato premena je naviazana na tlacidko '='
 		public ICommand Calculate { get; set; }
+		public ICommand BackInHistory { get; set; }
+		public ICommand ForwardInHistory { get; set; }
 
 		public static int IndexOfResultsInputs {get; set;}
+		public static int Shifts { get; set; }
 		public ObservableCollection<string> Inputs { get; set; }
 		public ObservableCollection<string> Results { get; set; }
 		public ToPostfixClass ToPostfix { get; set; }
@@ -56,10 +59,13 @@ namespace Calculator.Classes
 			SyntaxCheck = new SyntaxClass();
 
 			IndexOfResultsInputs = 0;
+			Shifts = 0;
 			Inputs = new ObservableCollection<string> { "", "", "", "" };
 			Results = new ObservableCollection<string> { "", "", "", "" };
 
 			Calculate = new RelayCommand(Compute);
+			BackInHistory = new RelayCommand(BackInHistoryMethod);
+			ForwardInHistory = new RelayCommand(ForwardInHistoryMethod);
 
 			Error = "black";
 		}
@@ -72,15 +78,43 @@ namespace Calculator.Classes
 				Error = "red";
 				return;
             }
-			Input = SyntaxCheckResult;
 
 			var Result = Math.Round(ComputeResult.Compute(ToPostfix.toPostfix(ToToken.toTokens(Input))), 10);
+			if (Double.IsNaN(Result))
+			{
+				Error = "red";
+			}
+			else
+			{
+				Inputs.Insert(0, Input);
+				Results.Insert(0, Result.ToString());
+				if (Inputs.Count > 4)
+				{
+					Inputs.RemoveAt(4);
+					Results.RemoveAt(4);
+				}
+				Input = Result.ToString("0." + new string('#', 339)); //Konvertuje na string beze ztrát a zachová decimální tvar
+				Shifts = 0;
+			}
+		}
 
-			Inputs[(IndexOfResultsInputs) % 4] = Input;
-			Results[(IndexOfResultsInputs) % 4] = Result.ToString();
-			IndexOfResultsInputs++;
-
-			Input = Result.ToString();
+		public void BackInHistoryMethod()
+		{
+			int NumberOfCountedResults = Inputs.Count(s => s != "");
+			if (NumberOfCountedResults > 0)
+			{ 
+				Shifts += 1;
+				Input = Inputs[Math.Abs(IndexOfResultsInputs + Shifts -1) % NumberOfCountedResults];
+			}
+		}
+		public void ForwardInHistoryMethod()
+		{
+			int NumberOfCountedResults = Inputs.Count(s => s != "");
+			if (NumberOfCountedResults > 0)
+			{
+				Shifts -= 1;
+				Input = Inputs[Math.Abs(IndexOfResultsInputs + Shifts - 1) % NumberOfCountedResults];
+			}
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

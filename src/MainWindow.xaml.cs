@@ -76,11 +76,16 @@ namespace Calculator
          */
         private void OpenHelp(object sender, RoutedEventArgs e)
         {
-            /**
-             * @todo odkomentovat správnou cestu k nápovědě pro spuštění
-             */
-            //string HelpFilePath = "./Napoveda/Napoveda_ver_1_0.chm";
-            string HelpFilePath = "../../Napoveda/Napoveda_ver_1_0.chm";
+            string HelpFilePath = "./Napoveda/Napoveda_ver_1_0.chm";
+
+            if (!File.Exists(HelpFilePath))
+            {
+                HelpFilePath = "../../Napoveda/Napoveda_ver_1_0.chm";
+            }
+            
+            InputTextBox.SelectionStart = InputTextBox.CaretIndex;
+            InputTextBox.SelectionLength = 0;
+            InputTextBox.Focus();
             System.Windows.Forms.Help.ShowHelp(null, HelpFilePath);
         }
 
@@ -134,8 +139,19 @@ namespace Calculator
         private void ButtonClickDelete(object sender, RoutedEventArgs e)
         {
             int TextPosition = InputTextBox.CaretIndex;
-            if (InputTextBox.Text.Length != 0 && InputTextBox.CaretIndex != 0)
-            {
+            if (InputTextBox.SelectionLength == InputTextBox.Text.Length && InputTextBox.Text.Length != 0)
+            {   // Smazání celého textu
+                InputTextBox.Clear();
+            }
+            if (InputTextBox.Text.Length != 0 && InputTextBox.SelectionLength != 0)
+            {   // Při výběru většího úseku smaže celý úsek
+                InputTextBox.Text = InputTextBox.Text.Remove(InputTextBox.SelectionStart, InputTextBox.SelectionLength);
+                InputTextBox.Focus();
+                InputTextBox.SelectionStart = TextPosition - InputTextBox.SelectionStart;
+                InputTextBox.SelectionLength = 0;
+            }
+            else if (InputTextBox.Text.Length != 0 && InputTextBox.CaretIndex != 0)
+            {   // Smazání jednoho znaku od pozice kurzoru
                 InputTextBox.Text = InputTextBox.Text.Substring(0, InputTextBox.Text.Length - 1);
                 InputTextBox.Focus();
                 InputTextBox.SelectionStart = TextPosition - 1;
@@ -143,6 +159,7 @@ namespace Calculator
             }
             else
             {
+                // Nastavení kurzoru, nesmaže se nic
                 InputTextBox.Focus();
                 InputTextBox.SelectionStart = TextPosition;
                 InputTextBox.SelectionLength = 0;
@@ -154,10 +171,9 @@ namespace Calculator
         private void ButtonClickDigitsOperators(object sender, RoutedEventArgs e)
         {
             string content = (sender as System.Windows.Controls.Button).Content.ToString();
-            if (InputTextBox.SelectionLength == InputTextBox.Text.Length)
+            if (InputTextBox.SelectionLength == InputTextBox.Text.Length && InputTextBox.Text.Length != 0)
             {
-                // TODO
-                //InputTextBox.Clear();
+                InputTextBox.Clear();
             }
             //vloží obsah tlačítka do textboxu a posune kurzor
             int TextPosition = InputTextBox.CaretIndex;
@@ -213,6 +229,12 @@ namespace Calculator
                     InputTextBox.SelectionStart = TextPosition + 2;
                     InputTextBox.SelectionLength = 0;
                     break;
+                case "PiOperand":
+                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "π");
+                    InputTextBox.Focus();
+                    InputTextBox.SelectionStart = TextPosition + 1;
+                    InputTextBox.SelectionLength = 0;
+                    break;
                 default:
                     MessageBox.Show("Chybna funkce!");
                     break;
@@ -235,7 +257,7 @@ namespace Calculator
         {
             int TextPosition = InputTextBox.CaretIndex;
             char[] InputChars = { ',', '.', 's', 'f', 'q', '(', ')', '+', '-', '*', '/', '!', '^', 'p', 'π' };
-            char[] CharsToTranslate = { 's', 'f', 'q', 'm' };
+            char[] CharsToTranslate = { 's', 'f', 'q', 'm', 'p' };
             foreach (char c in e.Text)
             {
 
@@ -256,6 +278,9 @@ namespace Calculator
                         case 'm':
                             FuncName = "FuncPower";
                             break;
+                        case 'p':
+                            FuncName = "PiOperand";
+                            break;
                         default:
                             FuncName = "chyba";
                             break;
@@ -268,6 +293,9 @@ namespace Calculator
                 {
                     e.Handled = true;
                 }
+                InputTextBox.Focus();
+                //InputTextBox.SelectionStart = TextPosition + 1;
+                //InputTextBox.SelectionLength = 0;
             }
         }
 
@@ -280,23 +308,6 @@ namespace Calculator
             {
                 e.Handled = true;
             }
-        }
-
-        /**
-         * Funkce namapuje klávesové zkratky na správné znaky při vkládání do textového pole
-         * např. po zadání p se přepíše na PI
-         */
-        private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int TextPosition = InputTextBox.CaretIndex;
-            TextBox box = (TextBox)sender;
-
-            box.Text = box.Text.Replace("p", "π");
-
-
-            InputTextBox.Focus();
-            InputTextBox.SelectionStart = TextPosition;
-            InputTextBox.SelectionLength = 0;
         }
     }
 }

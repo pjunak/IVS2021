@@ -4,7 +4,15 @@ run:
 	.\bin\Release\Calculator.exe
 
 clean:
-	del .\Profiling\bin .\Profiling\obj .\Tests\obj .\Tests\bin .\obj\ .\bin\ .\doc\ /q /s
+	if exist .\Profiling\bin rmdir .\Profiling\bin /s /q
+	if exist .\Profiling\obj rmdir .\Profiling\obj /s /q
+	if exist .\Tests\bin rmdir .\Tests\bin /s /q
+	if exist .\Tests\obj rmdir .\Tests\obj /s /q
+	if exist .\bin\ rmdir .\bin\ /s /q
+	if exist .\obj\ rmdir .\obj\ /s /q
+	if exist ..\doc\ rmdir ..\doc\ /s /q
+	if exist ..\.vs\ rmdir ..\.vs\ /s /q
+	if exist .\.vs\ rmdir .\.vs\ /s /q
 	
 help:
 	cd Napoveda  & hh.exe ms-its:Napoveda_ver_1_0.chm::instalace.htm
@@ -17,8 +25,11 @@ profile:
 doc:
 	doxygen.exe
 
-pack:
-	cd .. & cd .. & mkdir xcasek01_xhaasp00_xherma33_xjunak01 & cd xcasek01_xhaasp00_xherma33_xjunak01 & mkdir doc install repo
-	cd .. & xcopy /E /I /H /R * ..\xcasek01_xhaasp00_xherma33_xjunak01\repo & cd .. & cd xcasek01_xhaasp00_xherma33_xjunak01\repo & del .\doc .\install
-	cd .. & xcopy /E /I /H /R doc ..\xcasek01_xhaasp00_xherma33_xjunak01\doc
-	cd .. & xcopy /E /I /H /R install ..\xcasek01_xhaasp00_xherma33_xjunak01\install
+pack: clean doc
+	if exist ..\..\xcasek01_xhaasp00_xherma33_xjunak01 rmdir ..\..\xcasek01_xhaasp00_xherma33_xjunak01 /s /q
+	if exist ..\..\xcasek01_xhaasp00_xherma33_xjunak01.zip rmdir ..\..\xcasek01_xhaasp00_xherma33_xjunak01.zip /s /q
+	cd .. & cd .. & mkdir xcasek01_xhaasp00_xherma33_xjunak01 & cd xcasek01_xhaasp00_xherma33_xjunak01 & mkdir doc
+	cd .. & xcopy /E /I /H /R * ..\xcasek01_xhaasp00_xherma33_xjunak01\repo & cd .. & cd xcasek01_xhaasp00_xherma33_xjunak01\repo & rmdir .\doc .\install /s /q
+	cd .. & xcopy /E /I /H /R doc\* ..\xcasek01_xhaasp00_xherma33_xjunak01\doc
+	cd .. & xcopy /E /I /H /R install\* ..\xcasek01_xhaasp00_xherma33_xjunak01\install
+	cd .. & cd .. & tar.exe -a -c -f xcasek01_xhaasp00_xherma33_xjunak01.zip xcasek01_xhaasp00_xherma33_xjunak01
