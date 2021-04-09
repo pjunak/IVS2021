@@ -25,21 +25,18 @@ namespace Calculator.Classes
         {
             if (str[0] == '-' || str[0] == '+')
             {// Ošetření implicitní nuly na začátku vstupního výrazu v případě začnutí výrazu záporným, nebo explicitním kladným číslem
-                str.Insert(0, "0");
+                str = str.Insert(0, "0");
             }
             int i = 0;
             while (i < (str.Length - 2))
             {// Ošetření implicitní uvnitř stringu
-                if (str[i] == '(')
-                { 
-                    if (str[i] == '+' || str[i] == '-')
-                    { // před plus a mínus může být implicitní nula pro záporné a explicitně kladné čísla
-                        str.Insert(i + 1, "0");
-                    } 
+                if (str[i] == '(' && (str[i + 1] == '+' || str[i + 1] == '-'))
+                {// před plus a mínus může být implicitní nula pro záporné a explicitně kladné čísla
+                     str = str.Insert(i + 1, "0");
                 }
                 else if (!Char.IsDigit(str[i]) && (str[i + 1] == '.' || str[i + 1] == ','))
                 {// před desetinnou tečkou či čárkou může bůt implicitní nula
-                    str.Insert(i + 1, "0");
+                    str = str.Insert(i + 1, "0");
                 }
                 i++;
             }
