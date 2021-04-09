@@ -17,7 +17,6 @@ namespace Calculator.Classes
 			set
 			{
 				_input = Check(value);
-				//_input = value;
 			}
 		}
 
@@ -39,6 +38,8 @@ namespace Calculator.Classes
 
 		//Takto sa definuje volanie funkcie, tato premena je naviazana na tlacidko '='
 		public ICommand Calculate { get; set; }
+		public ICommand BackInHistory { get; set; }
+		public ICommand ForwardInHistory { get; set; }
 
 		public static int IndexOfResultsInputs {get; set;}
 		public ObservableCollection<string> Inputs { get; set; }
@@ -60,6 +61,8 @@ namespace Calculator.Classes
 			Results = new ObservableCollection<string> { "", "", "", "" };
 
 			Calculate = new RelayCommand(Compute);
+			BackInHistory = new RelayCommand(BackInHistoryMethod);
+			ForwardInHistory = new RelayCommand(ForwardInHistoryMethod);
 
 			Error = "black";
 		}
@@ -72,16 +75,27 @@ namespace Calculator.Classes
 				Error = "red";
 				return;
             }
-			Input = SyntaxCheckResult;
 
 			var Result = Math.Round(ComputeResult.Compute(ToPostfix.toPostfix(ToToken.toTokens(Input))), 10);
-
-			Inputs[(IndexOfResultsInputs) % 4] = Input;
-			Results[(IndexOfResultsInputs) % 4] = Result.ToString();
-			IndexOfResultsInputs++;
-
-			Input = Result.ToString();
+			if (Double.IsNaN(Result))
+			{
+				Error = "red";
+			}
+			else
+			{
+				Inputs.Insert(0, Input);
+				Results.Insert(0, Result.ToString());
+				if (Inputs.Count > 4)
+				{
+					Inputs.RemoveAt(4);
+					Results.RemoveAt(4);
+				}
+				Input = Result.ToString();
+			}
 		}
+
+		public void BackInHistoryMethod() => Input = Inputs[(IndexOfResultsInputs + 1) % 4];
+		public void ForwardInHistoryMethod() => Input = Inputs[Math.Abs(IndexOfResultsInputs - 1) % 4];
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
