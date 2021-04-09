@@ -134,9 +134,6 @@
   <ItemGroup>
     <Resource Include="Tooltips\pi.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Tooltips\backspace-arrow.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Fody.6.4.0\build\Fody.targets" Condition="Exists('packages\Fody.6.4.0\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
