@@ -38,6 +38,8 @@
                      PreviewKeyDown="InputTextBoxPreviewKeyDown" Foreground="{Binding Error}" FontSize="16" VerticalContentAlignment="Center" MaxLines="1">
                 <TextBox.InputBindings>
                     <KeyBinding Command="{Binding Calculate}" Key="Enter" />
+                    <KeyBinding Command="{Binding BackInHistory}" Key="Up" />
+                    <KeyBinding Command="{Binding ForwardInHistory}" Key="Down" />
                 </TextBox.InputBindings>
             </TextBox>
             <Button Name="DeleteButton" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Panel.ZIndex="2" Margin="4,4,8,4" Click="ButtonClickDelete" ToolTip="Smaže jeden znak" HorizontalAlignment="Right" ScrollViewer.CanContentScroll="True">
