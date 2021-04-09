@@ -93,7 +93,7 @@ namespace Calculator.Classes
 					Inputs.RemoveAt(4);
 					Results.RemoveAt(4);
 				}
-				Input = Result.ToString();
+				Input = Result.ToString("0." + new string('#', 339)); //Konvertuje na string beze ztrát a zachová decimální tvar
 				Shifts = 0;
 			}
 		}
