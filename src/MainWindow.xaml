@@ -7,12 +7,12 @@
         mc:Ignorable="d"
 		xmlns:Classes="clr-namespace:Calculator.Classes"
 		d:DataContext="{d:DesignInstance Classes:MainWindowClass}"
-        Title="Kalkulačka, ©FITness studIO 21" Height="400" Width="400" KeyDown="WindowKeyDown"
+        Title="Kalkulačka, ©FITness studIO 21" Height="408" Width="476" KeyDown="WindowKeyDown"
         FocusManager.FocusedElement="{Binding ElementName=InputTextBox}">
 
-	<Window.DataContext>
-		<Classes:MainWindowClass/>
-	</Window.DataContext>
+    <Window.DataContext>
+        <Classes:MainWindowClass/>
+    </Window.DataContext>
 
     <Grid Margin="10">
         <!-- Celá stránka -->
@@ -24,31 +24,30 @@
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
+        <!-- Řádek s Texboxem -->
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBox Margin="4" TextWrapping="Wrap" x:Name="InputTextBox" Text="{Binding Input, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     PreviewTextInput="InputTextBox_PreviewTextInput"
-                     CommandManager.PreviewExecuted="InputTextBox_PreviewExecuted"
-                     CharacterCasing="Lower" PreviewKeyDown="InputTextBoxPreviewKeyDown"
-                     Foreground="{Binding Error}">
+            <TextBox Margin="4" x:Name="InputTextBox" Text="{Binding Input, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="InputTextBox_PreviewTextInput"
+                     CharacterCasing="Lower"
+                     PreviewKeyDown="InputTextBoxPreviewKeyDown" Foreground="{Binding Error}" FontSize="16" VerticalContentAlignment="Center" MaxLines="1">
                 <TextBox.InputBindings>
                     <KeyBinding Command="{Binding Calculate}" Key="Enter" />
-                    <KeyBinding Command="{Binding BackInHistory}" Key="Up" />
-                    <KeyBinding Command="{Binding ForwardInHistory}" Key="Down" />
                 </TextBox.InputBindings>
             </TextBox>
-            <Button Content="← Del" Grid.Column="1" Grid.Row="0" Margin="4" Click="ButtonClickDelete"
-                    ToolTip="Smaže jeden znak"/>
-            <Button Content="?" Grid.Column="2" Grid.Row="1" Margin="4" ToolTip="Zobrazí nápovědu aplikace" Click="OpenHelp"/>
-
+            <Button Name="DeleteButton" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Panel.ZIndex="2" Margin="4,4,8,4" Click="ButtonClickDelete" ToolTip="Smaže jeden znak" HorizontalAlignment="Right" ScrollViewer.CanContentScroll="True">
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="Tooltips/backspace-arrow.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
         </Grid>
 
 
@@ -56,7 +55,7 @@
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -77,14 +76,14 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Content="{Binding Inputs[0]}" Margin="4" Background="White"/>
-				<Label Grid.Row="1" Content="{Binding Results[0]}" Margin="4" Background="White"/>
-				<Label Grid.Row="2" Content="{Binding Inputs[1]}" Margin="4" Background="White"/>
-				<Label Grid.Row="3" Content="{Binding Results[1]}" Margin="4" Background="White"/>
-				<Label Grid.Row="4" Content="{Binding Inputs[2]}" Margin="4" Background="White"/>
-				<Label Grid.Row="5" Content="{Binding Results[2]}" Margin="4" Background="White"/>
-				<Label Grid.Row="6" Content="{Binding Inputs[3]}" Margin="4" Background="White"/>
-				<Label Grid.Row="7" Content="{Binding Results[3]}" Margin="4" Background="White"/>
+                <Label Grid.Row="0" Content="{Binding Inputs[0]}" Margin="4" Background="White" FontSize="14"/>
+                <Label Grid.Row="1" Content="{Binding Results[0]}" Margin="4" Background="White" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <Label Grid.Row="2" Content="{Binding Inputs[1]}" Margin="4" Background="White" FontSize="14"/>
+                <Label Grid.Row="3" Content="{Binding Results[1]}" Margin="4" Background="White" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <Label Grid.Row="4" Content="{Binding Inputs[2]}" Margin="4" Background="White" FontSize="14"/>
+                <Label Grid.Row="5" Content="{Binding Results[2]}" Margin="4" Background="White" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <Label Grid.Row="6" Content="{Binding Inputs[3]}" Margin="4" Background="White" FontSize="14"/>
+                <Label Grid.Row="7" Content="{Binding Results[3]}" Margin="4" Background="White" HorizontalContentAlignment="Right" FontSize="16" FontWeight="Bold"/>
 
 
 
@@ -106,7 +105,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Button Content="x^n" Grid.Column="0" Grid.Row="0" Margin="4" x:Name="FuncPower" Click="ButtonClickFunctions">
+                <Button Content="x&#x207F;" Grid.Column="0" Grid.Row="0" Margin="4" x:Name="FuncPower" Click="ButtonClickFunctions" FontSize="16">
                     <Button.ToolTip>
                         <StackPanel>
                             <Label Content="n-tá mocnina zadaného výrazu (M)" FontWeight="Bold"/>
@@ -115,32 +114,25 @@
                         </StackPanel>
                     </Button.ToolTip>
                 </Button>
-                <Button Content="7" Grid.Column="0" Grid.Row="1" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="4" Grid.Column="0" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="1" Grid.Column="0" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="xD" Grid.Column="0" Grid.Row="4" Margin="4" IsEnabled="False">
+                <Button Content="7" Grid.Column="0" Grid.Row="1" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="4" Grid.Column="0" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="1" Grid.Column="0" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="?" Grid.Column="0" Grid.Row="4" Margin="4" ToolTip="Zobrazí nápovědu aplikace" Click="OpenHelp" FontSize="16"/>
+
+                <Button Content="&#x207F;√x" Grid.Column="1" Grid.Row="0" Margin="4" x:Name="FuncSqrt" Click="ButtonClickFunctions" FontSize="16">
                     <Button.ToolTip>
                         <StackPanel>
-                            <Label Content="FITness studIO 21" FontWeight="Bold"/>
-                            <Image Source="./application.ico"/>
-                            <Label Content="Verze 1.0"/>
+                            <Label Content="n-tá odmocnina zadaného výrazu (Q)" FontWeight="Bold"/>
+                            <Image Source="Tooltips/sqrt.png" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                            <Label Content="Po zadání výrazu pod odmocninou stiskněte odmocninu a zadejte odmocnitele."/>
                         </StackPanel>
                     </Button.ToolTip>
                 </Button>
-                <Button Content="√(x)" Grid.Column="1" Grid.Row="0" Margin="4" x:Name="FuncSqrt" Click="ButtonClickFunctions">
-                <Button.ToolTip>
-                    <StackPanel>
-                        <Label Content="n-tá odmocnina zadaného výrazu (Q)" FontWeight="Bold"/>
-                            <Image Source="Tooltips/sqrt.png" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                        <Label Content="Po zadání výrazu pod odmocninou stiskněte odmocninu a zadejte odmocnitele."/>
-                    </StackPanel>
-                </Button.ToolTip>
-                </Button>
-                <Button Content="8" Grid.Column="1" Grid.Row="1" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="5" Grid.Column="1" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="2" Grid.Column="1" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="0" Grid.Column="1" Grid.Row="4" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="x!" Grid.Column="2" Grid.Row="0" Margin="4" x:Name="FuncFactorial" Click="ButtonClickFunctions">
+                <Button Content="8" Grid.Column="1" Grid.Row="1" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="5" Grid.Column="1" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="2" Grid.Column="1" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="0" Grid.Column="1" Grid.Row="4" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="x!" Grid.Column="2" Grid.Row="0" Margin="4" x:Name="FuncFactorial" Click="ButtonClickFunctions" FontSize="16">
                     <Button.ToolTip>
                         <StackPanel>
                             <Label Content="Faktoriál čísla n (F)" FontWeight="Bold"/>
@@ -149,19 +141,19 @@
                         </StackPanel>
                     </Button.ToolTip>
                 </Button>
-                <Button Content="9" Grid.Column="2" Grid.Row="1" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="6" Grid.Column="2" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="3" Grid.Column="2" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="," Grid.Column="2" Grid.Row="4" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="/" Grid.Column="3" Grid.Row="0" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="*" Grid.Column="3" Grid.Row="1" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="-" Grid.Column="3" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content="+" Grid.Column="3" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators"/>
+                <Button Content="9" Grid.Column="2" Grid.Row="1" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="6" Grid.Column="2" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="3" Grid.Column="2" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="," Grid.Column="2" Grid.Row="4" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="÷" Grid.Column="3" Grid.Row="0" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16" x:Name="OperatorDiv"/>
+                <Button Content="×" Grid.Column="3" Grid.Row="1" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16" x:Name="OperatorMul"/>
+                <Button Content="-" Grid.Column="3" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content="+" Grid.Column="3" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
 
-				<!-- Takto je mozne naviazat Command na tlacidko -->
-				<Button Content="=" Grid.Column="3" Grid.Row="4" Margin="4" Grid.ColumnSpan="2" Command="{Binding Calculate}"/>
+                <!-- Takto je mozne naviazat Command na tlacidko -->
+                <Button Content="=" Grid.Column="3" Grid.Row="4" Margin="4" Grid.ColumnSpan="2" Command="{Binding Calculate}" FontSize="16"/>
 
-                <Button Content="π" Grid.Column="4" Grid.Row="0" Margin="4" Click="ButtonClickDigitsOperators">
+                <Button Content="π" Grid.Column="4" Grid.Row="0" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16">
                     <Button.ToolTip>
                         <StackPanel>
                             <Label Content="Ludolfovo číslo π (P)" FontWeight="Bold"/>
@@ -170,7 +162,7 @@
                         </StackPanel>
                     </Button.ToolTip>
                 </Button>
-                <Button Content="sin(x)" Grid.Column="4" Grid.Row="1" Margin="4" x:Name="FuncSinus" Click="ButtonClickFunctions">
+                <Button Content="sin(x)" Grid.Column="4" Grid.Row="1" Margin="4" x:Name="FuncSinus" Click="ButtonClickFunctions" FontSize="16">
                     <Button.ToolTip>
                         <StackPanel>
                             <Label Content="sinus úhlu n (S)" FontWeight="Bold"/>
@@ -179,8 +171,8 @@
                         </StackPanel>
                     </Button.ToolTip>
                 </Button>
-                <Button Content="(" Grid.Column="4" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators"/>
-                <Button Content=")" Grid.Column="4" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators"/>
+                <Button Content="(" Grid.Column="4" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
+                <Button Content=")" Grid.Column="4" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
                 <!-- Číselník -->
             </Grid>
             <!-- Pod TextBoxem -->
