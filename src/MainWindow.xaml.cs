@@ -213,6 +213,12 @@ namespace Calculator
                     InputTextBox.SelectionStart = TextPosition + 2;
                     InputTextBox.SelectionLength = 0;
                     break;
+                case "PiOperand":
+                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "π");
+                    InputTextBox.Focus();
+                    InputTextBox.SelectionStart = TextPosition + 1;
+                    InputTextBox.SelectionLength = 0;
+                    break;
                 default:
                     MessageBox.Show("Chybna funkce!");
                     break;
@@ -235,7 +241,7 @@ namespace Calculator
         {
             int TextPosition = InputTextBox.CaretIndex;
             char[] InputChars = { ',', '.', 's', 'f', 'q', '(', ')', '+', '-', '*', '/', '!', '^', 'p', 'π' };
-            char[] CharsToTranslate = { 's', 'f', 'q', 'm' };
+            char[] CharsToTranslate = { 's', 'f', 'q', 'm', 'p' };
             foreach (char c in e.Text)
             {
 
@@ -255,6 +261,9 @@ namespace Calculator
                             break;
                         case 'm':
                             FuncName = "FuncPower";
+                            break;
+                        case 'p':
+                            FuncName = "PiOperand";
                             break;
                         default:
                             FuncName = "chyba";
@@ -280,23 +289,6 @@ namespace Calculator
             {
                 e.Handled = true;
             }
-        }
-
-        /**
-         * Funkce namapuje klávesové zkratky na správné znaky při vkládání do textového pole
-         * např. po zadání p se přepíše na PI
-         */
-        private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int TextPosition = InputTextBox.CaretIndex;
-            TextBox box = (TextBox)sender;
-
-            box.Text = box.Text.Replace("p", "π");
-
-
-            InputTextBox.Focus();
-            InputTextBox.SelectionStart = TextPosition;
-            InputTextBox.SelectionLength = 0;
         }
     }
 }
