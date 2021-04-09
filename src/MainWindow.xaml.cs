@@ -175,9 +175,21 @@ namespace Calculator
             {
                 InputTextBox.Clear();
             }
-            //vloží obsah tlačítka do textboxu a posune kurzor
             int TextPosition = InputTextBox.CaretIndex;
-            InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, content);
+
+            if ((sender as Button).Name == "OperatorMul")
+            {   // vloží operátor násobení
+                InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "*");
+            }
+            else if ((sender as Button).Name == "OperatorDiv")
+            {   // vloží operátor násobení
+                InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "/");
+            }
+            else
+            {   // vloží obsah tlačítka (číslice, +, -)
+                InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, content);
+            }
+
             InputTextBox.Focus();
             InputTextBox.SelectionStart = TextPosition + content.Length;
             InputTextBox.SelectionLength = 0;
