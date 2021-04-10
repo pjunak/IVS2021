@@ -21,6 +21,7 @@ namespace Calculator.Classes
             Sin = 4,
             Digit = 5,
             CBracketFact = 6,
+            Other = 7
         }
 
         private enum Column
@@ -35,23 +36,28 @@ namespace Calculator.Classes
             Sin = 7,
             OBracket = 8,
             CBracket = 9,
-            EndFlag = 10
+            Other = 10
         }
 
         //true == Zakázaný následující znak.
         //false == Povolený následující znak.
-        readonly private bool[,] IncorrectFollow = new bool[7, 10]
+        readonly private bool[,] IncorrectFollow = new bool[8, 11]
         {
-            {false, true, true, true, true, true, true, true, true, true},
-            {true, true, true, false, false, false, false, true, true, false},
-            {false, false, false, true, true, true, true, false, false, true},
-            {false, false, false, false, true, true, true, false, false, true},
-            {true, true, true, true, true, true, true, true, false, true},
-            {false, false, true, false, false, false, false, true, true, false},
-            {true, true, true, false, false, false, false, true, true, false}
+            {false, true, true, true, true, true, true, true, true, true, true},
+            {true, true, true, false, false, false, false, true, true, false, true},
+            {false, false, false, true, true, true, true, false, false, true, true},
+            {false, false, false, false, true, true, true, false, false, true, true},
+            {true, true, true, true, true, true, true, true, false, true, true},
+            {false, false, true, false, false, false, false, true, true, false, true},
+            {true, true, true, false, false, false, false, true, true, false, true},
+            {true, true, true, true, true, true, true, true, true, true, true},
         };
 
-        readonly private bool[] CannotEnd = new bool[] { true, false, true, true, true, false, false };
+        //řádky v tabulce
+        readonly private bool[] CannotEnd = new bool[8] { true, false, true, true, true, false, false, true };
+
+        //sloupce v tabulce
+        readonly private bool[] CannotBegin = new bool[11] { false, true, false, false, true, true, true, false, false, true, true};
 
         /** 
          * Funkce ověří syntaktickou správnost vstupního řetězce.
@@ -70,17 +76,18 @@ namespace Calculator.Classes
             int InputLen = Input.Length;
             Row RSymbol;
             Column CSymbol;
+            IdentifyChar(Input[InputLen - 1], Input[0], out RSymbol, out CSymbol);
+
+            //Kontrola, jestli výraz začíná nepovolenými znaky.
+            if(CannotBegin[(int)CSymbol])
+            {
+                return null;
+            }
 
             //Kontrola, jestli výraz končí povolenými znaky.
-            if (FinalChecking)
+            if (FinalChecking && CannotEnd[(int)RSymbol])
             {
-                IdentifyChar(Input[InputLen - 1], Input[InputLen - 1], out RSymbol, out CSymbol);
-                //CSymbol je nepoužívaná hodnota.
-                if (CannotEnd[(int)RSymbol])
-                {
-                    //MessageBox.Show("Error: Výraz končí nepovolenými znaky.\nKonec.");
-                    return null;
-                }
+                return null;
             }
 
             //Kontrola počtu závorek.
@@ -99,7 +106,6 @@ namespace Calculator.Classes
             }
             if (ClosedBracketCount > OpenBracketCount)
             {
-                //MessageBox.Show("Error: Příliš mnoho uzavíracích závorek!\nKonec.");
                 return null;
             }
             else if (OpenBracketCount > ClosedBracketCount && FinalChecking)
@@ -116,7 +122,6 @@ namespace Calculator.Classes
                 IdentifyChar(Input[i], Input[i + 1], out RSymbol, out CSymbol);
                 if (IncorrectFollow[(int)RSymbol, (int)CSymbol])
                 {
-                    //MessageBox.Show("Error: Špatná posloupnost znaků!\nKonec.");
                     return null;
                 }
             }
@@ -176,8 +181,7 @@ namespace Calculator.Classes
                     RSymbol = Row.DotComma;
                     break;
                 default:
-                    MessageBox.Show("Error: Vyskytl se nepovolený znak na vstupu!\nKonec.");
-                    Application.Current.Shutdown();
+                    RSymbol = Row.Other;
                     break;
             }
 
@@ -226,8 +230,7 @@ namespace Calculator.Classes
                     CSymbol = Column.CBracket;
                     break;
                 default:
-                    MessageBox.Show("Error: Vyskytl se nepovolený znak na vstupu!\nKonec.");
-                    Application.Current.Shutdown();
+                    CSymbol = Column.Other;
                     break;
             }
             return;
