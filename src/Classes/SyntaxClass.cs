@@ -9,6 +9,11 @@ using Calculator.Classes;
 
 namespace Calculator.Classes
 {
+    /**
+     * @class SyntaxClass
+     * 
+     * @brief Třída pro syntaktickou kontrolu výrazu zadáveného do kalkulkačky.
+     */
     public class SyntaxClass
     {
         public SyntaxClass() { }
