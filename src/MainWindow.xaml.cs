@@ -247,6 +247,18 @@ namespace Calculator
                     InputTextBox.SelectionStart = TextPosition + 1;
                     InputTextBox.SelectionLength = 0;
                     break;
+                case "OBrackOperator":
+                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "(");
+                    InputTextBox.Focus();
+                    InputTextBox.SelectionStart = TextPosition + 1;
+                    InputTextBox.SelectionLength = 0;
+                    break;
+                case "CBrackOperator":
+                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, ")");
+                    InputTextBox.Focus();
+                    InputTextBox.SelectionStart = TextPosition + 1;
+                    InputTextBox.SelectionLength = 0;
+                    break;
                 default:
                     MessageBox.Show("Chybna funkce!");
                     break;
@@ -268,8 +280,8 @@ namespace Calculator
         private void InputTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             int TextPosition = InputTextBox.CaretIndex;
-            char[] InputChars = { ',', '.', 's', 'f', 'q', '(', ')', '+', '-', '*', '/', '!', '^', 'p', 'π' };
-            char[] CharsToTranslate = { 's', 'f', 'q', 'm', 'p' };
+            char[] InputChars = { ',', '.', 's', 'f', 'q', '(', ')', '+', '-', '*', '/', '!', '^', 'p', 'π', 'v', 'b' };
+            char[] CharsToTranslate = { 's', 'f', 'q', 'm', 'p', 'v', 'b' };
             foreach (char c in e.Text)
             {
 
@@ -292,6 +304,12 @@ namespace Calculator
                             break;
                         case 'p':
                             FuncName = "PiOperand";
+                            break;
+                        case 'v':
+                            FuncName = "OBrackOperator";
+                            break;
+                        case 'b':
+                            FuncName = "CBrackOperator";
                             break;
                         default:
                             FuncName = "chyba";

@@ -79,14 +79,14 @@ namespace Calculator.Classes
 				return;
             }
 
-			var Result = Math.Round(ComputeResult.Compute(ToPostfix.toPostfix(ToToken.toTokens(Input))), 10);
+			var Result = Math.Round(ComputeResult.Compute(ToPostfix.toPostfix(ToToken.toTokens(SyntaxCheckResult))), 10);
 			if (Double.IsNaN(Result))
 			{
 				Error = "red";
 			}
 			else
 			{
-				Inputs.Insert(0, Input);
+				Inputs.Insert(0, SyntaxCheckResult);
 				Results.Insert(0, Result.ToString());
 				if (Inputs.Count > 4)
 				{
