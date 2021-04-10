@@ -153,18 +153,37 @@ namespace Calculator
             else if (InputTextBox.Text.Length != 0 && InputTextBox.CaretIndex != 0)
             {   // Smazání jednoho znaku od pozice kurzoru
                 if (TextPosition == InputTextBox.Text.Length)
-                {
+                {   // Smazání na konci řetězce
+                    if (InputTextBox.Text[TextPosition - 2] == 's')
+                    {
+                        InputTextBox.CaretIndex = TextPosition - 2;
+                    }
+                    else
+                    {
+                        InputTextBox.CaretIndex = TextPosition - 1;
+                    }
                     InputTextBox.Text = InputTextBox.Text.Substring(0, InputTextBox.Text.Length - 1);
-                    
                 }
                 else
-                {
+                {   // Smazání uprostřed řetězce
+                    int CaretPosition;
+                    if (InputTextBox.Text[TextPosition - 2] == 's')
+                    {
+                        InputTextBox.Focus();
+                        CaretPosition = TextPosition - 2;
+                    }
+                    else
+                    {
+                        InputTextBox.Focus();
+                        CaretPosition = TextPosition - 1;
+                    }
                     string BeforeDel = InputTextBox.Text.Substring(0, TextPosition - 1);
                     string AfterDel = InputTextBox.Text.Substring(TextPosition, (InputTextBox.Text.Length - TextPosition));
                     InputTextBox.Text = BeforeDel + AfterDel;
+                    InputTextBox.CaretIndex = CaretPosition;
                 }
-                InputTextBox.Focus();
-                InputTextBox.SelectionStart = TextPosition - 1;
+                
+                //InputTextBox.SelectionStart = TextPosition - 1;
                 InputTextBox.SelectionLength = 0;
             }
             else
@@ -350,9 +369,11 @@ namespace Calculator
             }
         }
 
-		private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private string LastValue { get; set; }
+
+        private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			var vm = (MainWindowClass)DataContext;
+            var vm = (MainWindowClass)DataContext;
 			if (vm.Final)
 			{
 				InputTextBox.CaretIndex = InputTextBox.Text.Length;
@@ -361,13 +382,14 @@ namespace Calculator
 			if (vm.CheckAfterFinal)
 			{
 				vm.CheckAfterFinal = false;
-				if (InputTextBox.CaretIndex == InputTextBox.Text.Length && char.IsDigit(InputTextBox.Text[InputTextBox.Text.Length - 1]))
+				if (LastValue.Length <= InputTextBox.Text.Length && InputTextBox.CaretIndex == InputTextBox.Text.Length && char.IsDigit(InputTextBox.Text[InputTextBox.Text.Length - 1]))
 				{
 					vm.Input = InputTextBox.Text[InputTextBox.Text.Length - 1].ToString();
 					InputTextBox.CaretIndex = InputTextBox.Text.Length;
 					InputTextBox.Focus();
-				}
+                }
 			}
-		}
+            LastValue = InputTextBox.Text;
+        }
 	}
 }
