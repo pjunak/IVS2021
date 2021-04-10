@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Calculator.Classes;
 
 namespace Calculator.Classes
 {
@@ -81,13 +82,15 @@ namespace Calculator.Classes
 
         /** 
          * Funkce ověří syntaktickou správnost vstupního řetězce, v případě chybějících pravých závorek je doplní.
+         * Smaže samostatný znak funkce sinus (s) bez otevírací závorky.
          * 
          * @param Input Vstupní řetězec ke kontrole.
          * @param FinalChecking Určuje, zda se jedná o průběžnou (\c true) nebo finální (\c false) konrolu před výpočtem výsledku.
+         * @param MainWindowRef Reference na třídu MainWindowClass.
          *
          * @return V případě validního řetězce vrátí řetezec ze vstupu, případně doplněný o pravé závorky. V případě nevalidního řetězce vrací \c null
          */
-        public string SyntaxCheck(string Input, bool FinalChecking)
+        public string SyntaxCheck(string Input, bool FinalChecking, MainWindowClass MainWindowRef)
         {
             if(Input == "" || Input == null)
             {
@@ -119,12 +122,14 @@ namespace Calculator.Classes
                     if(i == InputLen - 1)
                     {
                         Input = Input.Remove(i, 1);
+                        MainWindowRef.CorrectedValue = MainWindowRef.CorrectedValue.Remove(i, 1);
                         InputLen--;
                         break;
                     }
                     else if(Input[i + 1] != '(')
                     {
                         Input = Input.Remove(i, 1);
+                        MainWindowRef.CorrectedValue = MainWindowRef.CorrectedValue.Remove(i, 1);
                         InputLen--;
                         i--;
                     }

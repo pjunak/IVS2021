@@ -24,6 +24,7 @@ namespace Calculator.Classes
 
 		public bool CheckAfterFinal { get; set; }
 		public string Error { get; set; }
+		public string CorrectedValue { get; set; }
 
 		private string Check(string Value)
 		{
@@ -39,11 +40,12 @@ namespace Calculator.Classes
 				}
 			}*/
 
-			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Value, false);
+			CorrectedValue = Value;
+			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Value, false, this);
 			if (SyntaxCheckResult == null)
             {
 				Error = "red";
-				return Value;
+				return CorrectedValue;
             }
 			else
             {
@@ -89,7 +91,7 @@ namespace Calculator.Classes
 
 		public void Compute()
 		{
-			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Input, true);
+			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Input, true, this);
 			if (SyntaxCheckResult == null)
             {
 				Error = "red";
