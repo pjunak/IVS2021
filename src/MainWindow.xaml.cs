@@ -339,5 +339,25 @@ namespace Calculator
                 e.Handled = true;
             }
         }
-    }
+
+		private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			var vm = (MainWindowClass)DataContext;
+			if (vm.Final)
+			{
+				InputTextBox.CaretIndex = InputTextBox.Text.Length;
+				InputTextBox.Focus();
+			}
+			if (vm.CheckAfterFinal)
+			{
+				vm.CheckAfterFinal = false;
+				if (InputTextBox.CaretIndex == InputTextBox.Text.Length && char.IsDigit(InputTextBox.Text[InputTextBox.Text.Length - 1]))
+				{
+					vm.Input = InputTextBox.Text[InputTextBox.Text.Length - 1].ToString();
+					InputTextBox.CaretIndex = InputTextBox.Text.Length;
+					InputTextBox.Focus();
+				}
+			}
+		}
+	}
 }
