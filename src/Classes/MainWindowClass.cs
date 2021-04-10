@@ -93,6 +93,10 @@ namespace Calculator.Classes
 					Inputs.RemoveAt(4);
 					Results.RemoveAt(4);
 				}
+				/*
+				Následující řádek byl vytvořen na základě odpovědí na dotaz na webu https://stackoverflow.com/questions/1546113/double-to-string-conversion-without-scientific-notation
+				Double to string conversion without scientific notation. Stackoverflow [online]. 2019 [cit. 2021-04-10]. Dostupné z: https://stackoverflow.com/questions/1546113/double-to-string-conversion-without-scientific-notation
+				*/
 				Input = Result.ToString("0." + new string('#', 339)); //Konvertuje na string beze ztrát a zachová decimální tvar
 				Shifts = 0;
 			}
