@@ -12,6 +12,9 @@ namespace Calculator.Classes
     {
         public SyntaxClass() { }
 
+        /**
+         * Index řádku do tabulky IncorrectFollow.
+         */
         private enum Row
         {
             DotComma = 0,
@@ -21,8 +24,12 @@ namespace Calculator.Classes
             Sin = 4,
             Digit = 5,
             CBracketFact = 6,
+            Other = 7
         }
 
+        /**
+         * Index sloupce do tabulky IncorrectFollow.
+         */
         private enum Column
         {
             Digit = 0,
@@ -35,30 +42,47 @@ namespace Calculator.Classes
             Sin = 7,
             OBracket = 8,
             CBracket = 9,
-            EndFlag = 10
+            Other = 10
         }
 
-        //true == Zakázaný následující znak.
-        //false == Povolený následující znak.
-        readonly private bool[,] IncorrectFollow = new bool[7, 10]
+        /**
+         * Tabulka zakázané a povolené následovnosti znaků.
+         * \c true == Zakázaný následující znak.
+         * \c false == Povolený následující znak.
+         */
+        readonly private bool[,] IncorrectFollow = new bool[8, 11]
         {
-            {false, true, true, true, true, true, true, true, true, true},
-            {true, true, true, false, false, false, false, true, true, false},
-            {false, false, false, true, true, true, true, false, false, true},
-            {false, false, false, false, true, true, true, false, false, true},
-            {true, true, true, true, true, true, true, true, false, true},
-            {false, false, true, false, false, false, false, true, true, false},
-            {true, true, true, false, false, false, false, true, true, false}
+            {false, true, true, true, true, true, true, true, true, true, true},
+            {true, true, true, false, false, false, false, true, true, false, true},
+            {false, false, false, true, true, true, true, false, false, true, true},
+            {false, false, false, false, true, true, true, false, false, true, true},
+            {true, true, true, true, true, true, true, true, false, true, true},
+            {false, false, true, false, false, false, false, true, true, false, true},
+            {true, true, true, false, false, false, false, true, true, false, true},
+            {true, true, true, true, true, true, true, true, true, true, true},
         };
 
-        readonly private bool[] CannotEnd = new bool[] { true, false, true, true, true, false, false };
+        /**
+         * Příznak validního unokčujícího znaku.
+         * \c true == Zakázaný ukončující znak.
+         * \c false == Povolený ukončující znak. 
+         */
+        readonly private bool[] CannotEnd = new bool[8] { true, false, true, true, true, false, false, true };
+
+        /**
+         * Příznak validního počátečního znaku.
+         * \c true == Zakázaný počáteční znak.
+         * \c false == Povolený počáteční znak. 
+         */
+        readonly private bool[] CannotBegin = new bool[11] { false, true, false, false, true, true, true, false, false, true, true};
 
         /** 
-         * Funkce ověří syntaktickou správnost vstupního řetězce.
+         * Funkce ověří syntaktickou správnost vstupního řetězce, v případě chybějících pravých závorek je doplní.
          * 
          * @param Input Vstupní řetězec ke kontrole.
-         * @param FinalChecking Určuje, zda se jedná o průběžnou (\c FALSE) nebo finální (\c TRUE) konrolu před výpočtem výsledku.
+         * @param FinalChecking Určuje, zda se jedná o průběžnou (\c true) nebo finální (\c false) konrolu před výpočtem výsledku.
          *
+         * @return V případě validního řetězce vrátí řetezec ze vstupu, případně doplněný o pravé závorky. V případě nevalidního řetězce vrací \c null
          */
         public string SyntaxCheck(string Input, bool FinalChecking)
         {
@@ -70,17 +94,18 @@ namespace Calculator.Classes
             int InputLen = Input.Length;
             Row RSymbol;
             Column CSymbol;
+            IdentifyChar(Input[InputLen - 1], Input[0], out RSymbol, out CSymbol);
+
+            //Kontrola, jestli výraz začíná nepovolenými znaky.
+            if(CannotBegin[(int)CSymbol])
+            {
+                return null;
+            }
 
             //Kontrola, jestli výraz končí povolenými znaky.
-            if (FinalChecking)
+            if (FinalChecking && CannotEnd[(int)RSymbol])
             {
-                IdentifyChar(Input[InputLen - 1], Input[InputLen - 1], out RSymbol, out CSymbol);
-                //CSymbol je nepoužívaná hodnota.
-                if (CannotEnd[(int)RSymbol])
-                {
-                    //MessageBox.Show("Error: Výraz končí nepovolenými znaky.\nKonec.");
-                    return null;
-                }
+                return null;
             }
 
             //Kontrola počtu závorek.
@@ -99,7 +124,6 @@ namespace Calculator.Classes
             }
             if (ClosedBracketCount > OpenBracketCount)
             {
-                //MessageBox.Show("Error: Příliš mnoho uzavíracích závorek!\nKonec.");
                 return null;
             }
             else if (OpenBracketCount > ClosedBracketCount && FinalChecking)
@@ -116,27 +140,23 @@ namespace Calculator.Classes
                 IdentifyChar(Input[i], Input[i + 1], out RSymbol, out CSymbol);
                 if (IncorrectFollow[(int)RSymbol, (int)CSymbol])
                 {
-                    //MessageBox.Show("Error: Špatná posloupnost znaků!\nKonec.");
                     return null;
                 }
             }
             
-            //V pořádku.
             return Input;
         }
 
         /** 
-         * Funkce namapuje vstupní znaky \p Actual a \p Next na předdefinové symboly \p RSymbol a \p CSymbol.
+         * Funkce namapuje vstupní znaky \p Actual a \p Next na předdefinové indexy \p RSymbol a \p CSymbol do tabulky IncorrectFollow.
          * 
          * @param Actual Aktuální znak vstupního řetězce
          * @param Next Následující znak vstupního řetězce
-         * @param RSymbol Symbol aktuálního znaku (index řádku)
-         * @param CSymbol Symbol následujícího znaku (index sloupce)
+         * @param RSymbol Index aktuálního znaku
+         * @param CSymbol Index následujícího znaku
          */
         private void IdentifyChar(char Actual, char Next, out Row RSymbol, out Column CSymbol)
         {
-            RSymbol = 0;
-            CSymbol = 0;
             switch (Actual)
             {
                 case '0':
@@ -176,8 +196,7 @@ namespace Calculator.Classes
                     RSymbol = Row.DotComma;
                     break;
                 default:
-                    MessageBox.Show("Error: Vyskytl se nepovolený znak na vstupu!\nKonec.");
-                    Application.Current.Shutdown();
+                    RSymbol = Row.Other;
                     break;
             }
 
@@ -226,8 +245,7 @@ namespace Calculator.Classes
                     CSymbol = Column.CBracket;
                     break;
                 default:
-                    MessageBox.Show("Error: Vyskytl se nepovolený znak na vstupu!\nKonec.");
-                    Application.Current.Shutdown();
+                    CSymbol = Column.Other;
                     break;
             }
             return;
