@@ -40,13 +40,13 @@
                     <KeyBinding Command="{Binding Calculate}" Key="Enter" />
                 </TextBox.InputBindings>
             </TextBox>
-            <Button Name="DeleteButton" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Panel.ZIndex="2" Margin="4,4,8,4" Click="ButtonClickDelete" ToolTip="Smaže jeden znak" HorizontalAlignment="Right" ScrollViewer.CanContentScroll="True">
-                <Button.BorderBrush>
+            <Button Name="DeleteButton" Background="Transparent" BorderBrush="Transparent" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Panel.ZIndex="2" Margin="4,4,8,4" Click="ButtonClickDelete" ToolTip="Smaže jeden znak" HorizontalAlignment="Right" ScrollViewer.CanContentScroll="True">
+                <!--<Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                </Button.BorderBrush>
-                <Button.Background>
-                    <ImageBrush ImageSource="Tooltips/backspace-arrow.png" Stretch="Uniform"/>
-                </Button.Background>
+                </Button.BorderBrush>-->
+                <StackPanel>
+                    <Image Source="Tooltips/backspace-arrow.png" RenderOptions.BitmapScalingMode="HighQuality" Height="30"/>
+                </StackPanel>
             </Button>
         </Grid>
 
@@ -117,7 +117,11 @@
                 <Button Content="7" Grid.Column="0" Grid.Row="1" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
                 <Button Content="4" Grid.Column="0" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
                 <Button Content="1" Grid.Column="0" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
-                <Button Content="?" Grid.Column="0" Grid.Row="4" Margin="4" ToolTip="Zobrazí nápovědu aplikace" Click="OpenHelp" FontSize="16"/>
+                <Button Grid.Column="0" Grid.Row="4" Margin="4" ToolTip="Zobrazí nápovědu aplikace" Click="OpenHelp" FontSize="16">
+                    <StackPanel>
+                        <Image Source="Tooltips/help_icon.png" RenderOptions.BitmapScalingMode="HighQuality" Width="25"/>
+                    </StackPanel>
+                </Button>
 
                 <Button Content="&#x207F;√x" Grid.Column="1" Grid.Row="0" Margin="4" x:Name="FuncSqrt" Click="ButtonClickFunctions" FontSize="16">
                     <Button.ToolTip>
