@@ -11,6 +11,7 @@ namespace Calculator.Classes
 {
 	public class MainWindowClass : INotifyPropertyChanged
 	{
+		public bool Final;
 		private string _input;
 		public string Input
 		{
@@ -21,10 +22,23 @@ namespace Calculator.Classes
 			}
 		}
 
+		public bool CheckAfterFinal { get; set; }
 		public string Error { get; set; }
 
 		private string Check(string Value)
 		{
+			/*if (CheckAfterFinal)
+			{
+				CheckAfterFinal = false;
+				if ((Value.Length > Input.Length) && char.IsDigit(Value[Value.Length - 1]))
+				{
+					if (string.Equals(Value.Substring(0, Value.Length - 1) , Input))
+					{
+						Value = Value[Value.Length - 1].ToString();
+					}
+				}
+			}*/
+
 			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Value, false);
 			if (SyntaxCheckResult == null)
             {
@@ -69,6 +83,8 @@ namespace Calculator.Classes
 			ForwardInHistory = new RelayCommand(ForwardInHistoryMethod);
 
 			Error = "black";
+			Final = false;
+			CheckAfterFinal = false;
 		}
 
 		public void Compute()
@@ -98,7 +114,10 @@ namespace Calculator.Classes
 				Následující řádek byl vytvořen na základě odpovědí na dotaz na webu https://stackoverflow.com/questions/1546113/double-to-string-conversion-without-scientific-notation
 				Double to string conversion without scientific notation. Stackoverflow [online]. 2019 [cit. 2021-04-10]. Dostupné z: https://stackoverflow.com/questions/1546113/double-to-string-conversion-without-scientific-notation
 				*/
+				Final = true;
 				Input = Result.ToString("0." + new string('#', 339)); //Konvertuje na string beze ztrát a zachová decimální tvar
+				CheckAfterFinal = true;
+				Final = false;
 				Shifts = 0;
 			}
 		}

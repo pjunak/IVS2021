@@ -5,6 +5,11 @@ using System.Diagnostics; //TODO only for disgnostics, remove later
 
 namespace Calculator.Classes
 {
+	/**
+     * @class ToPostfixClass
+     * 
+     * @brief Třída pro převod vstupního listu tokenů v infix tvaru do postfix tvaru
+     */
 	public class ToPostfixClass
 	{
 		private string _output { get; set; }
@@ -14,10 +19,22 @@ namespace Calculator.Classes
 			return _output;
 		}
 
+		/**
+		* @brief Konstruktor
+		*/
 		public ToPostfixClass() { }
 
+		/** 
+         * @brief Funkce převede list tokenů to postfixového pořadí. Kontrola vstupu je prováděna volající funkcí, funkce ToPostfix tedy nepočítá s chybou.
+         * @param tokens Vstupní list tokenů typu Token v infixovém tvaru.
+         * @return Vrátí řetežzc tokenů typu Token v púostfixovém tvaru.
+         */
 		public List<Token> toPostfix(List<Token> tokens)
 		{
+			/*
+			Následující kód byl vytvořen na základě zdrojových kódů na webu https://www.geeksforgeeks.org
+			Stack | Set 2 (Infix to Postfix). Geeksforgeeks [online]. 2020 [cit. 2021-04-10]. Dostupné z: https://www.geeksforgeeks.org/stack-set-2-infix-to-postfix/
+			*/
 			// Vytvořen nový list pro výsledky
 			List<Token> result = new List<Token>();
 

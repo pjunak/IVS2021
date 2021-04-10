@@ -33,16 +33,21 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBox Margin="4" x:Name="InputTextBox" Text="{Binding Input, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="InputTextBox_PreviewTextInput"
+			<TextBox Margin="4" x:Name="InputTextBox" Text="{Binding Input, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     PreviewTextInput="InputTextBox_PreviewTextInput" TextChanged="InputTextBox_TextChanged"
                      CharacterCasing="Lower"
-                     PreviewKeyDown="InputTextBoxPreviewKeyDown" Foreground="{Binding Error}" FontSize="16" VerticalContentAlignment="Center" MaxLines="1">
+                     PreviewKeyDown="InputTextBoxPreviewKeyDown" Foreground="{Binding Error}" FontSize="16"
+                     VerticalContentAlignment="Center" MaxLines="1">
                 <TextBox.InputBindings>
                     <KeyBinding Command="{Binding Calculate}" Key="Enter" />
                     <KeyBinding Command="{Binding BackInHistory}" Key="Up" />
                     <KeyBinding Command="{Binding ForwardInHistory}" Key="Down" />
                 </TextBox.InputBindings>
             </TextBox>
-            <Button Name="DeleteButton" Background="Transparent" BorderBrush="Transparent" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Panel.ZIndex="2" Margin="4,4,8,4" Click="ButtonClickDelete" ToolTip="Smaže jeden znak" HorizontalAlignment="Right" ScrollViewer.CanContentScroll="True">
+            <Button Name="DeleteButton" Background="Transparent" BorderBrush="Transparent"
+                    Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}"
+                    Panel.ZIndex="2" Margin="4,4,8,4" Click="ButtonClickDelete"
+                    ToolTip="Smaže znak, který leží vlevo od kurzoru, případně označený výběr." HorizontalAlignment="Right" ScrollViewer.CanContentScroll="True">
                 <!--<Button.BorderBrush>
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
                 </Button.BorderBrush>-->
@@ -119,7 +124,7 @@
                 <Button Content="7" Grid.Column="0" Grid.Row="1" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
                 <Button Content="4" Grid.Column="0" Grid.Row="2" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
                 <Button Content="1" Grid.Column="0" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
-                <Button Grid.Column="0" Grid.Row="4" Margin="4" ToolTip="Zobrazí nápovědu aplikace" Click="OpenHelp" FontSize="16">
+                <Button Grid.Column="0" Grid.Row="4" Margin="4" ToolTip="Zobrazí nápovědu aplikace v novém okně." Click="OpenHelp" FontSize="16">
                     <StackPanel>
                         <Image Source="Tooltips/help_icon.png" RenderOptions.BitmapScalingMode="HighQuality" Width="25"/>
                     </StackPanel>
@@ -157,7 +162,14 @@
                 <Button Content="+" Grid.Column="3" Grid.Row="3" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16"/>
 
                 <!-- Takto je mozne naviazat Command na tlacidko -->
-                <Button Content="=" Grid.Column="3" Grid.Row="4" Margin="4" Grid.ColumnSpan="2" Command="{Binding Calculate}" FontSize="16"/>
+                <Button Content="=" Grid.Column="3" Grid.Row="4" Margin="4" Grid.ColumnSpan="2" Command="{Binding Calculate}" FontSize="16">
+                    <Button.ToolTip>
+                        <StackPanel>
+                            <Label Content="Výsledek výrazu (Enter)" FontWeight="Bold"/>
+                            <Label Content="Spočítá zadaný výraz a vypíše jeho výsledek."/>
+                        </StackPanel>
+                    </Button.ToolTip>
+                </Button>
 
                 <Button Content="π" Grid.Column="4" Grid.Row="0" Margin="4" Click="ButtonClickDigitsOperators" FontSize="16">
                     <Button.ToolTip>

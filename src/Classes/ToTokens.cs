@@ -23,11 +23,6 @@ namespace Calculator.Classes
          */
         public List<Token> toTokens(string str)
         {
-            /*
-            Následující kód byl vytvořen na základě zdrojových kódů na webu https://www.geeksforgeeks.org
-            Stack | Set 2 (Infix to Postfix). Geeksforgeeks [online]. 2020 [cit. 2021-04-10]. Dostupné z: https://www.geeksforgeeks.org/stack-set-2-infix-to-postfix/
-            */
-
             if (str[0] == '-' || str[0] == '+')
             {// Ošetření implicitní nuly na začátku vstupního výrazu v případě začnutí výrazu záporným, nebo explicitním kladným číslem
                 str = str.Insert(0, "0");
