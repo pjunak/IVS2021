@@ -47,12 +47,12 @@ namespace Calculator.Classes
         }
 
         /**
-         * Tabulka zakázané a povolené následovnosti znaků.
-         * \c true == zakázaný následující znak.
-         * \c false == povolený následující znak.
-         * 
-         * Řádky:    ,. | π | +-/*^ | ( | s | číslice | )! | ostatní znaky
-         * Sloupce: číslice | ,. | π | +- | /* | ^ |  ! | s | ( | ) | ostatní znaky
+          Tabulka zakázané a povolené následovnosti znaků.\n
+          \c true == zakázaný následující znak.\n
+          \c false == povolený následující znak.\n
+          \n
+          Řádky:    ,. | π | +-/*^ | ( | s | číslice | )! | ostatní znaky\n
+          Sloupce: číslice | ,. | π | +- | /* | ^ |  ! | s | ( | ) | ostatní znaky
          */
         readonly private bool[,] IncorrectFollow = new bool[8, 11]
         {
@@ -67,16 +67,16 @@ namespace Calculator.Classes
         };
 
         /**
-         * Příznak validního ukončujícího znaku.
-         * \c true == zakázaný ukončující znak.
-         * \c false == povolený ukončující znak. 
+          Příznak validního ukončujícího znaku.\n
+          \c true == zakázaný ukončující znak.\n
+          \c false == povolený ukončující znak. 
          */
         readonly private bool[] CannotEnd = new bool[8] { true, false, true, true, true, false, false, true };
 
         /**
-         * Příznak validního počátečního znaku.
-         * \c true == zakázaný počáteční znak.
-         * \c false == povolený počáteční znak. 
+          Příznak validního počátečního znaku.\n
+          \c true == zakázaný počáteční znak.\n
+          \c false == povolený počáteční znak. 
          */
         readonly private bool[] CannotBegin = new bool[11] { false, true, false, false, true, true, true, false, false, true, true};
 
@@ -85,7 +85,7 @@ namespace Calculator.Classes
          * Smaže samostatný znak funkce sinus (s) bez otevírací závorky.
          * 
          * @param Input Vstupní řetězec ke kontrole.
-         * @param FinalChecking Určuje, zda se jedná o průběžnou (\c true) nebo finální (\c false) konrolu před výpočtem výsledku.
+         * @param FinalChecking Určuje, zda se jedná o průběžnou (\c false) nebo finální (\c true) konrolu před výpočtem výsledku.
          * @param MainWindowRef Reference na třídu MainWindowClass.
          *
          * @return V případě validního řetězce vrátí řetezec ze vstupu, případně doplněný o pravé závorky. V případě nevalidního řetězce vrací \c null
@@ -176,7 +176,7 @@ namespace Calculator.Classes
         }
 
         /** 
-         * Funkce namapuje vstupní znaky \p Actual a \p Next na předdefinové indexy \p RSymbol a \p CSymbol do tabulky IncorrectFollow.
+         * Funkce namapuje vstupní znaky \p Actual a \p Next na předdefinové indexy \p RSymbol a \p CSymbol do tabulky \c IncorrectFollow.
          * 
          * @param Actual Aktuální znak vstupního řetězce
          * @param Next Následující znak vstupního řetězce
