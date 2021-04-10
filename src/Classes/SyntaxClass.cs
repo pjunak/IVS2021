@@ -12,7 +12,7 @@ namespace Calculator.Classes
     /**
      * @class SyntaxClass
      * 
-     * @brief Třída pro syntaktickou kontrolu výrazu zadáveného do kalkulkačky.
+     * @brief Třída pro syntaktickou kontrolu výrazu zadáveného do kalkulačky.
      */
     public class SyntaxClass
     {
