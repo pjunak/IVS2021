@@ -29,12 +29,13 @@ namespace Calculator.Classes
 			if (SyntaxCheckResult == null)
             {
 				Error = "red";
+				return Value;
             }
 			else
             {
 				Error = "black";
+				return SyntaxCheckResult;
             }
-			return Value;
 		}
 
 		//Takto sa definuje volanie funkcie, tato premena je naviazana na tlacidko '='

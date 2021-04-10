@@ -13,7 +13,7 @@ namespace Calculator.Classes
         public SyntaxClass() { }
 
         /**
-         * Index řádku do tabulky IncorrectFollow.
+         * Index řádku do tabulky \c IncorrectFollow.
          */
         private enum Row
         {
@@ -28,7 +28,7 @@ namespace Calculator.Classes
         }
 
         /**
-         * Index sloupce do tabulky IncorrectFollow.
+         * Index sloupce do tabulky \c IncorrectFollow.
          */
         private enum Column
         {
@@ -47,8 +47,11 @@ namespace Calculator.Classes
 
         /**
          * Tabulka zakázané a povolené následovnosti znaků.
-         * \c true == Zakázaný následující znak.
-         * \c false == Povolený následující znak.
+         * \c true == zakázaný následující znak.
+         * \c false == povolený následující znak.
+         * 
+         * Řádky:    ,. | π | +-/*^ | ( | s | číslice | )! | ostatní znaky
+         * Sloupce: číslice | ,. | π | +- | /* | ^ |  ! | s | ( | ) | ostatní znaky
          */
         readonly private bool[,] IncorrectFollow = new bool[8, 11]
         {
@@ -63,16 +66,16 @@ namespace Calculator.Classes
         };
 
         /**
-         * Příznak validního unokčujícího znaku.
-         * \c true == Zakázaný ukončující znak.
-         * \c false == Povolený ukončující znak. 
+         * Příznak validního ukončujícího znaku.
+         * \c true == zakázaný ukončující znak.
+         * \c false == povolený ukončující znak. 
          */
         readonly private bool[] CannotEnd = new bool[8] { true, false, true, true, true, false, false, true };
 
         /**
          * Příznak validního počátečního znaku.
-         * \c true == Zakázaný počáteční znak.
-         * \c false == Povolený počáteční znak. 
+         * \c true == zakázaný počáteční znak.
+         * \c false == povolený počáteční znak. 
          */
         readonly private bool[] CannotBegin = new bool[11] { false, true, false, false, true, true, true, false, false, true, true};
 
@@ -88,7 +91,7 @@ namespace Calculator.Classes
         {
             if(Input == "" || Input == null)
             {
-                return Input += "0";
+                return Input += "";
             }
 
             int InputLen = Input.Length;
@@ -106,6 +109,36 @@ namespace Calculator.Classes
             if (FinalChecking && CannotEnd[(int)RSymbol])
             {
                 return null;
+            }
+
+            //Mazání samotného "s".
+            for(int i = 0; i < InputLen; i++)
+            {
+                if (Input[i] == 's')
+                {
+                    if(i == InputLen - 1)
+                    {
+                        Input = Input.Remove(i, 1);
+                        InputLen--;
+                        break;
+                    }
+                    else if(Input[i + 1] != '(')
+                    {
+                        Input = Input.Remove(i, 1);
+                        InputLen--;
+                        i--;
+                    }
+                }
+            }
+
+            //Kontrola korektní posloupnosti znaků.
+            for (int i = 0; i < InputLen - 1; i++)
+            {
+                IdentifyChar(Input[i], Input[i + 1], out RSymbol, out CSymbol);
+                if (IncorrectFollow[(int)RSymbol, (int)CSymbol])
+                {
+                    return null;
+                }
             }
 
             //Kontrola počtu závorek.
@@ -128,22 +161,12 @@ namespace Calculator.Classes
             }
             else if (OpenBracketCount > ClosedBracketCount && FinalChecking)
             {
-                for(int i = OpenBracketCount - ClosedBracketCount; i > 0; i--)
+                for (int i = OpenBracketCount - ClosedBracketCount; i > 0; i--)
                 {
                     Input += ")";
                 }
             }
 
-            //Kontrola korektní posloupnosti zanků a závorkou za sinusem.
-            for (int i = 0; i < InputLen - 1; i++)
-            {
-                IdentifyChar(Input[i], Input[i + 1], out RSymbol, out CSymbol);
-                if (IncorrectFollow[(int)RSymbol, (int)CSymbol])
-                {
-                    return null;
-                }
-            }
-            
             return Input;
         }
 
