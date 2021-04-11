@@ -3,6 +3,14 @@ using System.Windows.Input;
 
 namespace Calculator.Classes
 {
+	/**
+     * @class RelayCommand
+     * 
+     * @brief Třída, která definuje rozhraní ICommand
+     */
+	/*
+		Táto třída byla převzatá z projektu do ITU. Rok 2020 autoři Patrik Haas, Pavel Bednář, Matúš Viščor. 
+	*/
 	public class RelayCommand : ICommand
 	{
 		private readonly Action<object> _executeAction;

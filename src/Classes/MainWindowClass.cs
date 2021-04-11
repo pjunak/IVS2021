@@ -9,6 +9,11 @@ using System.Linq;
 
 namespace Calculator.Classes
 {
+	/**
+     * @class MainWindowClass
+     * Je to hlavní bod aplikace, vstup do backend části.
+     * @brief Hlavní třída, dedí z INotifyPropertyChanged, aby fungoval databinding.
+     */
 	public class MainWindowClass : INotifyPropertyChanged
 	{
 		public bool Final;
@@ -26,35 +31,6 @@ namespace Calculator.Classes
 		public string Error { get; set; }
 		public string CorrectedValue { get; set; }
 
-		private string Check(string Value)
-		{
-			/*if (CheckAfterFinal)
-			{
-				CheckAfterFinal = false;
-				if ((Value.Length > Input.Length) && char.IsDigit(Value[Value.Length - 1]))
-				{
-					if (string.Equals(Value.Substring(0, Value.Length - 1) , Input))
-					{
-						Value = Value[Value.Length - 1].ToString();
-					}
-				}
-			}*/
-
-			CorrectedValue = Value;
-			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Value, false, this);
-			if (SyntaxCheckResult == null)
-            {
-				Error = "red";
-				return CorrectedValue;
-            }
-			else
-            {
-				Error = "black";
-				return SyntaxCheckResult;
-            }
-		}
-
-		//Takto sa definuje volanie funkcie, tato premena je naviazana na tlacidko '='
 		public ICommand Calculate { get; set; }
 		public ICommand BackInHistory { get; set; }
 		public ICommand ForwardInHistory { get; set; }
@@ -68,6 +44,10 @@ namespace Calculator.Classes
 		public ToTokens ToToken { get; set; }
 		public SyntaxClass SyntaxCheck { get; set; }
 
+		/** 
+		* @brief Konstruktor
+		* Inicializuje promnené
+		*/
 		public MainWindowClass()
 		{
 			ToPostfix = new ToPostfixClass();
@@ -89,6 +69,10 @@ namespace Calculator.Classes
 			CheckAfterFinal = false;
 		}
 
+		/** 
+		* @brief Metóda na výpoče výrazu
+		* Metóda zavolá metódy objektú, které vráti vyčíslený výraz. V prípade chyby informuje View.
+		*/
 		public void Compute()
 		{
 			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Input, true, this);
@@ -124,6 +108,10 @@ namespace Calculator.Classes
 			}
 		}
 
+		/** 
+		* @brief Metóda pro přecházení histórie výrazú
+		* Metóda umožní jít v história dopředu
+		*/
 		public void BackInHistoryMethod()
 		{
 			int NumberOfCountedResults = Inputs.Count(s => s != "");
@@ -133,6 +121,11 @@ namespace Calculator.Classes
 				Input = Inputs[Math.Abs(IndexOfResultsInputs + Shifts -1) % NumberOfCountedResults];
 			}
 		}
+
+		/** 
+		* @brief Metóda pro přecházení histórie výrazú
+		* Metóda umožní jít v história dozadu
+		*/
 		public void ForwardInHistoryMethod()
 		{
 			int NumberOfCountedResults = Inputs.Count(s => s != "");
@@ -143,7 +136,34 @@ namespace Calculator.Classes
 			}
 		}
 
+		/** 
+         * @brief Metóda, která po každém vstupu zavolá syntaktickou analýzu
+         * 
+         * @param Value Vstupní řetězec.
+         *
+         * @return Vráti upravený řetezec. V Prípade chyby informuje View.
+         */
+		private string Check(string Value)
+		{
+			CorrectedValue = Value;
+			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Value, false, this);
+			if (SyntaxCheckResult == null)
+			{
+				Error = "red";
+				return CorrectedValue;
+			}
+			else
+			{
+				Error = "black";
+				return SyntaxCheckResult;
+			}
+		}
+
 		public event PropertyChangedEventHandler PropertyChanged;
+		/** 
+		* @brief Metóda pro Databinding
+		* Metóda upozorní, že byla promňená, byla zmenena
+		*/
 		public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			var handler = PropertyChanged;
