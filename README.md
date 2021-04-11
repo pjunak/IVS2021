@@ -15,7 +15,7 @@ Nazev tymu
 Licence
 -------
 
-Tento program je poskytovan...
+Tento program je poskytovan pod licencí GPLv3
 
 Instalace a spusteni
 --------
