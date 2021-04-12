@@ -97,9 +97,13 @@ namespace Calculator.Classes
          */
         public string SyntaxCheck(string Input, bool FinalChecking, MainWindowClass MainWindowRef)
         {
-            if(Input == "" || Input == null)
+            if(FinalChecking && (Input == "" || Input == null))
             {
-                return Input += "";
+                return "0";
+            }
+            else if(Input == "" || Input == null)
+            {
+                return "";
             }
 
             int InputLen = Input.Length;
