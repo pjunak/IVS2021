@@ -60,8 +60,8 @@
         <!-- Pod TextBoxem -->
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -125,7 +125,7 @@
             </Grid>
 
             <!-- Číselník -->
-            <Grid Grid.Column="0" Grid.Row="0">
+            <Grid Grid.Column="0" Grid.Row="0" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
