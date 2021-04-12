@@ -252,7 +252,7 @@ namespace Calculator
             InputTextBox.Focus();
             //InputTextBox.SelectionStart = TextPosition + content.Length;
             //InputTextBox.SelectionLength = 0;
-            
+
 
             /*
             // pokud sinus, doplní závorku otevírací
@@ -446,7 +446,7 @@ namespace Calculator
 		{
 			SolidColorBrush blackBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFABADB3"));
 			Okraj.Stroke = blackBrush;
-		}
+        }
 
 		private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
 		{
@@ -463,5 +463,11 @@ namespace Calculator
 		{
 			InputTextBox_LostFocus(new object(), new RoutedEventArgs());
 		}
+
+        private void SetFocus(object sender, EventArgs e)
+        {
+            InputTextBox.CaretIndex = InputTextBox.Text.Length;
+            InputTextBox.Focus();
+        }
 	}
 }

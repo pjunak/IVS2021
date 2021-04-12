@@ -270,7 +270,7 @@
                         <TextBlock>+</TextBlock>
                     </Viewbox>
                 </Button>
-                <Button Grid.Column="3" Grid.Row="4" Margin="4" Grid.ColumnSpan="2" Command="{Binding Calculate}" Padding="6,12">
+                <Button Grid.Column="3" Grid.Row="4" Margin="4" Grid.ColumnSpan="2" Command="{Binding Calculate}" Click="SetFocus" Padding="6,12">
                     <Viewbox>
                         <TextBlock>=</TextBlock>
                     </Viewbox>
