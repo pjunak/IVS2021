@@ -23,7 +23,7 @@ namespace Calculator.Classes
          */
         public List<Token> toTokens(string str)
         {
-            if (str[0] == '-' || str[0] == '+')
+            if (str.Length > 0 && (str[0] == '-' || str[0] == '+'))
             {// Ošetření implicitní nuly na začátku vstupního výrazu v případě začnutí výrazu záporným, nebo explicitním kladným číslem
                 str = str.Insert(0, "0");
             }

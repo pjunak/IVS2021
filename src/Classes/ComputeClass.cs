@@ -75,8 +75,15 @@ namespace Calculator.Classes
 					TokenStack.Push(TemporallResult);
 				}
 			}
-
-			return TokenStack.Pop();
+			if (TokenStack.Count > 0)
+            { // Ochrana před pádem z důvodu prázdného vstupu
+				return TokenStack.Pop();
+			}
+			else
+            {
+				return 0;
+            }
+			
 		}
 
 		/**
