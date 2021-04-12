@@ -210,28 +210,48 @@ namespace Calculator
             {
                 InputTextBox.Clear();
             }
+
             int TextPosition = InputTextBox.CaretIndex;
+
+            int SelectionLength = InputTextBox.SelectionLength;
+            if (SelectionLength > 0)
+            {
+                if (InputTextBox.SelectionStart != 0 && InputTextBox.Text[InputTextBox.SelectionStart - 1] == 's')
+                {   // je přepisována pravá závorka sinu, musí se smazat i s
+                    TextPosition--;
+                    SelectionLength++;
+                }
+                InputTextBox.Text = InputTextBox.Text.Remove(TextPosition, SelectionLength);
+            }
+            /*
+            if (InputTextBox.SelectionLength > 0)
+            {
+                InputTextBox.Text = InputTextBox.Text.Remove(InputTextBox.CaretIndex, InputTextBox.SelectionLength);
+            }
+            */
+
+            
 
             if ((sender as Button).Name == "OperatorMul")
             {   // vloží operátor násobení
-                InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "*");
+                InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, "*");
                 TextPosition++;
             }
             else if ((sender as Button).Name == "OperatorDiv")
             {   // vloží operátor násobení
-                InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "/");
+                InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, "/");
                 TextPosition++;
             }
             else
             {   // vloží obsah tlačítka (číslice, +, -)
-                InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, content);
+                InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, content);
                 TextPosition += content.Length;
             }
 
             InputTextBox.CaretIndex = TextPosition;
             InputTextBox.Focus();
-            InputTextBox.SelectionStart = TextPosition + content.Length;
-            InputTextBox.SelectionLength = 0;
+            //InputTextBox.SelectionStart = TextPosition + content.Length;
+            //InputTextBox.SelectionLength = 0;
             
 
             /*
@@ -248,6 +268,16 @@ namespace Calculator
         private void ButtonClickFunctions(object sender, RoutedEventArgs e)
         {
             int TextPosition = InputTextBox.CaretIndex;
+            int SelectionLength = InputTextBox.SelectionLength;
+            if (SelectionLength > 0)
+            {
+                if (InputTextBox.SelectionStart != 0 && InputTextBox.Text[InputTextBox.SelectionStart - 1] == 's')
+                {   // je přepisována pravá závorka sinu, musí se smazat i s
+                    TextPosition--;
+                    SelectionLength++;
+                }
+                InputTextBox.Text = InputTextBox.Text.Remove(TextPosition, SelectionLength);
+            }
             string FuncName = (sender as Button).Name;
             TranslateShortKeys(FuncName, TextPosition);
         }
@@ -257,43 +287,43 @@ namespace Calculator
             switch (FuncName)
             {
                 case "FuncPower":
-                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "^");
+                    InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, "^");
                     InputTextBox.Focus();
                     InputTextBox.SelectionStart = TextPosition + 1;
                     InputTextBox.SelectionLength = 0;
                     break;
                 case "FuncSqrt":
-                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "^(1/");
+                    InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, "^(1/");
                     InputTextBox.Focus();
                     InputTextBox.SelectionStart = TextPosition + 4;
                     InputTextBox.SelectionLength = 0;
                     break;
                 case "FuncFactorial":
-                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "!");
+                    InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, "!");
                     InputTextBox.Focus();
                     InputTextBox.SelectionStart = TextPosition + 1;
                     InputTextBox.SelectionLength = 0;
                     break;
                 case "FuncSinus":
-                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "s(");
+                    InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, "s(");
                     InputTextBox.Focus();
                     InputTextBox.SelectionStart = TextPosition + 2;
                     InputTextBox.SelectionLength = 0;
                     break;
                 case "PiOperand":
-                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "π");
+                    InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, "π");
                     InputTextBox.Focus();
                     InputTextBox.SelectionStart = TextPosition + 1;
                     InputTextBox.SelectionLength = 0;
                     break;
                 case "OBrackOperator":
-                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "(");
+                    InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, "(");
                     InputTextBox.Focus();
                     InputTextBox.SelectionStart = TextPosition + 1;
                     InputTextBox.SelectionLength = 0;
                     break;
                 case "CBrackOperator":
-                    InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, ")");
+                    InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, ")");
                     InputTextBox.Focus();
                     InputTextBox.SelectionStart = TextPosition + 1;
                     InputTextBox.SelectionLength = 0;
@@ -323,9 +353,19 @@ namespace Calculator
             char[] CharsToTranslate = { 's', 'f', 'q', 'm', 'p', 'v', 'b' };
             foreach (char c in e.Text)
             {
-
                 if (CharsToTranslate.Contains(Char.ToLower(c)))
                 {
+                    int SelectionLength = InputTextBox.SelectionLength;
+                    if (SelectionLength > 0)
+                    {
+                        if (InputTextBox.SelectionStart != 0 && InputTextBox.Text[InputTextBox.SelectionStart - 1] == 's')
+                        {   // je přepisována pravá závorka sinu, musí se smazat i s
+                            TextPosition--;
+                            SelectionLength++;
+                        }
+                        InputTextBox.Text = InputTextBox.Text.Remove(TextPosition, SelectionLength);
+                    }
+
                     string FuncName;
                     switch(Char.ToLower(c))
                     {
