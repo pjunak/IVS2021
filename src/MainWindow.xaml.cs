@@ -152,22 +152,24 @@ namespace Calculator
             }
             else if (InputTextBox.Text.Length != 0 && InputTextBox.CaretIndex != 0)
             {   // Smazání jednoho znaku od pozice kurzoru
-                if (TextPosition == InputTextBox.Text.Length)
+                if (TextPosition == InputTextBox.Text.Length && TextPosition >= 2)
                 {   // Smazání na konci řetězce
+                    int CaretPosition;
                     if (InputTextBox.Text[TextPosition - 2] == 's')
                     {
-                        InputTextBox.CaretIndex = TextPosition - 2;
+                        CaretPosition = TextPosition - 2;
                     }
                     else
                     {
-                        InputTextBox.CaretIndex = TextPosition - 1;
+                        CaretPosition = TextPosition - 1;
                     }
                     InputTextBox.Text = InputTextBox.Text.Substring(0, InputTextBox.Text.Length - 1);
+                    InputTextBox.CaretIndex = CaretPosition;
                 }
                 else
                 {   // Smazání uprostřed řetězce
                     int CaretPosition;
-                    if (InputTextBox.Text[TextPosition - 2] == 's')
+                    if (TextPosition >= 2 && InputTextBox.Text[TextPosition - 2] == 's')
                     {
                         InputTextBox.Focus();
                         CaretPosition = TextPosition - 2;
@@ -185,6 +187,7 @@ namespace Calculator
                 
                 //InputTextBox.SelectionStart = TextPosition - 1;
                 InputTextBox.SelectionLength = 0;
+                InputTextBox.Focus();
             }
             else
             {
@@ -199,7 +202,10 @@ namespace Calculator
 
         private void ButtonClickDigitsOperators(object sender, RoutedEventArgs e)
         {
-            string content = (sender as System.Windows.Controls.Button).Content.ToString();
+            Button BtnObject = (System.Windows.Controls.Button)e.Source;
+            Viewbox ViewboxObject = (Viewbox)BtnObject.Content;
+            TextBlock TextBlockObject = (TextBlock)ViewboxObject.Child;
+            string content = TextBlockObject.Text;
             if (InputTextBox.SelectionLength == InputTextBox.Text.Length && InputTextBox.Text.Length != 0)
             {
                 InputTextBox.Clear();
