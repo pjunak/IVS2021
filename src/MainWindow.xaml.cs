@@ -215,16 +215,20 @@ namespace Calculator
             if ((sender as Button).Name == "OperatorMul")
             {   // vloží operátor násobení
                 InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "*");
+                TextPosition++;
             }
             else if ((sender as Button).Name == "OperatorDiv")
             {   // vloží operátor násobení
                 InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "/");
+                TextPosition++;
             }
             else
             {   // vloží obsah tlačítka (číslice, +, -)
                 InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, content);
+                TextPosition += content.Length;
             }
 
+            InputTextBox.CaretIndex = TextPosition;
             InputTextBox.Focus();
             InputTextBox.SelectionStart = TextPosition + content.Length;
             InputTextBox.SelectionLength = 0;
