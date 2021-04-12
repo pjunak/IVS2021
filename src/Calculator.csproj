@@ -67,6 +67,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\ComputeClass.cs" />
+    <Compile Include="Classes\Convertor.cs" />
     <Compile Include="Classes\MainWindowClass.cs" />
     <Compile Include="Classes\MathLibClass.cs" />
     <Compile Include="Classes\RelayCommand.cs" />

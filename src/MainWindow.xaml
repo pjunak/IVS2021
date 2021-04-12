@@ -8,14 +8,20 @@
 		xmlns:Classes="clr-namespace:Calculator.Classes"
 		d:DataContext="{d:DesignInstance Classes:MainWindowClass}"
         Title="Kalkulačka, ©FITness studIO 21" Height="419" Width="560" KeyDown="WindowKeyDown"  MinHeight="377" MinWidth="510"
-        FocusManager.FocusedElement="{Binding ElementName=InputTextBox}">
+        FocusManager.FocusedElement="{Binding ElementName=InputTextBox}"
+		Activated="Window_Activated"
+		Deactivated="Window_Deactivated">
+
+	<Window.Resources>
+		<Classes:Convertor x:Key= "FontChange"/>
+	</Window.Resources>
 
     <Window.DataContext>
-        <Classes:MainWindowClass/>
-    </Window.DataContext>
+		<Classes:MainWindowClass/>
+	</Window.DataContext>
 
-    <Grid Margin="10">
-        <!-- Celá stránka -->
+	<Grid Margin="10">
+		<!-- Celá stránka -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -25,7 +31,7 @@
         </Grid.RowDefinitions>
 
         <!-- Řádek s Texboxem -->
-        <Rectangle Grid.Row="0" Fill="White" Stroke="#FF0078D7" Margin="4"/>
+        <Rectangle x:Name="Okraj" Grid.Row="0" Fill="White" Stroke="#FF0078D7" Margin="4"/>
         <Grid Grid.Row="0" Grid.Column="0" Panel.ZIndex="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -37,8 +43,8 @@
 
             <TextBox x:Name="InputTextBox" Text="{Binding Input, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      PreviewTextInput="InputTextBox_PreviewTextInput" TextChanged="InputTextBox_TextChanged" CharacterCasing="Lower"
-                     PreviewKeyDown="InputTextBoxPreviewKeyDown" Foreground="{Binding Error}"
-                     FontSize="16" Margin="4" 
+                     PreviewKeyDown="InputTextBoxPreviewKeyDown" Foreground="{Binding Error}" LostFocus="InputTextBox_LostFocus" GotFocus="InputTextBox_GotFocus"
+                     FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}}" Margin="4" 
                      VerticalContentAlignment="Center" MaxLines="1" Background="{x:Null}" BorderThickness="0">
                 <TextBox.InputBindings>
                     <KeyBinding Command="{Binding Calculate}" Key="Enter" />

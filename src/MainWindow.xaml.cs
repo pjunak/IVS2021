@@ -401,5 +401,27 @@ namespace Calculator
 			}
             LastValue = InputTextBox.Text;
         }
+
+		private void InputTextBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			SolidColorBrush blackBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFABADB3"));
+			Okraj.Stroke = blackBrush;
+		}
+
+		private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
+		{
+			SolidColorBrush blackBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF0078D7"));
+			Okraj.Stroke = blackBrush;
+		}
+
+		private void Window_Activated(object sender, EventArgs e)
+		{
+			InputTextBox_GotFocus(new object(), new RoutedEventArgs());
+		}
+
+		private void Window_Deactivated(object sender, EventArgs e)
+		{
+			InputTextBox_LostFocus(new object(), new RoutedEventArgs());
+		}
 	}
 }
