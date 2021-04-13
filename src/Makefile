@@ -15,7 +15,7 @@ clean:
 	if exist .\.vs\ rmdir .\.vs\ /s /q
 	
 help:
-	cd Napoveda  & hh.exe ms-its:Napoveda_ver_1_0.chm::instalace.htm
+	cd Napoveda  & hh.exe ms-its:Napoveda_ver_1_0.chm::04_instalace.htm
 
 profile:
 	.\Profiling\bin\Release\netcoreapp3.1\win-x64\stddev.exe .\Profiling\TestInputs\Input10
