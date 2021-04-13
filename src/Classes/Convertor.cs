@@ -13,7 +13,7 @@ namespace Calculator.Classes
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			var Vyska = System.Convert.ToDouble(value);
-			return Vyska / 3;
+			return Math.Abs(Vyska / 3);
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
