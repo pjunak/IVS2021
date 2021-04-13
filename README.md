@@ -15,7 +15,7 @@ Nazev tymu
 Licence
 -------
 
-Tento program je poskytovan pod licencí GPLv3
+Tento program je poskytovan pod licencí GPLv3. Plné znění dostupné [zde](../../blob/main/LICENSE)
 
 Instalace a spusteni
 --------
