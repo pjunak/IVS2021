@@ -15,7 +15,7 @@ namespace Calculator.Classes
      */
     public class ToTokens
     {
-		public ToTokens() { }
+        public ToTokens() { }
         /** 
          * @brief Převede vstup kalkulačky ze stringu do tokenů
          * @param str Vstupní řetězec z formulářového okna
@@ -32,7 +32,7 @@ namespace Calculator.Classes
             {// Ošetření implicitní uvnitř stringu
                 if (str[i] == '(' && (str[i + 1] == '+' || str[i + 1] == '-'))
                 {// před plus a mínus může být implicitní nula pro záporné a explicitně kladné čísla
-                     str = str.Insert(i + 1, "0");
+                    str = str.Insert(i + 1, "0");
                 }
                 else if (!Char.IsDigit(str[i]) && (str[i + 1] == '.' || str[i + 1] == ','))
                 {// před desetinnou tečkou či čárkou může bůt implicitní nula
@@ -53,7 +53,15 @@ namespace Calculator.Classes
                 }
                 else if (ch == '.' || ch == ',')
                 {
-                    number += '.';
+                    if (!number.Contains('.'))
+                    {
+                        number += '.';
+                    }
+                    else
+                    {
+                        return null;
+                    }
+
                 }
                 else // TODO dodělat převod pi jakmile se dohodne zápis pi
                 {

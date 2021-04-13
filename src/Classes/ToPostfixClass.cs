@@ -35,6 +35,11 @@ namespace Calculator.Classes
 			Následující kód byl vytvořen na základě zdrojových kódů na webu https://www.geeksforgeeks.org
 			Stack | Set 2 (Infix to Postfix). Geeksforgeeks [online]. 2020 [cit. 2021-04-10]. Dostupné z: https://www.geeksforgeeks.org/stack-set-2-infix-to-postfix/
 			*/
+
+			if (tokens == null)
+			{
+				return null;
+			}
 			// Vytvořen nový list pro výsledky
 			List<Token> result = new List<Token>();
 
@@ -42,7 +47,7 @@ namespace Calculator.Classes
 			Stack<Token> stack = new Stack<Token>();
 
 			foreach (Token token in tokens)
-			{ 
+			{
 				// Pokud je token operand, přidá jej do výsledku
 				if (token.type == TokenType.operand)
 				{
@@ -51,7 +56,7 @@ namespace Calculator.Classes
 				else if (token.type == TokenType.brackets)
 				{// Pokud je token otevírací závorka, přidá ji na stack 
 					if (token.operation == '(')
-                    {
+					{
 						stack.Push(token);
 					}
 					else if (token.operation == ')')
@@ -65,8 +70,8 @@ namespace Calculator.Classes
 						{
 							stack.Pop();
 						}
-                        else
-                        {
+						else
+						{
 							MessageBox.Show("Problem in toPostfix"); // TODO, nějakej pěknej chybovej message
 						}
 					}

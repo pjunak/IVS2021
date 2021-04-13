@@ -35,7 +35,7 @@ namespace Calculator.Classes
 		public ICommand BackInHistory { get; set; }
 		public ICommand ForwardInHistory { get; set; }
 
-		public static int IndexOfResultsInputs {get; set;}
+		public static int IndexOfResultsInputs { get; set; }
 		public static int Shifts { get; set; }
 		public ObservableCollection<string> Inputs { get; set; }
 		public ObservableCollection<string> Results { get; set; }
@@ -77,12 +77,16 @@ namespace Calculator.Classes
 		{
 			string SyntaxCheckResult = SyntaxCheck.SyntaxCheck(Input, true, this);
 			if (SyntaxCheckResult == null)
-            {
+			{
 				Error = "red";
 				return;
-            }
+			}
 
-			var Result = Math.Round(ComputeResult.Compute(ToPostfix.toPostfix(ToToken.toTokens(SyntaxCheckResult))), 10);
+			var tokens = ToToken.toTokens(SyntaxCheckResult);
+			var postfix = ToPostfix.toPostfix(tokens);
+			var Result = Math.Round(ComputeResult.Compute(postfix), 10);
+
+
 			if (Double.IsNaN(Result))
 			{
 				Error = "red";
@@ -116,9 +120,9 @@ namespace Calculator.Classes
 		{
 			int NumberOfCountedResults = Inputs.Count(s => s != "");
 			if (NumberOfCountedResults > 0)
-			{ 
+			{
 				Shifts += 1;
-				Input = Inputs[Math.Abs(IndexOfResultsInputs + Shifts -1) % NumberOfCountedResults];
+				Input = Inputs[Math.Abs(IndexOfResultsInputs + Shifts - 1) % NumberOfCountedResults];
 			}
 		}
 
