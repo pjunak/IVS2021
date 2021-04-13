@@ -20,4 +20,4 @@ Tento program je poskytován pod licencí GPLv3. Plné znění dostupné [zde](.
 Instalace a spuštění
 --------
 
-Aplikaci je potřeba nainstalovat z přilozeného instalátoru s příponou `.exe`. Během instalace lze konfigurovat cílove umístění, ikonu na ploše či vložení odkazu do nabídky Start. Po dokončené instalaci stačí aplikaci z cíloveho umístění (typicky `C:\Program Files(x86)\FITness studIO 21\`) spustit pomocí spustitelného `.exe` souboru, případně z nabídky Start či z Plochy.
+Aplikaci je potřeba nainstalovat z přiloženého instalátoru s příponou `.exe`. Během instalace lze konfigurovat cílové umístění, ikonu na ploše či vložení odkazu do nabídky Start. Po dokončené instalaci stačí aplikaci z cíloveho umístění (typicky `C:\Program Files(x86)\FITness studIO 21\`) spustit pomocí spustitelného `.exe` souboru, případně z nabídky Start či z Plochy.
