@@ -13,6 +13,8 @@ clean:
 	if exist ..\doc\ rmdir ..\doc\ /s /q
 	if exist ..\.vs\ rmdir ..\.vs\ /s /q
 	if exist .\.vs\ rmdir .\.vs\ /s /q
+	if exist ..\..\xcasek01_xhaasp00_xherma33_xjunak01 rmdir ..\..\xcasek01_xhaasp00_xherma33_xjunak01 /s /q
+	if exist ..\..\xcasek01_xhaasp00_xherma33_xjunak01.zip del ..\..\xcasek01_xhaasp00_xherma33_xjunak01.zip /s /q
 	
 help:
 	cd Napoveda  & hh.exe ms-its:Napoveda_ver_1_0.chm::04_instalace.htm
@@ -27,7 +29,7 @@ doc:
 
 pack: clean doc
 	if exist ..\..\xcasek01_xhaasp00_xherma33_xjunak01 rmdir ..\..\xcasek01_xhaasp00_xherma33_xjunak01 /s /q
-	if exist ..\..\xcasek01_xhaasp00_xherma33_xjunak01.zip rmdir ..\..\xcasek01_xhaasp00_xherma33_xjunak01.zip /s /q
+	if exist ..\..\xcasek01_xhaasp00_xherma33_xjunak01.zip del ..\..\xcasek01_xhaasp00_xherma33_xjunak01.zip /s /q
 	cd .. & cd .. & mkdir xcasek01_xhaasp00_xherma33_xjunak01 & cd xcasek01_xhaasp00_xherma33_xjunak01 & mkdir doc
 	cd .. & xcopy /E /I /H /R * ..\xcasek01_xhaasp00_xherma33_xjunak01\repo & cd .. & cd xcasek01_xhaasp00_xherma33_xjunak01\repo & rmdir .\doc .\install /s /q
 	cd .. & xcopy /E /I /H /R doc\* ..\xcasek01_xhaasp00_xherma33_xjunak01\doc

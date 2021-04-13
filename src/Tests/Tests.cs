@@ -1,4 +1,4 @@
-using Calculator.Classes;
+Ôªøusing Calculator.Classes;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -7,8 +7,8 @@ namespace XUnitTests
 {
 	/**
 	* @class MathLibTests
-	* T·to T¯Ìda testuje vöetky metÛdy matematickÈ t¯Ìdy nekolika vstupy
-	* @brief T¯Ìda, kter· obsabuje testy k matamatickÈ t¯Ìde (MathLibClass)
+	* T√°to T≈ô√≠da testuje v≈°etky met√≥dy matematick√© t≈ô√≠dy nekolika vstupy
+	* @brief T≈ô√≠da, kter√° obsabuje testy k matamatick√© t≈ô√≠de (MathLibClass)
 	*/
 	public class MathLibTests
 	{
@@ -148,13 +148,16 @@ namespace XUnitTests
 
 	/**
 	* @class ComputeClassTests
-	* T·to T¯Ìda testuje spr·vnost v˝poËtu t¯Ìdy ComputeClass, kaûd· metÛda
-	* @brief T¯Ìda, kter· obsabuje testy k t¯Ìde, kter· vyËÌsly v˝raz v postfixovÈ notaci (ComputeClass)
+	* T√°to T≈ô√≠da testuje spr√°vnost v√Ωpoƒçtu t≈ô√≠dy ComputeClass
+	* @brief T≈ô√≠da, kter√° obsabuje testy k t≈ô√≠de, kter√° vyƒç√≠sly v√Ωraz v postfixov√© notaci (ComputeClass)
 	*/
 	public class ComputeClassTests
 	{
-		//Infix=(15-10-5-10) Postfix(15 10 - 5 - 10 -) Expected=(-10)
+		//Infix=(15-10-5-10) Postfix=(15 10 - 5 - 10 -) Expected=(-10)
 		[Fact(DisplayName = "Basic Subtraction test")]
+		/** 
+		 * @brief Test pro Infix=(15-10-5-10) Postfix=(15 10 - 5 - 10 -) Expected=(-10)
+		 */
 		public void ComputeFromPostFixNotation_TestNumber1()
 		{
 			//Arrange
@@ -180,6 +183,9 @@ namespace XUnitTests
 
 		//Infix=(5+5+5+15) Postfix=(5 5 + 5 + 15 +) Expected(30)
 		[Fact(DisplayName = "Basic Addition test")]
+		/** 
+		 * @brief Test pro Infix=(5+5+5+15) Postfix=(5 5 + 5 + 15 +) Expected(30)
+		 */
 		public void ComputeFromPostFixNotation_TestNumber2()
 		{
 			//Arrange
@@ -205,6 +211,9 @@ namespace XUnitTests
 
 		//Infix=(5+5*5), Postfix=(5 5 5 * +), Expected(30)
 		[Fact(DisplayName = "Basic Multiplication test")]
+		/** 
+		 * @brief Test pro Infix=(5+5*5), Postfix=(5 5 5 * +), Expected(30)
+		 */
 		public void ComputeFromPostFixNotation_TestNumber3()
 		{
 			//Arrange
@@ -228,6 +237,9 @@ namespace XUnitTests
 
 		//Infix=((2+3)*(7-2)/5), Postfix=(2 3 + 7 2 - * 5 /), Expected(5)
 		[Fact(DisplayName = "Complex Multiplication and Division test")]
+		/** 
+		 * @brief Test pro Infix=((2+3)*(7-2)/5), Postfix=(2 3 + 7 2 - * 5 /), Expected(5)
+		 */
 		public void ComputeFromPostFixNotation_TestNumber4()
 		{
 			//Arrange
@@ -255,6 +267,9 @@ namespace XUnitTests
 
 		//Infix=(5*5 + 4^5*4), Postfix=(5 5 * 4 5 ^ 4 * +), Expected(4121)
 		[Fact(DisplayName = "Basic Power test")]
+		/** 
+		 * @brief Test pro Infix=(5*5 + 4^5*4), Postfix=(5 5 * 4 5 ^ 4 * +), Expected(4121)
+		 */
 		public void ComputeFromPostFixNotation_TestNumber6()
 		{
 			//Arrange
@@ -283,6 +298,9 @@ namespace XUnitTests
 
 		//Infix=(5.5/1.1+16^(1.0 / 4)), Postfix=(5.5 1.1 / 16 1 4 / ^ +), Expected(9)
 		[Fact(DisplayName = "Basic sqrt test")]
+		/** 
+		 * @brief Test pro Infix=(5.5/1.1+16^(1.0 / 4)), Postfix=(5.5 1.1 / 16 1 4 / ^ +), Expected(9)
+		 */
 		public void ComputeFromPostFixNotation_TestNumber7()
 		{
 			//Arrange
@@ -311,6 +329,9 @@ namespace XUnitTests
 
 		//ComputeFromPostFix Infix=(5.6+5.2*(120-5!)), Postfix=(5.6 5.2 120 5 ! - * +), Expected(5.6)
 		[Fact(DisplayName = "Basic Factorial test")]
+		/** 
+		 * @brief Test pro Infix=(5.6+5.2*(120-5!)), Postfix=(5.6 5.2 120 5 ! - * +), Expected(5.6)
+		 */
 		public void ComputeFromPostFixNotation_TestNumber8()
 		{
 			//Arrange
@@ -338,6 +359,9 @@ namespace XUnitTests
 
 		//Infix=(5.5*5.5/5.5+sin(1)*sin(2)), Postfix=(5.5 5.5 * 5.5 / 1 sin 2 sin * +), Expected(6.265)
 		[Fact(DisplayName = "Basic Sin test")]
+		/** 
+		 * @brief Test pro Infix=(5.5*5.5/5.5+sin(1)*sin(2)), Postfix=(5.5 5.5 * 5.5 / 1 sin 2 sin * +), Expected(6.265)
+		 */
 		public void ComputeFromPostFixNotation_TestNumber9()
 		{
 			//Arrange
