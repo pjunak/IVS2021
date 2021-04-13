@@ -31,6 +31,8 @@ namespace Calculator.Classes
 		*/
 		public double Compute(List<Token> Input)
 		{
+			if (Input == null) return Double.NaN;
+
 			double RightOperand;
 			double LeftOperand;
 			double TemporallResult;
