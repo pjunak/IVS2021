@@ -50,15 +50,30 @@ namespace Calculator.Classes
 		{
 			if (parameter.ToString() == "MainWindow")
 			{
-				var Number = System.Convert.ToDouble(value);
+				double Number = System.Convert.ToDouble(value);
 				if (Number < 337) return 337;
 				else return Number;
 			}
-			else
-			{
-				var Vyska = System.Convert.ToDouble(value);
-				return Math.Abs(Vyska / 3);
+			else if(parameter.ToString() == "ExpressionFont")
+            {
+				double Vyska = System.Convert.ToDouble(value);
+				return Math.Abs(Vyska / 1.8);
 			}
+			else if (parameter.ToString() == "ResultFont")
+			{
+				double Vyska = System.Convert.ToDouble(value);
+				return Math.Abs(Vyska / 1.6);
+			}
+			else if(parameter.ToString() == "InputFont")
+			{
+                double Vyska = System.Convert.ToDouble(value);
+				return Math.Abs(Vyska / 3);
+            }
+			else
+            {
+				System.Windows.MessageBox.Show("Interní chyba konvertoru.");
+				return 0;
+            }
 		}
 
 		/** 

@@ -70,7 +70,7 @@ Also add information on how to contact you by electronic and paper mail.
             <TextBox x:Name="InputTextBox" Text="{Binding Input, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      PreviewTextInput="InputTextBox_PreviewTextInput" TextChanged="InputTextBox_TextChanged" CharacterCasing="Lower"
                      PreviewKeyDown="InputTextBoxPreviewKeyDown" Foreground="{Binding Error}" LostFocus="InputTextBox_LostFocus" GotFocus="InputTextBox_GotFocus"
-                     FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}, ConverterParameter=FontChange}" Margin="4" 
+                     FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}, ConverterParameter=InputFont}" Margin="4" 
                      VerticalContentAlignment="Center" MaxLines="1" Background="{x:Null}" BorderThickness="0">
                 <TextBox.InputBindings>
                     <KeyBinding Command="{Binding Calculate}" Key="Enter" />
@@ -114,45 +114,37 @@ Also add information on how to contact you by electronic and paper mail.
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Margin="4,8,4,0" Background="White" VerticalContentAlignment="Bottom" Padding="4">
-                    <Viewbox>
-                        <TextBlock Text="{Binding Inputs[0]}"></TextBlock>
-                    </Viewbox>
+                <Label Grid.Row="0" Margin="4,8,4,0" Background="White" VerticalContentAlignment="Bottom" Padding="4"
+                       FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}, ConverterParameter=ExpressionFont}">
+                    <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding Inputs[0]}"></TextBlock>
                 </Label>
-                <Label Grid.Row="1" Margin="4,0,4,8" Background="White" Padding="4,2" FontWeight="Bold" HorizontalContentAlignment="Right">
-                    <Viewbox>
-                        <TextBlock Text="{Binding Results[0]}"></TextBlock>
-                    </Viewbox>
+                <Label Grid.Row="1" Margin="4,0,4,8" Background="White" Padding="4,2" FontWeight="Bold" HorizontalContentAlignment="Right"
+                       FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}, ConverterParameter=ResultFont}">
+                    <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding Results[0]}"></TextBlock>
                 </Label>
-                <Label Grid.Row="2" Margin="4,8,4,0" Background="White" Padding="4" VerticalContentAlignment="Bottom">
-                    <Viewbox>
-                        <TextBlock Text="{Binding Inputs[1]}"></TextBlock>
-                    </Viewbox>
+                <Label Grid.Row="2" Margin="4,8,4,0" Background="White" Padding="4" VerticalContentAlignment="Bottom"
+                       FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}, ConverterParameter=ExpressionFont}">
+                    <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding Inputs[1]}"></TextBlock>
                 </Label>
-                <Label Grid.Row="3" Margin="4,0,4,8" Background="White" Padding="4,2" FontWeight="Bold" HorizontalContentAlignment="Right">
-                    <Viewbox>
-                        <TextBlock Text="{Binding Results[1]}"></TextBlock>
-                    </Viewbox>
+                <Label Grid.Row="3" Margin="4,0,4,8" Background="White" Padding="4,2" FontWeight="Bold" HorizontalContentAlignment="Right"
+                       FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}, ConverterParameter=ResultFont}">
+                    <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding Results[1]}"></TextBlock>
                 </Label>
-                <Label Grid.Row="4" Margin="4,8,4,0" Background="White" Padding="4" VerticalContentAlignment="Bottom">
-                    <Viewbox>
-                        <TextBlock Text="{Binding Inputs[2]}"></TextBlock>
-                    </Viewbox>
+                <Label Grid.Row="4" Margin="4,8,4,0" Background="White" Padding="4" VerticalContentAlignment="Bottom"
+                       FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}, ConverterParameter=ExpressionFont}">
+                    <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding Inputs[2]}"></TextBlock>
                 </Label>
-                <Label Grid.Row="5" Margin="4,0,4,8" Background="White" Padding="4,2" FontWeight="Bold" HorizontalContentAlignment="Right">
-                    <Viewbox>
-                        <TextBlock Text="{Binding Results[2]}"></TextBlock>
-                    </Viewbox>
+                <Label Grid.Row="5" Margin="4,0,4,8" Background="White" Padding="4,2" FontWeight="Bold" HorizontalContentAlignment="Right"
+                       FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}, ConverterParameter=ResultFont}">
+                    <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding Results[2]}"></TextBlock>
                 </Label>
-                <Label Grid.Row="6" Margin="4,8,4,0" Background="White" Padding="4" VerticalContentAlignment="Bottom">
-                    <Viewbox>
-                        <TextBlock Text="{Binding Inputs[3]}"></TextBlock>
-                    </Viewbox>
+                <Label Grid.Row="6" Margin="4,8,4,0" Background="White" Padding="4" VerticalContentAlignment="Bottom"
+                       FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}, ConverterParameter=ExpressionFont}">
+                    <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding Inputs[3]}"></TextBlock>
                 </Label>
-                <Label Grid.Row="7" Margin="4,0,4,8" Background="White" Padding="4,2" HorizontalContentAlignment="Right" FontWeight="Bold">
-                    <Viewbox>
-                        <TextBlock Text="{Binding Results[3]}"></TextBlock>
-                    </Viewbox>
+                <Label Grid.Row="7" Margin="4,0,4,8" Background="White" Padding="4,2" HorizontalContentAlignment="Right" FontWeight="Bold"
+                       FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}, ConverterParameter=ResultFont}">
+                    <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding Results[3]}"></TextBlock>
                 </Label>
             </Grid>
 
