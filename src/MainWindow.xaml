@@ -7,7 +7,7 @@
         mc:Ignorable="d"
 		xmlns:Classes="clr-namespace:Calculator.Classes"
 		d:DataContext="{d:DesignInstance Classes:MainWindowClass}"
-        Title="Kalkulačka, ©FITness studIO 21" Height="419" Width="560" KeyDown="WindowKeyDown"  MinHeight="377" MinWidth="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}"
+        Title="Kalkulačka, ©FITness studIO 21" Height="419" Width="560" KeyDown="WindowKeyDown" MinHeight="377"
         FocusManager.FocusedElement="{Binding ElementName=InputTextBox}"
 		Activated="Window_Activated"
 		Deactivated="Window_Deactivated">
@@ -16,7 +16,11 @@
 		<Classes:Convertor x:Key= "FontChange"/>
 	</Window.Resources>
 
-    <Window.DataContext>
+	<Window.MinWidth>
+		<Binding Path="ActualHeight" RelativeSource="{RelativeSource self}" Converter="{StaticResource FontChange}" ConverterParameter="MainWindow"/>
+	</Window.MinWidth>
+
+	<Window.DataContext>
 		<Classes:MainWindowClass/>
 	</Window.DataContext>
 
@@ -44,7 +48,7 @@
             <TextBox x:Name="InputTextBox" Text="{Binding Input, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      PreviewTextInput="InputTextBox_PreviewTextInput" TextChanged="InputTextBox_TextChanged" CharacterCasing="Lower"
                      PreviewKeyDown="InputTextBoxPreviewKeyDown" Foreground="{Binding Error}" LostFocus="InputTextBox_LostFocus" GotFocus="InputTextBox_GotFocus"
-                     FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}}" Margin="4" 
+                     FontSize="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource FontChange}, ConverterParameter=FontChange}" Margin="4" 
                      VerticalContentAlignment="Center" MaxLines="1" Background="{x:Null}" BorderThickness="0">
                 <TextBox.InputBindings>
                     <KeyBinding Command="{Binding Calculate}" Key="Enter" />

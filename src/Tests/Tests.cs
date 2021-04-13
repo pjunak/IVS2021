@@ -5,6 +5,11 @@ using Xunit;
 
 namespace XUnitTests
 {
+	/**
+	* @class MathLibTests
+	* Táto Tøída testuje všetky metódy matematické tøídy nekolika vstupy
+	* @brief Tøída, která obsabuje testy k matamatické tøíde (MathLibClass)
+	*/
 	public class MathLibTests
 	{
 		[Theory]
@@ -141,6 +146,11 @@ namespace XUnitTests
 		}
 	}
 
+	/**
+	* @class ComputeClassTests
+	* Táto Tøída testuje správnost vıpoètu tøídy ComputeClass, kadá metóda
+	* @brief Tøída, která obsabuje testy k tøíde, která vyèísly vıraz v postfixové notaci (ComputeClass)
+	*/
 	public class ComputeClassTests
 	{
 		//Infix=(15-10-5-10) Postfix(15 10 - 5 - 10 -) Expected=(-10)
