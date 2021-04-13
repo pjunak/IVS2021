@@ -1,12 +1,12 @@
-Prostredi
+Podporované prostředí
 ---------
 
 Windows 64bit
 
-Autori
+Autoři
 ------
 
-Nazev tymu
+FITness StudIO 21
 - xcasek01 Dalibor Casek
 - xhaasp00 Patrik Haas 
 - xherma33 Kristian Herman 
@@ -15,9 +15,9 @@ Nazev tymu
 Licence
 -------
 
-Tento program je poskytovan pod licencí GPLv3. Plné znění dostupné [zde](../../blob/main/LICENSE)
+Tento program je poskytován pod licencí GPLv3. Plné znění dostupné [zde](../../blob/main/LICENSE)
 
-Instalace a spusteni
+Instalace a spuštění
 --------
 
-Aplikaci je potreba nainstalovat z prilozeneho instalatoru s priponou `.exe`. Behem instalace lze konfigurovat cilove umisteni, ikonu na plose ci vlozeni odkazu do nabidky Start. Po dokoncene instalaci staci aplikaci z ciloveho umisteni (typicky `C:\Program Files(x86)\FITness studIO 21\`) spustit opet pomoci spustitelneho `.exe` souboru, pripadne z nabidky Start ci z Plochy.
+Aplikaci je potřeba nainstalovat z přilozeného instalátoru s příponou `.exe`. Během instalace lze konfigurovat cílove umístění, ikonu na ploše či vložení odkazu do nabídky Start. Po dokončené instalaci stačí aplikaci z cíloveho umístění (typicky `C:\Program Files(x86)\FITness studIO 21\`) spustit pomocí spustitelného `.exe` souboru, případně z nabídky Start či z Plochy.
