@@ -33,8 +33,8 @@ namespace Calculator.Classes
 {
 	/**
      * @class MainWindowClass
-     * Je to hlavní bod aplikace, vstup do backend části.
-     * @brief Hlavní třída, dedí z INotifyPropertyChanged, aby fungoval databinding.
+     * Hlavní bod aplikace, vstup do backend části.
+     * @brief Hlavní třída, dědí z INotifyPropertyChanged, aby fungoval databinding.
      */
 	public class MainWindowClass : INotifyPropertyChanged
 	{
@@ -68,7 +68,7 @@ namespace Calculator.Classes
 
 		/** 
 		* @brief Konstruktor
-		* Inicializuje promnené
+		* Inicializuje proměnné
 		*/
 		public MainWindowClass()
 		{
@@ -92,8 +92,8 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		* @brief Metóda na výpoče výrazu
-		* Metóda zavolá metódy objektú, které vráti vyčíslený výraz. V prípade chyby informuje View.
+		* @brief Metoda pro výpočet výrazu
+		* Metoda zavolá metody objektů, které vrátí vyčíslený výraz. V případě chyby informuje View.
 		*/
 		public void Compute()
 		{
@@ -135,8 +135,9 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		* @brief Metóda pro přecházení histórie výrazú
-		* Metóda umožní jít v história dopředu
+		* @brief Metoda pro procházení historie výrazů.
+		* 
+		* Metoda pro procházení historie výrazů. Umožňuje jít v historii dopředu.
 		*/
 		public void BackInHistoryMethod()
 		{
@@ -149,8 +150,8 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		* @brief Metóda pro přecházení histórie výrazú
-		* Metóda umožní jít v história dozadu
+		* @brief Metoda pro procházení historie výrazů.
+		* Metoda pro procházení historie výrazů. Umožňuje jít v historii dozadu.
 		*/
 		public void ForwardInHistoryMethod()
 		{
@@ -163,11 +164,11 @@ namespace Calculator.Classes
 		}
 
 		/** 
-         * @brief Metóda, která po každém vstupu zavolá syntaktickou analýzu
+         * @brief Metoda, která po každém vstupu zavolá syntaktickou analýzu
          * 
          * @param Value Vstupní řetězec.
          *
-         * @return Vráti upravený řetezec. V Prípade chyby informuje View.
+         * @return Vrátí upravený řetězec. V případě chyby informuje View.
          */
 		private string Check(string Value)
 		{
@@ -187,8 +188,8 @@ namespace Calculator.Classes
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		/** 
-		* @brief Metóda pro Databinding
-		* Metóda upozorní, že byla promňená, byla zmenena
+		* @brief Metoda pro Databinding.
+		* Metoda upozorní, pokud byla proměnná změněna.
 		*/
 		public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
 		{
