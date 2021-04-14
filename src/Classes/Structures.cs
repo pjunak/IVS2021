@@ -34,6 +34,16 @@ namespace Calculator.Classes
         brackets = -1,
         other = 42
     }
+    /**
+     * @struct Token
+     * @brief Struktura popisující jeden lexém vstupu kalkulačky.
+     * @var Token::type
+     * Člen type obsahuje typ lexému, například operace, operand atp.
+     * @var Token::operand
+     * Člen operand obsahuje hodnotu operandu.
+     * @var Token::operation
+     * Člen operation obsahuje jednoznakový ( \c char ) název operace.
+     */
     public struct Token
     {
         public TokenType type;
