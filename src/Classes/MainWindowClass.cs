@@ -1,4 +1,26 @@
-﻿using System;
+﻿/*
+Calculator, FITness StudIO 21
+Copyright (C)
+
+MainWindowClass.cs: Data handler for the UI.
+Full project can be found here: https://github.com/pjunak/IVS2021/
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see https://www.gnu.org/licenses/.
+Also add information on how to contact you by electronic and paper mail. 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,8 +33,8 @@ namespace Calculator.Classes
 {
 	/**
      * @class MainWindowClass
-     * Je to hlavní bod aplikace, vstup do backend části.
-     * @brief Hlavní třída, dedí z INotifyPropertyChanged, aby fungoval databinding.
+     * Hlavní bod aplikace, vstup do backend části.
+     * @brief Hlavní třída, dědí z INotifyPropertyChanged, aby fungoval databinding.
      */
 	public class MainWindowClass : INotifyPropertyChanged
 	{
@@ -46,7 +68,7 @@ namespace Calculator.Classes
 
 		/** 
 		* @brief Konstruktor
-		* Inicializuje promnené
+		* Inicializuje proměnné
 		*/
 		public MainWindowClass()
 		{
@@ -70,8 +92,8 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		* @brief Metóda na výpoče výrazu
-		* Metóda zavolá metódy objektú, které vráti vyčíslený výraz. V prípade chyby informuje View.
+		* @brief Metoda pro výpočet výrazu
+		* Metoda zavolá metody objektů, které vrátí vyčíslený výraz. V případě chyby informuje View.
 		*/
 		public void Compute()
 		{
@@ -113,8 +135,9 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		* @brief Metóda pro přecházení histórie výrazú
-		* Metóda umožní jít v história dopředu
+		* @brief Metoda pro procházení historie výrazů.
+		* 
+		* Metoda pro procházení historie výrazů. Umožňuje jít v historii dopředu.
 		*/
 		public void BackInHistoryMethod()
 		{
@@ -127,8 +150,8 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		* @brief Metóda pro přecházení histórie výrazú
-		* Metóda umožní jít v história dozadu
+		* @brief Metoda pro procházení historie výrazů.
+		* Metoda pro procházení historie výrazů. Umožňuje jít v historii dozadu.
 		*/
 		public void ForwardInHistoryMethod()
 		{
@@ -141,11 +164,11 @@ namespace Calculator.Classes
 		}
 
 		/** 
-         * @brief Metóda, která po každém vstupu zavolá syntaktickou analýzu
+         * @brief Metoda, která po každém vstupu zavolá syntaktickou analýzu
          * 
          * @param Value Vstupní řetězec.
          *
-         * @return Vráti upravený řetezec. V Prípade chyby informuje View.
+         * @return Vrátí upravený řetězec. V případě chyby informuje View.
          */
 		private string Check(string Value)
 		{
@@ -165,8 +188,8 @@ namespace Calculator.Classes
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		/** 
-		* @brief Metóda pro Databinding
-		* Metóda upozorní, že byla promňená, byla zmenena
+		* @brief Metoda pro Databinding.
+		* Metoda upozorní, pokud byla proměnná změněna.
 		*/
 		public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
 		{

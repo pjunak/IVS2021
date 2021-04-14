@@ -1,4 +1,26 @@
-﻿using System;
+﻿/*
+Calculator, FITness StudIO 21
+Copyright (C)
+
+MainWindow.xaml.cs: Handler for UI interaction.
+Full project can be found here: https://github.com/pjunak/IVS2021/
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see https://www.gnu.org/licenses/.
+Also add information on how to contact you by electronic and paper mail. 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -72,7 +94,7 @@ namespace Calculator
         }
 
         /**
-         * Otevře okno nápovědy pomocí funkce z Windows Forms
+         * Otevře okno nápovědy pomocí funkce převzaté z Windows Forms (nápověda ve formátu CHM).
          */
         private void OpenHelp(object sender, RoutedEventArgs e)
         {
@@ -136,6 +158,9 @@ namespace Calculator
             // Konec testů toTokens a toPostfix
         }*/
 
+        /**
+         * Ošetří mazání při stisku tlačítka Delete v grafickém rozhraní.
+         */
         private void ButtonClickDelete(object sender, RoutedEventArgs e)
         {
             int TextPosition = InputTextBox.CaretIndex;
@@ -199,7 +224,9 @@ namespace Calculator
         }
 
 
-
+        /**
+         * Vloží stisknutý operátor nebo číslo do vstupního pole kalkulačky.
+         */
         private void ButtonClickDigitsOperators(object sender, RoutedEventArgs e)
         {
             Button BtnObject = (System.Windows.Controls.Button)e.Source;
@@ -222,15 +249,7 @@ namespace Calculator
                     SelectionLength++;
                 }
                 InputTextBox.Text = InputTextBox.Text.Remove(TextPosition, SelectionLength);
-            }
-            /*
-            if (InputTextBox.SelectionLength > 0)
-            {
-                InputTextBox.Text = InputTextBox.Text.Remove(InputTextBox.CaretIndex, InputTextBox.SelectionLength);
-            }
-            */
-
-            
+            }            
 
             if ((sender as Button).Name == "OperatorMul")
             {   // vloží operátor násobení
@@ -250,21 +269,11 @@ namespace Calculator
 
             InputTextBox.CaretIndex = TextPosition;
             InputTextBox.Focus();
-            //InputTextBox.SelectionStart = TextPosition + content.Length;
-            //InputTextBox.SelectionLength = 0;
-
-
-            /*
-            // pokud sinus, doplní závorku otevírací
-            if (content == "sin(x)")
-            {
-                InputTextBox.Text = InputTextBox.Text.Insert(InputTextBox.CaretIndex, "(");
-                InputTextBox.SelectionStart = InputTextBox.Text.Length;
-                InputTextBox.SelectionLength = 0;
-            }
-            */
         }
 
+        /**
+         * Vloží do vstupního pole stisknutou funkci pomocí tlačíka v GUI.
+         */
         private void ButtonClickFunctions(object sender, RoutedEventArgs e)
         {
             int TextPosition = InputTextBox.CaretIndex;
@@ -282,6 +291,9 @@ namespace Calculator
             TranslateShortKeys(FuncName, TextPosition);
         }
 
+        /**
+         * Přeloží funkci z výčtu funkcí (enum) na konkrétní funkci a vloží ji do vstupu.
+         */
         private void TranslateShortKeys (string FuncName, int TextPosition)
         {
             switch (FuncName)
@@ -409,7 +421,7 @@ namespace Calculator
         }
 
         /**
-         * Funkce zakazuje Vkládání textu (např. pomocí Ctrl+V)
+         * Funkce zakazuje Vkládání textu (např. pomocí Ctrl+V).
          */
         private void InputTextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
         {
@@ -421,6 +433,9 @@ namespace Calculator
 
         private string LastValue { get; set; }
 
+        /**
+         * Po stisknutí rovná se a následném doplnění čísla či operátoru řeší metoda, jestli se pokračuje ve výpočtu, nebo se vstup vymaže.
+         */
         private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
             var vm = (MainWindowClass)DataContext;
@@ -442,13 +457,19 @@ namespace Calculator
             LastValue = InputTextBox.Text;
         }
 
+        /**
+         * Přebarví okraj textboxu při ztrátě focusu z tohoto textboxu.
+         */
 		private void InputTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
 			SolidColorBrush blackBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFABADB3"));
 			Okraj.Stroke = blackBrush;
         }
 
-		private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
+        /**
+         * Přebarví okraj textboxu při zisku focusu na tento textbox.
+         */
+        private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
 		{
 			SolidColorBrush blackBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF0078D7"));
 			Okraj.Stroke = blackBrush;
@@ -469,5 +490,22 @@ namespace Calculator
             InputTextBox.CaretIndex = InputTextBox.Text.Length;
             InputTextBox.Focus();
         }
-	}
+
+        /**
+         * Navazuje bindingové funkce pro procházení historie při scrollování kolečkem myši nahoru/dolů.
+         */
+        private void InputTextBox_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                var vm = (MainWindowClass)DataContext;
+                vm.BackInHistoryMethod();
+            }
+            else
+            {
+                var vm = (MainWindowClass)DataContext;
+                vm.ForwardInHistoryMethod();
+            }
+        }
+    }
 }
