@@ -27,7 +27,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows; //TODO only for disgnostics, remove later
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace Calculator.Classes
@@ -87,7 +87,7 @@ namespace Calculator.Classes
                     }
 
                 }
-                else // TODO dodělat převod pi jakmile se dohodne zápis pi
+                else
                 {
                     if (!string.IsNullOrEmpty(number))
                     { // Přidání aktuaálního stringu číslic jako číslo do tokenů
@@ -134,15 +134,11 @@ namespace Calculator.Classes
                     }
                     else if (Char.IsWhiteSpace(ch))
                     {
-                        MessageBox.Show("Problem in toToken"); // TODO, nějakej pěknej chybovej message
+                        return null; // Neočekávaná situace, whitespace na vstupu
                     }
                     else
-                    { // TODO Dočasné, sem by se neměly dostat žádné krom předpokládaných znaků. -> vyhodit Error
-                        MessageBox.Show("Problem in toToken"); // TODO, nějakej pěknej chybovej message
-                        token.type = TokenType.other;
-                        token.operation = ch;
-                        tokens.Add(token);
-                        token = new Token();
+                    {
+                        return null; // Neočekávaná situace, neočekávaný znak na vstupu
                     }
                 }
             }
@@ -151,28 +147,88 @@ namespace Calculator.Classes
                 token.type = TokenType.operand;
                 token.operand = Convert.ToDouble(number, new CultureInfo("en-US"));
                 tokens.Add(token);
-                if (tokens.Count == 1 && (number == "5318008" || number == "58008"))
-                {
+                if (tokens.Count == 1 && (number == "5318008" || number == "58008" || number == "42"))
+                { // Easter Egg catch
 
-					System.Windows.Controls.Grid grid = new System.Windows.Controls.Grid();
-					Window wnd = new Window() { Height = 200, Width = 200, Content = grid };
+                    // Přehraje zvukové upozornění na easter egg
+                    string soundsrc = "EasterEgg/EasterEgg.wav";
+                    if (!File.Exists(soundsrc))
+                    {
+                        soundsrc = "../../EasterEgg/EasterEgg.wav";
+                    }
+                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(@Path.GetFullPath(soundsrc));
+                    player.Play();
 
-					System.Windows.Controls.Image img = new System.Windows.Controls.Image();
+                    Random rnd = new Random();
+                    int randInt = rnd.Next(1,6);
 
-					string imgsrc = "Tooltips/backspace-arrow.png";
-					if (!File.Exists(imgsrc))
-					{
-						imgsrc = "../../Tooltips/backspace-arrow.png";
-					}
+                    int h = 0;
+                    int w = 0;
+                    string imgsrc = "";
 
-					img.Source = new BitmapImage( new Uri(imgsrc, UriKind.Relative));
+                    // Vybere náhodně jeden z easter eggů
+                    if (randInt == 1)
+                    {
+                        h = 692;
+                        w = 431;
+                        imgsrc = "EasterEgg/FuchsandFourier.png";
+                        if (!File.Exists(imgsrc))
+                        {
+                            imgsrc = "../../EasterEgg/FuchsandFourier.png";
+                        }
+                    }
+                    else if (randInt == 2)
+                    {
+                        h = 565;
+                        w = 485;
+                        imgsrc = "EasterEgg/Body.png";
+                        if (!File.Exists(imgsrc))
+                        {
+                            imgsrc = "../../EasterEgg/Body.png";
+                        }
+                    }
+                    else if (randInt == 3)
+                    {
+                        h = 530;
+                        w = 742;
+                        imgsrc = "EasterEgg/IDontWantToPlayWithFitKitAnymore.png";
+                        if (!File.Exists(imgsrc))
+                        {
+                            imgsrc = "../../EasterEgg/IDontWantToPlayWithFitKitAnymore.png";
+                        }
+                    }
+                    else if (randInt == 4)
+                    {
+                        h = 736;
+                        w = 350;
+                        imgsrc = "EasterEgg/Howelementary.png";
+                        if (!File.Exists(imgsrc))
+                        {
+                            imgsrc = "../../EasterEgg/Howelementary.png";
+                        }
+                    }
+                    else if (randInt == 5)
+                    {
+                        h = 515;
+                        w = 364;
+                        imgsrc = "EasterEgg/Basen.png";
+                        if (!File.Exists(imgsrc))
+                        {
+                            imgsrc = "../../EasterEgg/Basen.png";
+                        }
+                    }
 
-					System.Windows.Controls.Grid.SetRow(img, 0);
-					grid.Children.Add(img);
+                    // Zobrazí okno seaster eggem
+                    System.Windows.Controls.Grid grid = new System.Windows.Controls.Grid();
+                    Window wnd = new Window() { Height = h, Width = w, Content = grid };
 
-					wnd.ShowDialog();
+                    System.Windows.Controls.Image img = new System.Windows.Controls.Image();
 
-					//MessageBox.Show("Easter egg discovered"); // TODO, easter egg message
+                    img.Source = new BitmapImage(new Uri(imgsrc, UriKind.Relative));
+
+                    System.Windows.Controls.Grid.SetRow(img, 0);
+                    grid.Children.Add(img);
+                    wnd.ShowDialog();
                 }
                 token = new Token();
             }
