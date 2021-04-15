@@ -23,10 +23,12 @@ Also add information on how to contact you by electronic and paper mail.
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows; //TODO only for disgnostics, remove later
+using System.Windows.Media.Imaging;
 
 namespace Calculator.Classes
 {
@@ -151,7 +153,26 @@ namespace Calculator.Classes
                 tokens.Add(token);
                 if (tokens.Count == 1 && (number == "5318008" || number == "58008"))
                 {
-                    MessageBox.Show("Easter egg discovered"); // TODO, easter egg message
+
+					System.Windows.Controls.Grid grid = new System.Windows.Controls.Grid();
+					Window wnd = new Window() { Height = 200, Width = 200, Content = grid };
+
+					System.Windows.Controls.Image img = new System.Windows.Controls.Image();
+
+					string imgsrc = "Tooltips/backspace-arrow.png";
+					if (!File.Exists(imgsrc))
+					{
+						imgsrc = "../../Tooltips/backspace-arrow.png";
+					}
+
+					img.Source = new BitmapImage( new Uri(imgsrc, UriKind.Relative));
+
+					System.Windows.Controls.Grid.SetRow(img, 0);
+					grid.Children.Add(img);
+
+					wnd.ShowDialog();
+
+					//MessageBox.Show("Easter egg discovered"); // TODO, easter egg message
                 }
                 token = new Token();
             }
