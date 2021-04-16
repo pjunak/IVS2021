@@ -20,15 +20,6 @@ along with this program. If not, see https://www.gnu.org/licenses/.
 Also add information on how to contact you by electronic and paper mail. 
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using Calculator.Classes;
-
 namespace Calculator.Classes
 {
     /**
@@ -78,8 +69,8 @@ namespace Calculator.Classes
           \c true == zakázaný následující znak.\n
           \c false == povolený následující znak.\n
           \n
-          Řádky:    ,. | π | +-/*^ | ( | s | číslice | )! | ostatní znaky\n
-          Sloupce: číslice | ,. | π | +- | /* | ^ |  ! | s | ( | ) | ostatní znaky
+          Řádky:    ,. | π | +-/*^ | ( | s | číslice | )! | ostatní znaky.\n
+          Sloupce: číslice | ,. | π | +- | /* | ^ |  ! | s | ( | ) | ostatní znaky.
          */
         readonly private bool[,] IncorrectFollow = new bool[8, 11]
         {
@@ -115,7 +106,7 @@ namespace Calculator.Classes
          * @param FinalChecking Určuje, zda se jedná o průběžnou (\c false) nebo finální (\c true) konrolu před výpočtem výsledku.
          * @param MainWindowRef Reference na třídu MainWindowClass.
          *
-         * @return V případě validního řetězce vrátí řetezec ze vstupu, případně doplněný o pravé závorky. V případě nevalidního řetězce vrací \c null
+         * @return V případě validního řetězce vrátí řetezec ze vstupu, případně doplněný o pravé závorky. V případě nevalidního řetězce vrací \c null.
          */
         public string SyntaxCheck(string Input, bool FinalChecking, MainWindowClass MainWindowRef)
         {
@@ -209,10 +200,10 @@ namespace Calculator.Classes
         /** 
          * Funkce namapuje vstupní znaky \p Actual a \p Next na předdefinové indexy \p RSymbol a \p CSymbol do tabulky \c IncorrectFollow.
          * 
-         * @param Actual Aktuální znak vstupního řetězce
-         * @param Next Následující znak vstupního řetězce
-         * @param RSymbol Index aktuálního znaku
-         * @param CSymbol Index následujícího znaku
+         * @param Actual Aktuální znak vstupního řetězce.
+         * @param Next Následující znak vstupního řetězce.
+         * @param RSymbol Index aktuálního znaku.
+         * @param CSymbol Index následujícího znaku.
          */
         private void IdentifyChar(char Actual, char Next, out Row RSymbol, out Column CSymbol)
         {

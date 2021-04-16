@@ -21,22 +21,13 @@ Also add information on how to contact you by electronic and paper mail.
  */
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
 using Calculator.Classes;
-using System.Diagnostics; //TODO only for disgnostics, remove later
 
 /**
  * @mainpage notitle
@@ -79,7 +70,7 @@ namespace Calculator
         }
 
         /**
-         * Funkce je volána při zmáčknutí libovolné klávesy v celém okně aplikace a ošetří je (F1 = nápověda, Tab = nepovolený)
+         * Funkce je volána při zmáčknutí libovolné klávesy v celém okně aplikace a ošetří je (F1 = nápověda, Tab = nepovolený).
          */
         private void WindowKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
@@ -110,53 +101,6 @@ namespace Calculator
             InputTextBox.Focus();
             System.Windows.Forms.Help.ShowHelp(null, HelpFilePath);
         }
-
-        /*private void Tokens_Test(object sender, RoutedEventArgs e)
-        {
-            TODO test toTokens a toPostfix
-            //string inputstr = InputTextBox.Text;
-
-            MessageBox.Show("TODO, pouze test funkčnosti toToken a toPostfix");
-
-            string str = "10^20/(50*1)+s(20.5)!-π-5318008";
-
-
-			List<Token> tokens = new List<Token>();
-			tokens = ToTokens.toTokens(str);
-            string message = "";
-            foreach(Token token in tokens)
-            {
-                if(token.type == TokenType.operand)
-                {
-                    message += token.operand.ToString();
-                }
-                else
-                {
-                    message += token.operation;
-                }
-            }
-            Trace.WriteLine(message);
-            MessageBox.Show(message);
-            
-			List <Token> result = new List<Token>();
-			result = ToPostfixClass.toPostfix(tokens);
-
-            message = "";
-            foreach (Token token in result)
-            {
-                if (token.type == TokenType.operand)
-                {
-                    message += token.operand.ToString();
-                }
-                else
-                {
-                    message += token.operation;
-                }
-            }
-            Trace.WriteLine(message);
-            MessageBox.Show(message);
-            // Konec testů toTokens a toPostfix
-        }*/
 
         /**
          * Ošetří mazání při stisku tlačítka Delete v grafickém rozhraní.
@@ -210,7 +154,6 @@ namespace Calculator
                     InputTextBox.CaretIndex = CaretPosition;
                 }
                 
-                //InputTextBox.SelectionStart = TextPosition - 1;
                 InputTextBox.SelectionLength = 0;
                 InputTextBox.Focus();
             }
@@ -341,7 +284,7 @@ namespace Calculator
                     InputTextBox.SelectionLength = 0;
                     break;
                 default:
-                    MessageBox.Show("Chybna funkce!");
+                    MessageBox.Show("Neexistující funkce!");
                     break;
             }
         }
@@ -415,19 +358,6 @@ namespace Calculator
                     e.Handled = true;
                 }
                 InputTextBox.Focus();
-                //InputTextBox.SelectionStart = TextPosition + 1;
-                //InputTextBox.SelectionLength = 0;
-            }
-        }
-
-        /**
-         * Funkce zakazuje Vkládání textu (např. pomocí Ctrl+V).
-         */
-        private void InputTextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (e.Command == ApplicationCommands.Paste)
-            {
-                e.Handled = true;
             }
         }
 

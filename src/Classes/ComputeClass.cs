@@ -27,7 +27,7 @@ namespace Calculator.Classes
 {
 	/**
 	* @class ComputeClass
-	* @brief Třída pro vypočítání výrazu z postfixové notace
+	* @brief Třída pro vypočítání výrazu z postfixové notace.
 	*/
 	public class ComputeClass
 	{
@@ -35,9 +35,9 @@ namespace Calculator.Classes
 		private MathLibClass MathLib { get; set; }
 
 		/**
-		* @brief Konstruktor
+		* @brief Konstruktor.
 		* 
-		* Inicializuje TokenStack a MathLib
+		* Inicializuje TokenStack a MathLib.
 		* 
 		*/
 		public ComputeClass()
@@ -47,9 +47,9 @@ namespace Calculator.Classes
 		}
 
 		/**
-		* @brief Metoda vypočítá výraz z infixové notace
-		* @param Input List obsahující výraz v postfixové notaci
-		* @return Vrátí vypočítaný výraz
+		* @brief Metoda vypočítá výraz z infixové notace.
+		* @param Input List obsahující výraz v postfixové notaci.
+		* @return Vrátí vypočítaný výraz.
 		*/
 		public double Compute(List<Token> Input)
 		{
@@ -111,8 +111,8 @@ namespace Calculator.Classes
 		}
 
 		/**
-		* @brief Metoda vybere ze zásobníku buď jedno čislo nebo dvě
-		* @param token Token, který obsahuje buď operand nebo operátor
+		* @brief Metoda vybere ze zásobníku buď jedno číslo nebo dvě.
+		* @param token Token, který obsahuje buď operand nebo operátor.
 		* @return Vrátí hodnoty ze zásobníku.
 		*/
 		private (double, double) AssingOperands(Token token)
@@ -122,9 +122,9 @@ namespace Calculator.Classes
 		}
 
 		/**
-		* @brief Metoda určí jestli se má vypočítat výraz na zásobníku
-		* @param token Token, který obsahuje buď operand nebo operátor
-		* @return Vrátí True jestli je na zásobníku operand, jinak False
+		* @brief Metoda určí jestli se má vypočítat výraz na zásobníku.
+		* @param token Token, který obsahuje buď operand nebo operátor.
+		* @return Vrátí \c true jestli je na zásobníku operand, jinak \c false.
 		*/
 		private bool DoComputation(Token token)
 		{

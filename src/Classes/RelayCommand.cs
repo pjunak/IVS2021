@@ -2,7 +2,7 @@
 Calculator, FITness StudIO 21
 Copyright (C)
 
-RelayCommnad.cs: Event hnadler.
+RelayCommnad.cs: Event handler.
 Full project can be found here: https://github.com/pjunak/IVS2021/
 
 This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ namespace Calculator.Classes
 	/**
      * @class RelayCommand
      * 
-     * @brief Třída, která definuje rozhraní ICommand
+     * @brief Třída, která definuje rozhraní ICommand.
      */
 	/*
 		Táto třída byla převzatá z projektu do ITU. Rok 2020 autoři Patrik Haas, Pavel Bednář, Matúš Viščor. 

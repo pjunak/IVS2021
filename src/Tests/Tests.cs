@@ -7,8 +7,8 @@ namespace XUnitTests
 {
 	/**
 	* @class MathLibTests
-	* Táto Třída testuje všetky metódy matematické třídy nekolika vstupy
-	* @brief Třída, která obsabuje testy k matamatické tříde (MathLibClass)
+	* Tato třída testuje všechny metody matematické třídy několika vstupy.
+	* @brief Třída, která obsabuje testy k matamatické třídě (MathLibClass).
 	*/
 	public class MathLibTests
 	{
@@ -148,15 +148,15 @@ namespace XUnitTests
 
 	/**
 	* @class ComputeClassTests
-	* Táto Třída testuje správnost výpočtu třídy ComputeClass
-	* @brief Třída, která obsabuje testy k tříde, která vyčísly výraz v postfixové notaci (ComputeClass)
+	* Tato třída testuje správnost výpočtu třídy ComputeClass.
+	* @brief Třída, která obsabuje testy k třídě, která vyčíslí výraz v postfixové notaci (ComputeClass).
 	*/
 	public class ComputeClassTests
 	{
 		//Infix=(15-10-5-10) Postfix=(15 10 - 5 - 10 -) Expected=(-10)
 		[Fact(DisplayName = "Basic Subtraction test")]
 		/** 
-		 * @brief Test pro Infix=(15-10-5-10) Postfix=(15 10 - 5 - 10 -) Expected=(-10)
+		 * @brief Test pro Infix=(15-10-5-10) Postfix=(15 10 - 5 - 10 -) Expected=(-10).
 		 */
 		public void ComputeFromPostFixNotation_TestNumber1()
 		{
@@ -184,7 +184,7 @@ namespace XUnitTests
 		//Infix=(5+5+5+15) Postfix=(5 5 + 5 + 15 +) Expected(30)
 		[Fact(DisplayName = "Basic Addition test")]
 		/** 
-		 * @brief Test pro Infix=(5+5+5+15) Postfix=(5 5 + 5 + 15 +) Expected(30)
+		 * @brief Test pro Infix=(5+5+5+15) Postfix=(5 5 + 5 + 15 +) Expected(30).
 		 */
 		public void ComputeFromPostFixNotation_TestNumber2()
 		{
@@ -212,7 +212,7 @@ namespace XUnitTests
 		//Infix=(5+5*5), Postfix=(5 5 5 * +), Expected(30)
 		[Fact(DisplayName = "Basic Multiplication test")]
 		/** 
-		 * @brief Test pro Infix=(5+5*5), Postfix=(5 5 5 * +), Expected(30)
+		 * @brief Test pro Infix=(5+5*5), Postfix=(5 5 5 * +), Expected(30).
 		 */
 		public void ComputeFromPostFixNotation_TestNumber3()
 		{
@@ -238,7 +238,7 @@ namespace XUnitTests
 		//Infix=((2+3)*(7-2)/5), Postfix=(2 3 + 7 2 - * 5 /), Expected(5)
 		[Fact(DisplayName = "Complex Multiplication and Division test")]
 		/** 
-		 * @brief Test pro Infix=((2+3)*(7-2)/5), Postfix=(2 3 + 7 2 - * 5 /), Expected(5)
+		 * @brief Test pro Infix=((2+3)*(7-2)/5), Postfix=(2 3 + 7 2 - * 5 /), Expected(5).
 		 */
 		public void ComputeFromPostFixNotation_TestNumber4()
 		{
@@ -268,7 +268,7 @@ namespace XUnitTests
 		//Infix=(5*5 + 4^5*4), Postfix=(5 5 * 4 5 ^ 4 * +), Expected(4121)
 		[Fact(DisplayName = "Basic Power test")]
 		/** 
-		 * @brief Test pro Infix=(5*5 + 4^5*4), Postfix=(5 5 * 4 5 ^ 4 * +), Expected(4121)
+		 * @brief Test pro Infix=(5*5 + 4^5*4), Postfix=(5 5 * 4 5 ^ 4 * +), Expected(4121).
 		 */
 		public void ComputeFromPostFixNotation_TestNumber6()
 		{
@@ -299,7 +299,7 @@ namespace XUnitTests
 		//Infix=(5.5/1.1+16^(1.0 / 4)), Postfix=(5.5 1.1 / 16 1 4 / ^ +), Expected(9)
 		[Fact(DisplayName = "Basic sqrt test")]
 		/** 
-		 * @brief Test pro Infix=(5.5/1.1+16^(1.0 / 4)), Postfix=(5.5 1.1 / 16 1 4 / ^ +), Expected(9)
+		 * @brief Test pro Infix=(5.5/1.1+16^(1.0 / 4)), Postfix=(5.5 1.1 / 16 1 4 / ^ +), Expected(9).
 		 */
 		public void ComputeFromPostFixNotation_TestNumber7()
 		{
@@ -330,7 +330,7 @@ namespace XUnitTests
 		//ComputeFromPostFix Infix=(5.6+5.2*(120-5!)), Postfix=(5.6 5.2 120 5 ! - * +), Expected(5.6)
 		[Fact(DisplayName = "Basic Factorial test")]
 		/** 
-		 * @brief Test pro Infix=(5.6+5.2*(120-5!)), Postfix=(5.6 5.2 120 5 ! - * +), Expected(5.6)
+		 * @brief Test pro Infix=(5.6+5.2*(120-5!)), Postfix=(5.6 5.2 120 5 ! - * +), Expected(5.6).
 		 */
 		public void ComputeFromPostFixNotation_TestNumber8()
 		{
@@ -360,7 +360,7 @@ namespace XUnitTests
 		//Infix=(5.5*5.5/5.5+sin(1)*sin(2)), Postfix=(5.5 5.5 * 5.5 / 1 sin 2 sin * +), Expected(6.265)
 		[Fact(DisplayName = "Basic Sin test")]
 		/** 
-		 * @brief Test pro Infix=(5.5*5.5/5.5+sin(1)*sin(2)), Postfix=(5.5 5.5 * 5.5 / 1 sin 2 sin * +), Expected(6.265)
+		 * @brief Test pro Infix=(5.5*5.5/5.5+sin(1)*sin(2)), Postfix=(5.5 5.5 * 5.5 / 1 sin 2 sin * +), Expected(6.265).
 		 */
 		public void ComputeFromPostFixNotation_TestNumber9()
 		{

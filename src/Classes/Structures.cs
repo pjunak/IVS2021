@@ -2,7 +2,7 @@
 Calculator, FITness StudIO 21
 Copyright (C)
 
-Structures.cs: Date structures for ToTokens.cs
+Structures.cs: Data structures.
 Full project can be found here: https://github.com/pjunak/IVS2021/
 
 This program is free software: you can redistribute it and/or modify
@@ -20,11 +20,11 @@ along with this program. If not, see https://www.gnu.org/licenses/.
 Also add information on how to contact you by electronic and paper mail. 
  */
 
-using System;
-using System.Collections.Generic;
-
 namespace Calculator.Classes
 {
+    /**
+    * Určení typu Tokenu.
+    */
     public enum TokenType
     {
         operand = 0,
@@ -42,7 +42,7 @@ namespace Calculator.Classes
      * @var Token::operand
      * Člen operand obsahuje hodnotu operandu.
      * @var Token::operation
-     * Člen operation obsahuje jednoznakový ( \c char ) název operace.
+     * Člen operation obsahuje jednoznakový \c char název operace.
      */
     public struct Token
     {

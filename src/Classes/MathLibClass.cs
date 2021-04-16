@@ -26,20 +26,20 @@ namespace Calculator.Classes
 {
 	/**
 	* @class MathLibClass
-	* @brief Třída pro matematické funkce
+	* @brief Třída pro matematické funkce.
 	*/
 	public class MathLibClass
 	{
 		/** 
-		 * @brief Prázdný konstruktor
+		 * @brief Prázdný konstruktor.
 		 */
 		public MathLibClass() { }
 
 		/** 
-		 * @brief Sčítaní dvou čísel
-		 * @param doubleNumber Levý operand
-		 * @param doubleNumberToAdd Pravý operand
-		 * @return Vrátí součet dvou čísel
+		 * @brief Sčítaní dvou čísel.
+		 * @param doubleNumber Levý operand.
+		 * @param doubleNumberToAdd Pravý operand.
+		 * @return Vrátí součet dvou čísel.
 		 */
 		public double Addition(double doubleNumber, double doubleNumberToAdd)
 		{
@@ -47,10 +47,10 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		 * @brief Odčítaní dvou čísel
-		 * @param doubleNumber Levý operand
-		 * @param doubleNumberToSub Pravý operand
-		 * @return Vrátí rozdíl dvou čísel
+		 * @brief Odčítaní dvou čísel.
+		 * @param doubleNumber Levý operand.
+		 * @param doubleNumberToSub Pravý operand.
+		 * @return Vrátí rozdíl dvou čísel.
 		 */
 		public double Subtraction(double doubleNumber, double doubleNumberToSub)
 		{
@@ -58,10 +58,10 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		 * @brief Násobení dvou čísel
-		 * @param doubleNumber Levý operand
-		 * @param doubleNumberToMul Pravý operand
-		 * @return Vrátí výsledek vynásobení dvou čísel
+		 * @brief Násobení dvou čísel.
+		 * @param doubleNumber Levý operand.
+		 * @param doubleNumberToMul Pravý operand.
+		 * @return Vrátí výsledek vynásobení dvou čísel.
 		 */
 		public double Multiplication(double doubleNumber, double doubleNumberToMul)
 		{
@@ -69,10 +69,10 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		 * @brief Dělení dvou čísel
-		 * @param doubleNumber Levý operand
-		 * @param doubleNumberToDiv Pravý operand
-		 * @return Vrátí výsledek dělení dvou čísel, v případě dělení nulou vrátí double.NaN
+		 * @brief Dělení dvou čísel.
+		 * @param doubleNumber Levý operand.
+		 * @param doubleNumberToDiv Pravý operand.
+		 * @return Vrátí výsledek dělení dvou čísel, v případě dělení nulou vrátí \c double.NaN.
 		 */
 		public double Division(double doubleNumber, double doubleNumberToDiv)
 		{
@@ -81,9 +81,9 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		 * @brief Vypočítá faktoriál zadaného čísla
-		 * @param doubleNumberForFactorial Zadané číslo
-		 * @return Vrátí faktoriál zadaného čísla. Pokud je zadané číslo záporné nebo není celé, vrátí double.NaN
+		 * @brief Vypočítá faktoriál zadaného čísla.
+		 * @param doubleNumberForFactorial Zadané číslo.
+		 * @return Vrátí faktoriál zadaného čísla. Pokud je zadané číslo záporné nebo není celé, vrátí \c double.NaN.
 		 */
 		public double Factorial(double doubleNumberForFactorial)
 		{
@@ -99,10 +99,10 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		* @brief Vypočítá mocninu
-		* @param doubleNumber Mocněnec
-		* @param doubleNumberPower Mocnitel
-		* @return Vrátí mocninu. Pokud je mocnitel menší než 1 a mocněnec je záporný, vrátí double.NaN.
+		* @brief Vypočítá mocninu.
+		* @param doubleNumber Mocněnec.
+		* @param doubleNumberPower Mocnitel.
+		* @return Vrátí mocninu. Pokud je mocnitel menší než 1 a mocněnec je záporný, vrátí \c double.NaN.
 		*/
 		public double Power(double doubleNumber, double doubleNumberPower)
 		{
@@ -111,9 +111,9 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		* @brief Vypočítá sinus
-		* @param DoubleNumber Parametr pro funkci sinus (v radiánech)
-		* @return Vrátí funkční hodnotu funkce sinus
+		* @brief Vypočítá sinus.
+		* @param DoubleNumber Parametr pro funkci sinus (v radiánech).
+		* @return Vrátí funkční hodnotu funkce sinus.
 		*/
 		public double Sin(double DoubleNumber)
 		{
@@ -121,15 +121,15 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		* @brief Metoda zjistí, jestli je číslo záporné
-		* @param DoubleNumber Zadané číslo
-		* @return Vráti True jestli je číslo záporné, jinak False.
+		* @brief Metoda zjistí, jestli je číslo záporné.
+		* @param DoubleNumber Zadané číslo.
+		* @return Vráti \c true jestli je číslo záporné, jinak \c false.
 		*/
 		private bool IsDoubleNumberNegative(double DoubleNumber) => (DoubleNumber < 0);
 		/** 
-		* @brief Metoda zjistí, jestli je číslo desetinné
-		* @param DoubleNumber Zadané číslo
-		* @return Vrátí True jestli je číslo desetinné, jinak False.
+		* @brief Metoda zjistí, jestli je číslo desetinné.
+		* @param DoubleNumber Zadané číslo.
+		* @return Vrátí \c true jestli je číslo desetinné, jinak \c false.
 		*/
 		private bool IsValueDouble(double DoubleNumber) => (DoubleNumber % 1 != 0);
 	}

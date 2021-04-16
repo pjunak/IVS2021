@@ -20,7 +20,6 @@ along with this program. If not, see https://www.gnu.org/licenses/.
 Also add information on how to contact you by electronic and paper mail. 
  */
 
-using System;
 using System.Collections.Generic;
 
 namespace Calculator.Classes
@@ -28,7 +27,7 @@ namespace Calculator.Classes
 	/**
      * @class ToPostfixClass
      * 
-     * @brief Třída pro převod vstupního listu tokenů v infix tvaru do postfix tvaru
+     * @brief Třída pro převod vstupního listu tokenů v infix tvaru do postfix tvaru.
      */
 	public class ToPostfixClass
 	{
@@ -40,14 +39,14 @@ namespace Calculator.Classes
 		}
 
 		/**
-		* @brief Konstruktor
+		* @brief Konstruktor.
 		*/
 		public ToPostfixClass() { }
 
 		/** 
-         * @brief Funkce převede list tokenů to postfixového pořadí. Kontrola vstupu je prováděna volající funkcí, funkce ToPostfix tedy nepočítá s chybou.
+         * @brief Funkce převede list tokenů to postfixového pořadí. V případě chyby \c null.
          * @param tokens Vstupní list tokenů typu Token v infixovém tvaru.
-         * @return Vrátí řetežzc tokenů typu Token v púostfixovém tvaru.
+         * @return Vrátí řetežzc tokenů typu Token v postfixovém tvaru.
          */
 		public List<Token> toPostfix(List<Token> tokens)
 		{

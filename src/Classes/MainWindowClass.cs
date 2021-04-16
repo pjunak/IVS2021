@@ -2,7 +2,7 @@
 Calculator, FITness StudIO 21
 Copyright (C)
 
-MainWindowClass.cs: Data handler for the UI.
+MainWindowClass.cs: Controller for the GUI.
 Full project can be found here: https://github.com/pjunak/IVS2021/
 
 This program is free software: you can redistribute it and/or modify
@@ -21,12 +21,10 @@ Also add information on how to contact you by electronic and paper mail.
  */
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using Calculator.Classes;
 using System.Linq;
 
 namespace Calculator.Classes
@@ -68,7 +66,7 @@ namespace Calculator.Classes
 
 		/** 
 		* @brief Konstruktor
-		* Inicializuje proměnné
+		* Inicializuje proměnné.
 		*/
 		public MainWindowClass()
 		{
@@ -92,7 +90,7 @@ namespace Calculator.Classes
 		}
 
 		/** 
-		* @brief Metoda pro výpočet výrazu
+		* @brief Metoda pro výpočet výrazu.
 		* Metoda zavolá metody objektů, které vrátí vyčíslený výraz. V případě chyby informuje View.
 		*/
 		public void Compute()
@@ -127,7 +125,7 @@ namespace Calculator.Classes
 				Double to string conversion without scientific notation. Stackoverflow [online]. 2019 [cit. 2021-04-10]. Dostupné z: https://stackoverflow.com/questions/1546113/double-to-string-conversion-without-scientific-notation
 				*/
 				Final = true;
-				Input = Result.ToString("0." + new string('#', 339)); //Konvertuje na string beze ztrát a zachová decimální tvar
+				Input = Result.ToString("0." + new string('#', 339)); //Konvertuje na string beze ztrát a zachová decimální tvar.
 				CheckAfterFinal = true;
 				Final = false;
 				Shifts = 0;
@@ -164,7 +162,7 @@ namespace Calculator.Classes
 		}
 
 		/** 
-         * @brief Metoda, která po každém vstupu zavolá syntaktickou analýzu
+         * @brief Metoda, která po každém vstupu zavolá syntaktickou analýzu.
          * 
          * @param Value Vstupní řetězec.
          *

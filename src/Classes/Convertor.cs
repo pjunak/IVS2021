@@ -21,40 +21,30 @@ Also add information on how to contact you by electronic and paper mail.
  */
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace Calculator.Classes
 {
 	/**
 	* @class Convertor
-	* Táto třída dedí z IValueConverto, je u ní nutné implementovat rozhraní Convert, ConvertBack.
-	* Jelikož, nám není na potřebí ConvertBack, tak zústava neimplementován
-	* @brief Třída pro úpravu fontu v hlavním textboxu
+	* Tato třída dědí z IValueConvertor, je u ní nutné implementovat rozhraní Convert, ConvertBack.
+	* Jelikož nepotřebujeme ConvertBack, tak zustává neimplementován.
+	* @brief Třída pro úpravu fontu v hlavním textboxu.
 	*/
 	class Convertor : IValueConverter
 	{
 		/** 
-         * @brief Když se má hodnota co je nabindgovaná uložit do promnené v xml, je zavolána táto metoda, která dynamický mnení font.
-         * @param Value hodnota, která sa posíla do konvertoru.
-         * @param targetType Typ value, neni nám za potřebí
-         * @param parameter Parameter pro konvertor
-         * @param culture informace o kultúře, nepotřebujeme
-         * @return Vrátu novou hodnotu fontu, číslo double.
+         * @brief Když se má hodnota, co je nabindovaná, uložit do proměnné v xml, je zavolána tato metoda, která dynamický mění font.
+         * @param Value Hodnota, která sa posílá do konvertoru.
+         * @param targetType Typ value, nepotřebujeme.
+         * @param parameter Parameter pro konvertor pro rozlišení objektu.
+         * @param culture Informace o kultuře, nepotřebujeme.
+         * @return Vrátí novou hodnotu fontu, číslo double.
          */
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (parameter.ToString() == "MainWindow")
-			{
-				double Number = System.Convert.ToDouble(value);
-				if (Number < 337) return 337;
-				else return Number;
-			}
-			else if(parameter.ToString() == "ExpressionFont")
+			if(parameter.ToString() == "ExpressionFont")
             {
 				double Vyska = System.Convert.ToDouble(value);
 				return Math.Abs(Vyska / 1.8);
@@ -77,7 +67,7 @@ namespace Calculator.Classes
 		}
 
 		/** 
-         * @brief Táto metodá musí byt implemetovaná, ale jelikoš mi ju nepoužívamé, zústava v základním stavu, při vygenerovaní ve Visual Studiu
+         * @brief Tato metoda musí byt implemetovaná, ale jelikož my ji nepoužíváme, zůstává v základním stavu při vygenerovaní ve Visual Studiu.
          */
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{

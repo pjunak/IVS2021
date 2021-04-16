@@ -2,22 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Globalization;
 
 namespace Profiling
 {
 	/**
 	* @class Profiling
-	* @brief Třída pro vypočtení výběrové směrodatné odchylky
+	* @brief Třída pro vypočtení výběrové směrodatné odchylky.
 	*/
 	class Profiling
 	{
 		static MathLibClass MathLib;
 		/**
-		* @brief Vstupní bod programu
-		* @param Na vstupu očekává soubor s posloupností čísel
-		* @return Na standardní výstup vypíše směrodatnou odchylku
+		* @brief Vstupní bod programu.
+		* @param Na vstupu očekává soubor s posloupností čísel.
+		* @return Na standardní výstup vypíše směrodatnou odchylku.
 		*/
 		static void Main(string[] args)
 		{
@@ -45,9 +44,9 @@ namespace Profiling
 		}
 
 		/**
-		* @brief Metoda pro vypočítání aritmetického průměru
-		* @param List vstupních čísel
-		* @return Vrátí aritmetický průměr
+		* @brief Metoda pro vypočítání aritmetického průměru.
+		* @param inputNumbers \c List vstupních čísel.
+		* @return Vrátí aritmetický průměr.
 		*/
 		private static double ComputeMean(List<double> inputNumbers)
 		{
@@ -61,9 +60,9 @@ namespace Profiling
 		}
 
 		/**
-		* @brief Metoda pro načtení čísel ze vstupního souboru
-		* @param Cesta k souboru
-		* @return Vrátí List typu Double
+		* @brief Metoda pro načtení čísel ze vstupního souboru.
+		* @param Input Cesta k souboru.
+		* @return Vrátí \c List typu \c double.
 		*/
 		private static List<Double> LoadFile(string[] Input)
 		{

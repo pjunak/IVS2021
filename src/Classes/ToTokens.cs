@@ -25,8 +25,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
@@ -35,15 +33,15 @@ namespace Calculator.Classes
     /**
      * @class ToTokens
      * 
-     * @brief Třída pro převod vstupního stringu na seznam tokenů pro další práci s matematickou knihovnou
+     * @brief Třída pro převod vstupního stringu na seznam tokenů pro další práci s matematickou knihovnou.
      */
     public class ToTokens
     {
         public ToTokens() { }
         /** 
-         * @brief Převede vstup kalkulačky ze stringu do tokenů
-         * @param str Vstupní řetězec z formulářového okna
-         * @return Vrátí List datového typu Token
+         * @brief Převede vstup kalkulačky ze stringu do tokenů.
+         * @param str Vstupní řetězec z formulářového okna.
+         * @return Vrátí \c List datového typu Token.
          */
         public List<Token> toTokens(string str)
         {

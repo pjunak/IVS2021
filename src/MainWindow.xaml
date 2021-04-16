@@ -29,20 +29,16 @@ Also add information on how to contact you by electronic and paper mail.
         mc:Ignorable="d"
 		xmlns:Classes="clr-namespace:Calculator.Classes"
 		d:DataContext="{d:DesignInstance Classes:MainWindowClass}"
-        Title="Kalkulačka, ©FITness studIO 21" Height="419" Width="560" KeyDown="WindowKeyDown" MinHeight="377"
+        Title="Kalkulačka, ©FITness studIO 21" Height="419" Width="560" KeyDown="WindowKeyDown" MinHeight="377" MinWidth="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" MaxHeight="1100" MaxWidth="2000"
         FocusManager.FocusedElement="{Binding ElementName=InputTextBox}"
 		Activated="Window_Activated"
 		Deactivated="Window_Deactivated">
 
-	<Window.Resources>
-		<Classes:Convertor x:Key= "FontChange"/>
-	</Window.Resources>
+    <Window.Resources>
+        <Classes:Convertor x:Key= "FontChange"/>
+    </Window.Resources>
 
-	<Window.MinWidth>
-		<Binding Path="ActualHeight" RelativeSource="{RelativeSource self}" Converter="{StaticResource FontChange}" ConverterParameter="MainWindow"/>
-	</Window.MinWidth>
-
-	<Window.DataContext>
+    <Window.DataContext>
 		<Classes:MainWindowClass/>
 	</Window.DataContext>
 
