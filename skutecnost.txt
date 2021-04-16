@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Řešené úkoly na projektu jednotlivými řešiteli:
 Dalibor Čásek - grafické a uživatelské prostředí + syntaktická analýza
 Patrik Haas - propojení GUI s matematickou knihovnou, data-binding + profiling, Makefile
@@ -18,3 +19,11 @@ Pro déle řešené problémy se ale Discord stal nepoužitelným kvůli nemožn
 Na toto jsme pak využívali převážně projektovou GitHub Wiki. V samotném závěru při ladění jsme pak začali ve velké míře využívat
 GitHub Issues a velmi jsme si je oblíbili. Hlavně pro vzájemné hlášení chyb (včetně označení zodpovědných lidí a to i když třeba druzí nejsou online)
 nebo pro jednoduché uzavření problému pomocí popsaného comittu.
+=======
+Časový plán
+Co se týče dodržování časového plánu, v první části projektu jsme za plánem zaostávali o několik dní. Snažili jsme se pokrýt co nejvíce situací kalkulačky a udělat si velký přehled na Wiki GitHubu s řešením různých situací. Produktivita všech členů týmu se ale časem velmi zvyšovala a testování na VM (plánované 5. 4.) jsme předběhli o den. Od té doby jsme naopak ještě více předbíhali plán, což bylo ale výhodné, protože jsme měli dostatečný časový komfort pro odladění chyb a testování.
+
+Komunikace
+Mezi členy fungovala komunikace bez jakýchkoli větších problémů, rychlost řešení problémů byla výborná, čemuž pomohla i Instant Messaging forma komunikace na Discordu. Stanovená pravidla pro komunikaci jsme dodržovali a často jsme se na Discordu potkávali i na menších hlasových schůzkách mimo jejich pravidelný čas.
+Pro déle řešené problémy se ale Discord stal nepoužitelným kvůli nemožnosti třídění do vláken a rychlému zahlcení chatu. Na toto jsme pak využívali převážně projektovou GitHub Wiki. V samotném závěru při ladění jsme pak začali ve velké míře využívat GitHub Issues a velmi jsme si je oblíbili. Hlavně pro vzájemné hlášení chyb (včetně označení zodpovědných lidí a to i když třeba druzí nejsou online) nebo pro jednoduché uzavření problému pomocí popsaného comittu.
+>>>>>>> ea53b6bd2e53fd61ed4730980f14920d0fbea7a5
