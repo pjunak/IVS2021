@@ -89,9 +89,9 @@ namespace Calculator.Classes
 		{
 			if (IsDoubleNumberNegative(doubleNumberForFactorial) || IsValueDouble(doubleNumberForFactorial)) return double.NaN;
 
-			int ToFact = (int)doubleNumberForFactorial;
-			int Fact = 1;
-			for (var i = 1; i <= ToFact; i++)
+			double ToFact = doubleNumberForFactorial;
+			double Fact = 1;
+			for (double i = 1; i <= ToFact; i++)
 			{
 				Fact *= i;
 			}

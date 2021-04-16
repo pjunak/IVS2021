@@ -22,8 +22,6 @@ Also add information on how to contact you by electronic and paper mail.
 
 using System;
 using System.Collections.Generic;
-using System.Windows; //TODO only for disgnostics, remove later
-using System.Diagnostics; //TODO only for disgnostics, remove later
 
 namespace Calculator.Classes
 {
@@ -94,7 +92,7 @@ namespace Calculator.Classes
 						}
 						else
 						{
-							MessageBox.Show("Problem in toPostfix"); // TODO, nějakej pěknej chybovej message
+							return null;
 						}
 					}
 				}
