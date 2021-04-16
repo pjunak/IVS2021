@@ -2,7 +2,7 @@
 Calculator, FITness StudIO 21
 Copyright (C)
 
-Convertor.cs: Processing tool for MainWindow.xaml
+Convertor.cs: Converting tool for MainWindow.xaml
 Full project can be found here: https://github.com/pjunak/IVS2021/
 
 This program is free software: you can redistribute it and/or modify
