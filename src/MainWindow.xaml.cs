@@ -280,6 +280,7 @@ namespace Calculator
                     InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, "π");
                     InputTextBox.Focus();
                     InputTextBox.SelectionStart = TextPosition + 1;
+                    InputTextBox.CaretIndex = TextPosition + 1;
                     InputTextBox.SelectionLength = 0;
                     break;
                 case "OBrackOperator":
@@ -360,7 +361,16 @@ namespace Calculator
                             FuncName = "chyba";
                             break;
                     }
-                    TranslateShortKeys(FuncName, TextPosition);
+                    var vm = (MainWindowClass)DataContext;
+                    if (FuncName == "PiOperand" && vm.CheckAfterFinal)
+                    {
+                        InputTextBox.Text = "π";
+                        InputTextBox.CaretIndex = 1;
+                    }
+                    else
+                    {
+                        TranslateShortKeys(FuncName, TextPosition);
+                    }
                     e.Handled = true;
                 }
 
@@ -388,7 +398,7 @@ namespace Calculator
 			if (vm.CheckAfterFinal)
 			{
 				vm.CheckAfterFinal = false;
-				if (LastValue.Length <= InputTextBox.Text.Length && InputTextBox.CaretIndex == InputTextBox.Text.Length && char.IsDigit(InputTextBox.Text[InputTextBox.Text.Length - 1]))
+				if (LastValue.Length <= InputTextBox.Text.Length && InputTextBox.CaretIndex == InputTextBox.Text.Length && (char.IsDigit(InputTextBox.Text[InputTextBox.Text.Length - 1]) || InputTextBox.Text[InputTextBox.Text.Length - 1] == 'π'))
 				{
 					vm.Input = InputTextBox.Text[InputTextBox.Text.Length - 1].ToString();
 					InputTextBox.CaretIndex = InputTextBox.Text.Length;
