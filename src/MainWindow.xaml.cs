@@ -1,4 +1,4 @@
-﻿/*
+/*
 Calculator, FITness StudIO 21
 Copyright (C)
 
@@ -192,7 +192,7 @@ namespace Calculator
                     SelectionLength++;
                 }
                 InputTextBox.Text = InputTextBox.Text.Remove(TextPosition, SelectionLength);
-            }            
+            }
 
             if ((sender as Button).Name == "OperatorMul")
             {   // vloží operátor násobení
@@ -206,8 +206,19 @@ namespace Calculator
             }
             else
             {   // vloží obsah tlačítka (číslice, +, -)
-                InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, content);
-                TextPosition += content.Length;
+
+                //Jestli je v textox výsledek, tak po stlačení čísla myší, se obsah přemaže daným číslem
+                var vm = (MainWindowClass)DataContext;
+                if (vm.CheckAfterFinal && (char.IsDigit(content[0]) || (content[0] == 'π')))
+                {
+                    InputTextBox.Text = content;
+                    TextPosition = 1;
+                }
+                else
+                {
+                    InputTextBox.Text = InputTextBox.Text.Insert(TextPosition, content);
+                    TextPosition += content.Length;
+                }
             }
 
             InputTextBox.CaretIndex = TextPosition;
