@@ -2,15 +2,15 @@
 Dalibor Čásek - grafické a uživatelské prostředí + syntaktická analýza
 Patrik Haas - propojení GUI s matematickou knihovnou, data-binding + profiling, Makefile
 Kristián Heřman - grafické a uživatelské prostředí, nápověda, dokumentace + mockup, vedení týmu
-Petr Junák - parser, převod výrazů do postfixové notace
+Petr Junák - parser, převod výrazů do postfixové notace, uživatelská příručka
 
-Časový plán
+Časový plán:
 Co se týče dodržování časového plánu, v první části projektu jsme za plánem zaostávali zhruba o týden,
 někdy i o víc. Snažili jsme se pokrýt co nejvíce situací kalkulačky a udělat si velký přehled na Wiki GitHubu s řešením různých situací.
 Produktivita všech členů týmu se ale časem velmi zvyšovala a testování na VM (plánované 5. 4.) jsme předběhli o den.
 Od té doby jsme naopak ještě více předbíhali plán, což bylo ale výhodné, protože jsme měli dostatečný časový komfort pro odladění chyb a testování.
 
-Komunikace
+Komunikace:
 Mezi členy fungovala komunikace bez jakýchkoli větších problémů, rychlost řešení problémů byla výborná,
 čemuž pomohla i instant messaging forma komunikace na Discordu. Stanovená pravidla pro komunikaci jsme dodržovali
 a často jsme se na Discordu potkávali i na menších hlasových schůzkách mimo jejich pravidelný čas.
