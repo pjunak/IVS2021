@@ -1,4 +1,4 @@
-﻿/*
+/*
 Calculator, FITness StudIO 21
 Copyright (C)
 
@@ -158,7 +158,7 @@ namespace Calculator.Classes
                     player.Play();
 
                     Random rnd = new Random();
-                    int randInt = rnd.Next(1,6);
+                    int randInt = rnd.Next(1,11);
 
                     int h = 0;
                     int w = 0;
@@ -213,6 +213,56 @@ namespace Calculator.Classes
                         if (!File.Exists(imgsrc))
                         {
                             imgsrc = "../../EasterEgg/Basen.png";
+                        }
+                    }
+                    else if (randInt == 6)
+                    {
+                        h = 510;
+                        w = 500;
+                        imgsrc = "EasterEgg/Formy.png";
+                        if (!File.Exists(imgsrc))
+                        {
+                            imgsrc = "../../EasterEgg/Formy.png";
+                        }
+                    }
+                    else if (randInt == 7)
+                    {
+                        h = 510;
+                        w = 500;
+                        imgsrc = "EasterEgg/Basen.png";
+                        if (!File.Exists(imgsrc))
+                        {
+                            imgsrc = "../../EasterEgg/Implikace.png";
+                        }
+                    }
+                    else if (randInt == 8)
+                    {
+                        h = 510;
+                        w = 500;
+                        imgsrc = "EasterEgg/Integrace.png";
+                        if (!File.Exists(imgsrc))
+                        {
+                            imgsrc = "../../EasterEgg/Integrace.png";
+                        }
+                    }
+                    else if (randInt == 9)
+                    {
+                        h = 510;
+                        w = 500;
+                        imgsrc = "EasterEgg/Intelekt.png";
+                        if (!File.Exists(imgsrc))
+                        {
+                            imgsrc = "../../EasterEgg/Intelekt.png";
+                        }
+                    }
+                    else if (randInt == 10)
+                    {
+                        h = 510;
+                        w = 500;
+                        imgsrc = "EasterEgg/Smrt.png";
+                        if (!File.Exists(imgsrc))
+                        {
+                            imgsrc = "../../EasterEgg/Smrt.png";
                         }
                     }
 
