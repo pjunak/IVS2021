@@ -1,4 +1,4 @@
-﻿using Calculator.Classes;
+using Calculator.Classes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,22 +13,26 @@ namespace Profiling
 	class Profiling
 	{
 		static MathLibClass MathLib;
-		/**
+        /**
 		* @brief Vstupní bod programu.
-		* @param Na vstupu očekává soubor s posloupností čísel.
+		* @param Na vstupu očekává soubor s posloupností čísel, nebo bude načítavat vstup ze standartního vstupu, dokud uživatel nezadá CTLR+D.
 		* @return Na standardní výstup vypíše směrodatnou odchylku.
 		*/
-		static void Main(string[] args)
+        static void Main(string[] args)
 		{
 			MathLib = new MathLibClass();
+            List<double> InputNumbers;
 
-			if (args.Length == 0 || !File.Exists(args[0]))
-			{
-				Console.WriteLine("Subor neexistuje");
-				System.Environment.Exit(0);
-			}
+            if (args.Length == 0 || !File.Exists(args[0]))
+            {
+                InputNumbers = LoadFile(LoadInput());
+            }
+            else
+            {
+                InputNumbers = LoadFile(args);
+            }
+            if (InputNumbers.Count == 0) Environment.Exit(0);
 
-			var InputNumbers = LoadFile(args);
 			var Division = MathLib.Division(1, MathLib.Subtraction(InputNumbers.Count, 1));
 			var NMeanXPower = MathLib.Multiplication(InputNumbers.Count, MathLib.Power(ComputeMean(InputNumbers), 2));
 
@@ -43,12 +47,12 @@ namespace Profiling
 			Console.WriteLine(S);
 		}
 
-		/**
+        /**
 		* @brief Metoda pro vypočítání aritmetického průměru.
 		* @param inputNumbers \c List vstupních čísel.
 		* @return Vrátí aritmetický průměr.
 		*/
-		private static double ComputeMean(List<double> inputNumbers)
+        private static double ComputeMean(List<double> inputNumbers)
 		{
 			var Sum = 0.0;
 			foreach (double Double in inputNumbers)
@@ -60,13 +64,16 @@ namespace Profiling
 		}
 
 		/**
-		* @brief Metoda pro načtení čísel ze vstupního souboru.
-		* @param Input Cesta k souboru.
+		* @brief Metoda pro načtení čísel ze vstupního souboru nebo vlastního \c stringu.
+		* @param Input Cesta k souboru / pole 2  \c stringov.
 		* @return Vrátí \c List typu \c double.
 		*/
 		private static List<Double> LoadFile(string[] Input)
 		{
-			var Content = System.IO.File.ReadAllText(Input[0]);
+            string Content;
+            if (Input.Length == 2) Content = Input[0];
+            else Content = System.IO.File.ReadAllText(Input[0]);
+
 			var Temporall = "";
 			var ReturnList = new List<Double> { };
 
@@ -79,17 +86,48 @@ namespace Profiling
 				}
 				else if (Temporall != "")
 				{
-					ReturnList.Add(Convert.ToDouble(Temporall, new CultureInfo("en-US")));
+                    try
+                    {
+                        ReturnList.Add(Convert.ToDouble(Temporall, new CultureInfo("en-US")));
+                    }
+                    catch
+                    {
+                        continue;
+                    }
 					Temporall = "";
 				}
 			}
 
 			if (Temporall != "")
 			{
-				ReturnList.Add(Convert.ToDouble(Temporall, new CultureInfo("en-US")));
+                try
+                {
+                    ReturnList.Add(Convert.ToDouble(Temporall, new CultureInfo("en-US")));
+                }
+                catch
+                {
+                }
 			}
 
 			return ReturnList;
 		}
-	}
+
+        /**
+		* @brief Metoda načítá znakt ze z standartního vstupu.
+		* @return Vrátí \c string, kde v prvním indexu je celkový vstup uživatele a ve druhém je indikátor pro metodu \c LoadFile, že uživatel zadával ručně znaky.
+		*/
+        private static string[] LoadInput()
+        {
+            int InputInt;
+            string[] InputString = new string [2];
+
+            while ((InputInt = Console.Read()) != 4)
+            {
+                InputString[0] += (char)InputInt;
+            }
+            InputString[1] = "";
+
+            return InputString;
+        }
+    }
 }
