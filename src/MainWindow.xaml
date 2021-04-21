@@ -75,7 +75,7 @@ Also add information on how to contact you by electronic and paper mail.
                 </TextBox.InputBindings>
             </TextBox>
             <Button Grid.Row="0" Grid.Column="1" Name="DeleteButton" Background="Transparent" BorderBrush="Transparent" 
-                    Margin="4" Padding="8,8" Click="ButtonClickDelete"
+                    Margin="4" Padding="8,8" Click="ButtonClickDelete" PreviewMouseDown="ButtonDownDelete" PreviewMouseUp="ButtonUpDelete"
                     Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}"
                     ToolTip="Smaže znak, který leží vlevo od kurzoru, případně označený výběr." ScrollViewer.CanContentScroll="True">
                 <Viewbox>

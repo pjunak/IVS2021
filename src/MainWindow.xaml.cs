@@ -28,6 +28,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.IO;
 using Calculator.Classes;
+using System.Timers;
 
 /**
  * @mainpage notitle
@@ -63,10 +64,32 @@ namespace Calculator
      */
     public partial class MainWindow : Window
     {
+        /**
+         * Časovač pro tlačítko mazání.
+         */
+        private Timer DeleteTimer;
+
+        /**
+         * Přepínač smazání celého výrazu (držení tlačítka na 500ms) nebo smazání jednoho znaku.
+         */
+        private bool TimeUP;
 
         public MainWindow()
         {
             InitializeComponent();
+            TimeUP = false;
+            DeleteTimer = new Timer();
+            DeleteTimer.AutoReset = false;
+            DeleteTimer.Interval = 500;
+            DeleteTimer.Elapsed += OnTimedEvent;
+        }
+
+        /**
+         * Přepnutí přepínače \c TimeUp při dovršení času.
+         */
+        private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            TimeUP = true;
         }
 
         /**
@@ -100,6 +123,30 @@ namespace Calculator
             InputTextBox.SelectionLength = 0;
             InputTextBox.Focus();
             System.Windows.Forms.Help.ShowHelp(null, HelpFilePath);
+        }
+
+        /**
+         * Spuštění časovače \c DeleteTimer.
+         */
+        private void ButtonDownDelete(object sender, RoutedEventArgs e)
+        {
+            DeleteTimer.Stop();
+            DeleteTimer.Enabled = true;
+        }
+
+        /**
+         * Vynulování časovače \c DeleteTimer. Vyhodnocení, co se smaže ze vstupu.
+         */
+        private void ButtonUpDelete(object sender, RoutedEventArgs e)
+        {
+            DeleteTimer.Enabled = false;
+            DeleteTimer.Stop();
+            if(TimeUP)
+            {
+                InputTextBox.Clear();
+                TimeUP = false;
+                InputTextBox.Focus();
+            }
         }
 
         /**
