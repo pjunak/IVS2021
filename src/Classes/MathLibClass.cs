@@ -1,4 +1,4 @@
-﻿/*
+/*
 Calculator, FITness StudIO 21
 Copyright (C)
 
@@ -87,6 +87,8 @@ namespace Calculator.Classes
 		 */
 		public double Factorial(double doubleNumberForFactorial)
 		{
+            if (doubleNumberForFactorial > 170) return Double.PositiveInfinity;
+
 			if (IsDoubleNumberNegative(doubleNumberForFactorial) || IsValueDouble(doubleNumberForFactorial)) return double.NaN;
 
 			double ToFact = doubleNumberForFactorial;
