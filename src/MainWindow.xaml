@@ -29,7 +29,7 @@ Also add information on how to contact you by electronic and paper mail.
         mc:Ignorable="d"
 		xmlns:Classes="clr-namespace:Calculator.Classes"
 		d:DataContext="{d:DesignInstance Classes:MainWindowClass}"
-        Title="Kalkulačka, ©FITness studIO 21" Height="419" Width="560" KeyDown="WindowKeyDown" MinHeight="377" MinWidth="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" MaxHeight="1100" MaxWidth="2000"
+        Title="Kalkulačka, ©FITness studIO 21" Height="419" Width="560" KeyDown="WindowKeyDown" MinHeight="377" MinWidth="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}"
         FocusManager.FocusedElement="{Binding ElementName=InputTextBox}" MouseWheel="InputTextBox_MouseWheel"
 		Activated="Window_Activated"
 		Deactivated="Window_Deactivated">
