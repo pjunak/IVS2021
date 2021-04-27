@@ -1,4 +1,4 @@
-﻿/*
+/*
 Calculator, FITness StudIO 21
 Copyright (C)
 
@@ -57,7 +57,7 @@ namespace Calculator.Classes
 			else if(parameter.ToString() == "InputFont")
 			{
                 double Vyska = System.Convert.ToDouble(value);
-				return Math.Abs(Vyska / 3);
+				return Math.Abs((Vyska-200) / 3);
             }
 			else
             {

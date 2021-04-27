@@ -90,6 +90,11 @@ namespace Calculator
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
             TimeUP = true;
+            this.Dispatcher.Invoke(() =>
+            {
+                InputTextBox.Clear();
+                InputTextBox.Focus();
+            });
         }
 
         /**
@@ -130,6 +135,7 @@ namespace Calculator
          */
         private void ButtonDownDelete(object sender, RoutedEventArgs e)
         {
+            TimeUP = false;
             DeleteTimer.Stop();
             DeleteTimer.Enabled = true;
         }
@@ -141,11 +147,13 @@ namespace Calculator
         {
             DeleteTimer.Enabled = false;
             DeleteTimer.Stop();
-            if(TimeUP)
+            if(!TimeUP)
             {
-                InputTextBox.Clear();
-                TimeUP = false;
-                InputTextBox.Focus();
+                ButtonClickDelete(sender, e);
+            }
+            else
+            {
+                return;
             }
         }
 
